@@ -18,15 +18,19 @@ app.use(bodyParser.urlencoded({
 
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 
-app.get("/", function(req, res) {
-    fs.readFile(path.join(__dirname, "prelaunch/view.html"), function(error, buf) {
-        if(error) {
-            console.error("Failed to read prelaunch view", error);
-            return res.status(500).send(error500Page);
-        }
-        res.send(buf.toString());
-    });
-});
+app.get("/", respondWithView("prelaunch/view.html"));
+
+function respondWithView(view) {
+    return function(req, res) {
+        fs.readFile(path.join(__dirname, view), function(error, buf) {
+            if(error) {
+                console.error("Failed to read view " + view, error);
+                return res.status(500).send(error500Page);
+            }
+            res.send(buf.toString());
+        });
+    };
+}
 
 app.post("/subscribe", function(req, res) {
     if(!req.body.email) {
@@ -74,6 +78,8 @@ app.get("/list-subscribers", function(req, res) {
         });
     });
 });
+
+app.get("/om", respondWithView("about/view.html"));
 
 app.use(function endpointNotFound(req, res) {
     res.status(404).send(error404Page);
