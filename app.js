@@ -5,13 +5,16 @@ var bodyParser = require("body-parser");
 var kvfs = require("kvfs")(".subscriber-data");
 var uuid = require("uuid");
 var async = require("async");
+var pkg = require("./package.json");
 
 var error404Page = fs.readFileSync(path.join(__dirname, "error/404.html")).toString();
 var error500Page = fs.readFileSync(path.join(__dirname, "error/500.html")).toString();
 
 var app = express();
 
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 app.get("/", function(req, res) {
     fs.readFile(path.join(__dirname, "prelaunch/view.html"), function(error, buf) {
@@ -75,3 +78,5 @@ app.use(function endpointNotFound(req, res) {
 });
 
 app.listen(3000);
+
+console.log("Started etree2 app version " + pkg.version + ", listening on port 3000");
