@@ -16,6 +16,8 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
+app.use("/assets", express.static(path.join(__dirname, "assets")));
+
 app.get("/", function(req, res) {
     fs.readFile(path.join(__dirname, "prelaunch/view.html"), function(error, buf) {
         if(error) {
