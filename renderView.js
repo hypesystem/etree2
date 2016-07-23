@@ -1,3 +1,5 @@
+var fs = require("fs");
+var path = require("path");
 var frontmatter = require("frontmatter");
 var mustache = require("mustache");
 

@@ -1,6 +1,6 @@
 var kvfs = require("kvfs")(".subscriber-data");
 var async = require("async");
-var errorResponses = require("./error/responses.js");
+var errorResponses = require("../error/responses.js");
 
 module.exports = function(req, res) {
     if(req.query.secret != "1241215124125123122215124") {

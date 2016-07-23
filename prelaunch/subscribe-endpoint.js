@@ -1,6 +1,6 @@
 var uuid = require("uuid");
 var kvfs = require("kvfs")(".subscriber-data");
-var errorResponses = require("./error/responses.js");
+var errorResponses = require("../error/responses.js");
 
 module.exports = function(req, res) {
     if(!req.body.email) {
