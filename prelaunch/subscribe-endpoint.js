@@ -1,5 +1,6 @@
 var uuid = require("uuid");
 var kvfs = require("kvfs")(".subscriber-data");
+var errorResponses = require("./error/responses.js");
 
 module.exports = function(req, res) {
     if(!req.body.email) {
@@ -16,7 +17,7 @@ module.exports = function(req, res) {
     }, function(error) {
         if(error) {
             console.error("Failed to save subscription for " + req.body.email, error);
-            return res.status(500).send("Failed to save subscription");
+            return res.status(500).send(errorResponses[500]);
         }
         //TODO: Send email to admin with notif
         res.redirect("/du-er-paa-listen");
