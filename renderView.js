@@ -3,7 +3,12 @@ var path = require("path");
 var frontmatter = require("frontmatter");
 var mustache = require("mustache");
 
-function renderView(view, callback) {
+function renderView(view, viewModel, callback) {
+    if(!callback) {
+        callback = viewModel;
+        viewModel = {};
+    }
+    view = mustache.render(view, viewModel);
     var page = frontmatter(view);
     if(!page.data || !page.data.layout) {
         return callback(null, view);
