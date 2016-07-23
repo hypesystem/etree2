@@ -31,7 +31,7 @@ app.get("/list-subscribers", listSubscribersEndpoint);
 app.get("/om", staticViewEndpoint("about/view.html"));
 
 app.use(function endpointNotFound(req, res) {
-    res.status(404).send(errorResponses[404]);
+    res.fail(404);
 });
 
 app.listen(3000);
