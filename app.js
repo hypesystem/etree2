@@ -13,6 +13,16 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
+app.use(function failMiddleware(req, res, next) {
+    res.fail = function(errorCode, message) {
+        res.status(errorCode);
+        var errorResponseGenerator = errorResponses[errorCode];
+        errorResponseGenerator(res, message);
+        return res;
+    };
+    next();
+});
+
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 app.get("/", staticViewEndpoint("prelaunch/view.html"));
 app.post("/subscribe", subscribeEndpoint);

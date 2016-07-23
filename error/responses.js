@@ -1,20 +1,34 @@
 var fs = require("fs");
 var path = require("path");
 var mustache = require("mustache");
+var renderView = require("../renderView.js");
 
-module.exports = {
-    400: getErrorFunction(400),
-    404: readFileForError(404),
-    500: readFileForError(500)
-};
+var errorResponses = {};
 
-function getErrorFunction(error) {
-    var errorFile = readFileForError(error);
-    return function(message) {
-        return mustache.render(errorFile, { message: message });
-    }
-}
+[
+    400,
+    404,
+    500
+].forEach(function(errorCode) {
+    fs.readFile(path.join(__dirname, errorCode + ".html"), function(error, errorFileBuf) {
+        if(error) {
+            console.error("Failed to read error file for " + errorCode, error);
+            return process.exit(1);
+        }
+        renderView(errorFileBuf.toString(), function(error, responseTemplate) {
+            if(error) {
+                console.error("Failed to render error page for error code " + errorCode, error);
+                return process.exit(1);
+            }
+            errorResponses[errorCode] = function(res, message) {
+                if(!message) {
+                    message = null;
+                }
+                var response = mustache.render(responseTemplate, { message: message });
+                res.status(errorCode).send(response);
+            };
+        });
+    });
+});
 
-function readFileForError(error) {
-    return fs.readFileSync(path.join(__dirname, error + ".html")).toString();
-}
+module.exports = errorResponses;

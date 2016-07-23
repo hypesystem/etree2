@@ -4,10 +4,10 @@ var errorResponses = require("../error/responses.js");
 
 module.exports = function(req, res) {
     if(!req.body.email) {
-        return res.status(400).send(errorResponses[400]("No email supplied"));
+        return res.fail(400, "No email supplied");
     }
     if(!isValidEmail(req.body.email)) {
-        return res.status(400).send(errorResponses[400]("Invalid email " + req.body.email));
+        return res.fail(400, "Invalid email " + req.body.email);
     }
     var id = uuid.v4();
     kvfs.set("subscription/" + id, {
@@ -17,7 +17,7 @@ module.exports = function(req, res) {
     }, function(error) {
         if(error) {
             console.error("Failed to save subscription for " + req.body.email, error);
-            return res.status(500).send(errorResponses[500]);
+            return res.fail(500);
         }
         //TODO: Send email to admin with notif
         res.redirect("/du-er-paa-listen");
