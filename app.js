@@ -6,6 +6,8 @@ var kvfs = require("kvfs")(".subscriber-data");
 var uuid = require("uuid");
 var async = require("async");
 var pkg = require("./package.json");
+var frontmatter = require("frontmatter");
+var mustache = require("mustache");
 
 var error404Page = fs.readFileSync(path.join(__dirname, "error/404.html")).toString();
 var error500Page = fs.readFileSync(path.join(__dirname, "error/500.html")).toString();
@@ -32,7 +34,28 @@ function respondWithView(view, res) {
             console.error("Failed to read view " + view, error);
             return res.status(500).send(error500Page);
         }
-        res.send(buf.toString());
+        renderView(buf.toString(), function(error, result) {
+            if(error) {
+                console.error("Failed to render view " + view, error);
+                return res.status(500).send(error500Page);
+            }
+            res.send(result);
+        });
+    });
+}
+
+function renderView(view, callback) {
+    var page = frontmatter(view);
+    if(!page.data || !page.data.layout) {
+        return callback(null, view);
+    }
+    var layoutPath = path.join(__dirname, "layouts", page.data.layout + ".html");
+    fs.readFile(layoutPath, function(error, layoutBuf) {
+        if(error) {
+            return callback(error);
+        }
+        var merged = mustache.render(layoutBuf.toString(), { content: page.content });
+        renderView(merged, callback);
     });
 }
 
