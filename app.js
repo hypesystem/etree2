@@ -1,13 +1,11 @@
 var express = require("express");
+var bodyParser = require("body-parser");
 var fs = require("fs");
 var path = require("path");
-var bodyParser = require("body-parser");
-var kvfs = require("kvfs")(".subscriber-data");
-var uuid = require("uuid");
-var async = require("async");
 var pkg = require("./package.json");
-var frontmatter = require("frontmatter");
-var mustache = require("mustache");
+var subscribeEndpoint = require("./prelaunch/subscribe-endpoint.js");
+var listSubscribersEndpoint = require("./prelaunch/list-subscribers-endpoint.js");
+var staticViewEndpoint = require("./static-view-endpoint.js");
 
 var error404Page = fs.readFileSync(path.join(__dirname, "error/404.html")).toString();
 var error500Page = fs.readFileSync(path.join(__dirname, "error/500.html")).toString();
@@ -19,95 +17,10 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use("/assets", express.static(path.join(__dirname, "assets")));
-
 app.get("/", staticViewEndpoint("prelaunch/view.html"));
-
-function staticViewEndpoint(view) {
-    return function(req, res) {
-        respondWithView(view, res);
-    };
-}
-
-function respondWithView(view, res) {
-    fs.readFile(path.join(__dirname, view), function(error, buf) {
-        if(error) {
-            console.error("Failed to read view " + view, error);
-            return res.status(500).send(error500Page);
-        }
-        renderView(buf.toString(), function(error, result) {
-            if(error) {
-                console.error("Failed to render view " + view, error);
-                return res.status(500).send(error500Page);
-            }
-            res.send(result);
-        });
-    });
-}
-
-function renderView(view, callback) {
-    var page = frontmatter(view);
-    if(!page.data || !page.data.layout) {
-        return callback(null, view);
-    }
-    var layoutPath = path.join(__dirname, "layouts", page.data.layout + ".html");
-    fs.readFile(layoutPath, function(error, layoutBuf) {
-        if(error) {
-            return callback(error);
-        }
-        var merged = mustache.render(layoutBuf.toString(), { content: page.content });
-        renderView(merged, callback);
-    });
-}
-
-app.post("/subscribe", function(req, res) {
-    if(!req.body.email) {
-        return res.status(400).send("No email supplied");
-    }
-    if(!isValidEmail(req.body.email)) {
-        return res.status(400).send("Invalid email " + req.body.email);
-    }
-    var id = uuid.v4();
-    kvfs.set("subscription/" + id, {
-        email: req.body.email,
-        subscribed_at: new Date().toISOString(),
-        state: "subscribed"
-    }, function(error) {
-        if(error) {
-            console.error("Failed to save subscription for " + req.body.email, error);
-            return res.status(500).send("Failed to save subscription");
-        }
-        //TODO: Send email to admin with notif
-        res.redirect("/du-er-paa-listen");
-    });
-});
-
+app.post("/subscribe", subscribeEndpoint);
 app.get("/du-er-paa-listen", staticViewEndpoint("prelaunch/subscription-succesful-view.html"));
-
-function isValidEmail(email) {
-    return email.match(/^.+@.+$/);
-}
-
-app.get("/list-subscribers", function(req, res) {
-    if(req.query.secret != "1241215124125123122215124") {
-        return res.send("You don't know the secret, bruv");
-    }
-    kvfs.list("subscription", function(error, subscriptions) {
-        if(error) {
-            console.error("Failed to get subscription list", error);
-            return res.status(500).send("Failed to get subscription list");
-        }
-        async.map(subscriptions, function(subscription, callback) {
-            kvfs.get(subscription, callback);
-        }, function(error, subscriptionContents) {
-            if(error) {
-                console.error("Failed to read one or more subscriptions", error);
-                return res.status(500).send("Failed to read one or more subscriptions");
-            }
-            res.send(subscriptionContents);
-        });
-    });
-});
-
+app.get("/list-subscribers", listSubscribersEndpoint);
 app.get("/om", staticViewEndpoint("about/view.html"));
 
 app.use(function endpointNotFound(req, res) {
