@@ -4,7 +4,7 @@ var errorResponses = require("./error/responses.js");
 var pkg = require("./package.json");
 var subscribeEndpoint = require("./prelaunch/subscribe-endpoint.js");
 var listSubscribersEndpoint = require("./prelaunch/list-subscribers-endpoint.js");
-var staticViewEndpoint = require("./static-view-endpoint.js");
+var staticViewEndpoint = require("./staticViewEndpoint.js");
 var path = require("path");
 
 var app = express();
