@@ -1,0 +1,44 @@
+body {
+    background: rgb(160, 200, 170);
+    text-align: center;
+    font-family: sans-serif;
+}
+.background {
+    background-image: url('/assets/firforest.jpg');
+    background-size: cover;
+    background-position: top;
+    position: fixed;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
+    filter: blur(2px);
+}
+.container {
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+    max-width: 700px;
+    margin-top: 50px;
+}
+.floaty-content-box {
+    background: rgb(240,240,240);
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.2), 0 3px 2px rgba(0,0,0,0.2);
+}
+.prelaunch-form input {
+    width: 350px;
+    max-width: 100%;
+    padding: 10px 12px;
+    font-size: 1.2em;
+}
+.prelaunch-form button {
+    padding: 8px 12px;
+    font-size: 1.2em;
+}
+footer {
+    font-size: 0.9em;
+    text-align: center;
+}
