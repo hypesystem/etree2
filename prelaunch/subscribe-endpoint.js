@@ -4,10 +4,10 @@ var errorResponses = require("./error/responses.js");
 
 module.exports = function(req, res) {
     if(!req.body.email) {
-        return res.status(400).send("No email supplied");
+        return res.status(400).send(errorResponses[400]("No email supplied"));
     }
     if(!isValidEmail(req.body.email)) {
-        return res.status(400).send("Invalid email " + req.body.email);
+        return res.status(400).send(errorResponses[400]("Invalid email " + req.body.email));
     }
     var id = uuid.v4();
     kvfs.set("subscription/" + id, {
