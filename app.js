@@ -18,18 +18,22 @@ app.use(bodyParser.urlencoded({
 
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 
-app.get("/", respondWithView("prelaunch/view.html"));
+app.get("/", staticViewEndpoint("prelaunch/view.html"));
 
-function respondWithView(view) {
+function staticViewEndpoint(view) {
     return function(req, res) {
-        fs.readFile(path.join(__dirname, view), function(error, buf) {
-            if(error) {
-                console.error("Failed to read view " + view, error);
-                return res.status(500).send(error500Page);
-            }
-            res.send(buf.toString());
-        });
+        respondWithView(view, res);
     };
+}
+
+function respondWithView(view, res) {
+    fs.readFile(path.join(__dirname, view), function(error, buf) {
+        if(error) {
+            console.error("Failed to read view " + view, error);
+            return res.status(500).send(error500Page);
+        }
+        res.send(buf.toString());
+    });
 }
 
 app.post("/subscribe", function(req, res) {
@@ -49,10 +53,12 @@ app.post("/subscribe", function(req, res) {
             console.error("Failed to save subscription for " + req.body.email, error);
             return res.status(500).send("Failed to save subscription");
         }
-        //TODO: Send email, show results page.
-        res.send("Done.");
+        //TODO: Send email to admin with notif
+        res.redirect("/du-er-paa-listen");
     });
 });
+
+app.get("/du-er-paa-listen", staticViewEndpoint("prelaunch/subscription-succesful-view.html"));
 
 function isValidEmail(email) {
     return email.match(/^.+@.+$/);
@@ -79,7 +85,7 @@ app.get("/list-subscribers", function(req, res) {
     });
 });
 
-app.get("/om", respondWithView("about/view.html"));
+app.get("/om", staticViewEndpoint("about/view.html"));
 
 app.use(function endpointNotFound(req, res) {
     res.status(404).send(error404Page);
