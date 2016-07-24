@@ -2,6 +2,7 @@ body {
     background: rgb(160, 200, 170);
     text-align: center;
     font-family: sans-serif;
+    margin: 0;
 }
 .background {
     background-image: url('/assets/firforest.jpg');
@@ -14,6 +15,27 @@ body {
     bottom: -4px;
     z-index: -1;
     filter: blur(2px);
+}
+header {
+    background: rgb(240,240,240);
+    box-shadow: 0 0 2px rgba(0,0,0,0.2), 0 3px 2px rgba(0,0,0,0.2);
+    padding: 0 5px;
+}
+nav {
+    display: inline-block;
+    width: 100%;
+    max-width: 700px;
+    text-align: left;
+}
+nav a {
+    text-decoration: none;
+    padding: 15px 10px;
+    display: inline-block;
+    transition: background 0.2s;
+    color: black;
+}
+nav a:hover {
+    background: rgba(0,0,0,0.05);
 }
 .container {
     display: inline-block;
