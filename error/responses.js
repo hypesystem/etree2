@@ -15,19 +15,19 @@ var errorResponses = {};
             console.error("Failed to read error file for " + errorCode, error);
             return process.exit(1);
         }
-        renderView(errorFileBuf.toString(), function(error, responseTemplate) {
-            if(error) {
-                console.error("Failed to render error page for error code " + errorCode, error);
-                return process.exit(1);
+        errorResponses[errorCode] = function(res, message) {
+            if(!message) {
+                message = null;
             }
-            errorResponses[errorCode] = function(res, message) {
-                if(!message) {
-                    message = null;
+            var personalizedView = mustache.render(errorFileBuf.toString(), { message: message });
+            renderView(personalizedView, function(error, response) {
+                if(error) {
+                    console.error("Failed to render error page for error code " + errorCode, error);
+                    return process.exit(1);
                 }
-                var response = mustache.render(responseTemplate, { message: message });
                 res.status(errorCode).send(response);
-            };
-        });
+            });
+        };
     });
 });
 
