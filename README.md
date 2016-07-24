@@ -17,3 +17,13 @@ step 2
 ------
 
 Toggleable shop (turns on at some set date).
+
+step 3
+------
+
+purchase overview
+
+step 4
+------
+
+delivery overview
