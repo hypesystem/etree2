@@ -9,7 +9,6 @@ step 1
 Missing:
 
 - om os side
-- navigation
 - logo og design
 - deployment + deloyment process + logging
 - email on error log?
