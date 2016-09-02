@@ -1,9 +1,17 @@
+@import 'https://fonts.googleapis.com/css?family=Pacifico|Source+Sans+Pro:300,400,600,700';
+
 body {
     background: rgb(160, 200, 170);
     text-align: center;
-    font-family: sans-serif;
     margin: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: 'Source Sans Pro', sans-serif;
 }
+main {
+    flex: 1 0 auto;
+  }
 .background {
     background-image: url('/assets/firforest.jpg');
     background-size: cover;
@@ -37,6 +45,23 @@ nav a {
 nav a:hover {
     background: rgba(0,0,0,0.05);
 }
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 3em;
+  font-weight: normal;
+}
+h1 span {
+  text-decoration: underline;
+}
+h3 {
+  font-size: 2.5em;
+  margin-top: 0px;
+  font-weight: 100;
+}
+h1.headline {
+  margin-bottom: 10px;
+}
 .container {
     display: inline-block;
     text-align: left;
@@ -49,6 +74,15 @@ nav a:hover {
     padding: 15px 20px;
     margin-bottom: 25px;
     box-shadow: 0 0 2px rgba(0,0,0,0.2), 0 3px 2px rgba(0,0,0,0.2);
+}
+.prelaunch-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(214, 232, 242, 0.71);
+  height: calc(100vh - 46px);
+  padding: 20px;
+  box-sizing: border-box;
 }
 .prelaunch-form input {
     width: 350px;
@@ -63,4 +97,8 @@ nav a:hover {
 footer {
     font-size: 0.9em;
     text-align: center;
+}
+
+footer.floaty-content-box {
+  margin-bottom: 0;
 }
