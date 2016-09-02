@@ -79,7 +79,7 @@ h1.headline {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(214, 232, 242, 0.71);
+  background: rgba(160, 200, 170, 0.95);
   height: calc(100vh - 46px);
   padding: 20px;
   box-sizing: border-box;
@@ -93,6 +93,24 @@ h1.headline {
 .prelaunch-form button {
     padding: 8px 12px;
     font-size: 1.2em;
+    background: #044C29;
+    color: white;
+    outline: none;
+    border: 0;
+    padding: 12px 12px;
+}
+input[type="text"] {
+  display: block;
+  margin: 0;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 18px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+}
+input[type="text"]:focus {
+  outline: none;
 }
 footer {
     font-size: 0.9em;
