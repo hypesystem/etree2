@@ -62,6 +62,14 @@ h3 {
 h1.headline {
   margin-bottom: 10px;
 }
+@media(max-width: 900px){
+  h1.headline {
+    font-size: 2em;
+  }
+  h3.subline {
+    font-size: 1.5em;
+  }
+}
 .container {
     display: inline-block;
     text-align: left;
@@ -84,10 +92,8 @@ h1.headline {
   padding: 20px;
   box-sizing: border-box;
 }
-@media(max-width: 900px){
-  .prelaunch-container {
-    height: auto;
-  }
+.launch-logo {
+  max-width: 300px;
 }
 .prelaunch-form input {
     width: 350px;
