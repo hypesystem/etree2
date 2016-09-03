@@ -84,14 +84,27 @@ h1.headline {
   padding: 20px;
   box-sizing: border-box;
 }
+@media(max-width: 900px){
+  .prelaunch-container {
+    height: auto;
+  }
+}
 .prelaunch-form input {
     width: 350px;
     max-width: 100%;
-    padding: 10px 12px;
+    padding: 12px;
     font-size: 1.2em;
+    box-sizing: border-box;
+    border: none;
+}
+@media(max-width: 900px){
+  .prelaunch-form input {
+    width: auto;
+    margin-bottom: 10px;
+  }
 }
 .prelaunch-form button {
-    padding: 8px 12px;
+    padding: 12px;
     font-size: 1.2em;
     background: #044C29;
     color: white;
