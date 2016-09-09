@@ -11,11 +11,15 @@ body {
 }
 main {
     flex: 1 0 auto;
-  }
+}
+a {
+  color: rgb(154, 216, 169);
+  text-decoration: none;
+}
 .background {
-    background-image: url('/assets/firforest.jpg');
+    background-image: url('/assets/trees/tree5.jpg');
     background-size: cover;
-    background-position: top;
+    background-position: center;
     position: fixed;
     top: -4px;
     left: -4px;
@@ -84,16 +88,33 @@ h1.headline {
     box-shadow: 0 0 2px rgba(0,0,0,0.2), 0 3px 2px rgba(0,0,0,0.2);
 }
 .prelaunch-container {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(160, 200, 170, 0.95);
-  height: calc(100vh - 46px);
+  background: rgba(160, 200, 170, 0.75);
+  height: calc(100vh - 48px);
   padding: 20px;
   box-sizing: border-box;
 }
 .launch-logo {
   max-width: 300px;
+}
+.head-text {
+  padding-bottom: 157px;
+}
+.sign-up-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 20px;
+  background: rgba(51, 51, 51, 0.9);
+  color: white;
+  box-sizing: border-box;
+}
+.sign-up-bar h2 {
+  margin-top: 0;
 }
 .prelaunch-form input {
     width: 350px;
@@ -102,17 +123,18 @@ h1.headline {
     font-size: 1.2em;
     box-sizing: border-box;
     border: none;
+    text-align: center;
 }
 @media(max-width: 900px){
   .prelaunch-form input {
-    width: auto;
+    width: 100%;
     margin-bottom: 10px;
   }
 }
 .prelaunch-form button {
     padding: 12px;
     font-size: 1.2em;
-    background: #044C29;
+    background: rgb(77, 152, 95);
     color: white;
     outline: none;
     border: 0;
@@ -132,8 +154,11 @@ input[type="text"]:focus {
   outline: none;
 }
 footer {
-    font-size: 0.9em;
-    text-align: center;
+  background: rgba(51, 51, 51, 1);
+  font-size: 0.9em;
+  text-align: center;
+  color: white;
+  padding: 15px 20px;
 }
 
 footer.floaty-content-box {
