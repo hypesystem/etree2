@@ -4,6 +4,7 @@
   "description": "etree service in node",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "test": "node_modules/.bin/jasmine"
   },
   "author": "Niels Abildgaard <me@hypesystem.dk>",
