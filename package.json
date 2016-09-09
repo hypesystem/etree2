@@ -4,7 +4,7 @@
   "description": "etree service in node",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/jasmine"
   },
   "author": "Niels Abildgaard <me@hypesystem.dk>",
   "license": "UNLICENSED",
@@ -16,5 +16,8 @@
     "kvfs": "^0.2.6",
     "mustache": "^2.2.1",
     "uuid": "^2.0.2"
+  },
+  "devDependencies": {
+    "jasmine": "^2.4.1"
   }
 }
