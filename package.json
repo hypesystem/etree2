@@ -12,10 +12,13 @@
   "dependencies": {
     "async": "^2.0.0",
     "body-parser": "^1.15.2",
+    "config": "^1.21.0",
     "express": "^4.14.0",
     "frontmatter": "0.0.3",
     "kvfs": "^0.2.6",
     "mustache": "^2.2.1",
+    "pg": "^6.1.0",
+    "pg-pool": "^1.4.3",
     "uuid": "^2.0.2"
   },
   "devDependencies": {
