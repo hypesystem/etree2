@@ -8,6 +8,11 @@
     "test": "node_modules/.bin/jasmine"
   },
   "author": "Niels Abildgaard <me@hypesystem.dk>",
+  "contributors": [
+      "Niels Abildgaard",
+      "Asbjørn Thegler",
+      "Anders Enghøj"
+  ],
   "license": "UNLICENSED",
   "dependencies": {
     "async": "^2.0.0",
