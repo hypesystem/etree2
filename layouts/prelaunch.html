@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Københavns billigste juletræ! - etree</title>
+        <link rel="stylesheet" type="text/css" href="/assets/style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    </head>
+    <body>
+      <main>
+        <div class="background"></div>
+        <header>
+            <nav>
+                <a href="/"><i class="fa fa-tree" aria-hidden="true"></i> etree</a>
+            </nav>
+        </header>
+        <div class="prelaunch-container">
+
+              {{ &content }}
+
+              </div>
+
+            </main>
+
+            <div class="sign-up-bar">
+              <h2>Du får 15% rabat på levering!</h2>
+              <p>Skriv dig på vores liste, så kontakter vi dig, så snart vi starter juletræssalget &mdash; og du får 15% rabat på levering.</p>
+              <form action="/subscribe" method="post" class="prelaunch-form">
+                  <label for="prelaunch-email-input">
+                      <input type="email" name="email" id="prelaunch-email-input" placeholder="jens@jensen.dk">
+                  </label>
+                  <button type="submit">Skriv mig på listen!</button>
+              </form>
+            </div>
+
+              <footer>
+                  &copy; 2016 etree &mdash; <a href="mailto:kontakt@etree.dk">kontakt@etree.dk</a>
+              </footer>
+
+    </body>
+</html>
