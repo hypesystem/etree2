@@ -21,18 +21,18 @@ module.exports = function(req, res) {
                 email: row.data.email
             };
         });
-            fs.readFile(path.join(__dirname, "list-subscribers-view.html"), function(error, viewBuf) {
+        fs.readFile(path.join(__dirname, "list-subscribers-view.html"), function(error, viewBuf) {
+            if(error) {
+                console.error("Failed to read list-subscribers-view", error);
+                return res.fail(500);
+            }
+            renderView(viewBuf.toString(), { subscribers: subscriptionContents }, function(error, response) {
                 if(error) {
-                    console.error("Failed to read list-subscribers-view", error);
+                    console.error("Failed to render subscriber list", error);
                     return res.fail(500);
                 }
-                renderView(viewBuf.toString(), { subscribers: subscriptionContents }, function(error, response) {
-                    if(error) {
-                        console.error("Failed to render subscriber list", error);
-                        return res.fail(500);
-                    }
-                    res.send(response);
-                });
+                res.send(response);
             });
+        });
     });
 };
