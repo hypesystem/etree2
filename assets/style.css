@@ -14,8 +14,11 @@ main {
     background-color: rgba(160, 200, 170, 0.75);
 }
 a {
-  color: rgb(154, 216, 169);
+  color: rgb(31, 171, 65);
   text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
 .background {
     background-image: url('/assets/trees/tree5.jpg');
@@ -49,6 +52,7 @@ nav a {
 }
 nav a:hover {
     background: rgba(0,0,0,0.05);
+    text-decoration: none;
 }
 
 h1 {
@@ -78,16 +82,27 @@ h1.headline {
 }
 .container {
     display: inline-block;
-    text-align: left;
     width: 100%;
-    max-width: 700px;
+    max-width: 900px;
     margin-top: 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 .floaty-content-box {
     background: rgb(240,240,240);
-    padding: 15px 20px;
+    box-sizing: border-box;
+    padding: 60px;
     margin-bottom: 25px;
     box-shadow: 0 0 2px rgba(0,0,0,0.2), 0 3px 2px rgba(0,0,0,0.2);
+}
+@media (max-width:900px) {
+  .floaty-content-box {
+    width: 100%;
+    padding: 20px;
+  }
+}
+.floaty-content-box h1:first-of-type {
+  margin-top: 0;
 }
 .prelaunch-container {
   position: relative;
@@ -160,7 +175,9 @@ footer {
   color: white;
   padding: 15px 20px;
 }
-
+footer a {
+  color: rgb(154, 216, 169);
+}
 footer.floaty-content-box {
   margin-bottom: 0;
 }
