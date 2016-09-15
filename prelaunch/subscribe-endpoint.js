@@ -1,6 +1,4 @@
 var uuid = require("uuid");
-var kvfs = require("kvfs")(".subscriber-data");
-var errorResponses = require("../error/responses.js");
 var createUserSubscriptionTableIfNotExists = require("./createUserSubscriptionTableIfNotExists.js");
 var fs = require("fs");
 var path = require("path");
