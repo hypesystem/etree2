@@ -3,23 +3,33 @@ var path = require("path");
 var renderView = require("./renderView.js");
 
 function staticViewEndpoint(view) {
+    var previouslyRenderedStaticViews = {};
     return function(req, res) {
-        respondWithView(view, res);
+        var cachedResponse = previouslyRenderedStaticViews[view];
+        if(cachedResponse) {
+            return res.send(cachedResponse);
+        }
+        getStaticView(view, (error, result) => {
+            if(error) {
+                console.error("Failed to render view " + view, error);
+                return res.fail(500);
+            }
+            previouslyRenderedStaticViews[view] = result;
+            res.send(result);
+        });
     };
 }
 
-function respondWithView(view, res) {
+function getStaticView(view, callback) {
     fs.readFile(path.join(__dirname, view), function(error, buf) {
         if(error) {
-            console.error("Failed to read view " + view, error);
-            return res.status(500).send(error500Page);
+            return callback(error);
         }
         renderView(buf.toString(), function(error, result) {
             if(error) {
-                console.error("Failed to render view " + view, error);
-                return res.status(500).send(error500Page);
+                return callback(error);
             }
-            res.send(result);
+            callback(null, result);
         });
     });
 }
