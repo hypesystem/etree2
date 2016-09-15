@@ -109,7 +109,7 @@ h1.headline {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 320px);
+  height: calc(100vh - 323px);
   padding: 20px;
   box-sizing: border-box;
 }
