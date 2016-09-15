@@ -3,12 +3,18 @@ var path = require("path");
 var renderView = require("./renderView.js");
 
 function staticViewEndpoint(view) {
+    var previouslyRenderedStaticViews = {};
     return function(req, res) {
+        var cachedResponse = previouslyRenderedStaticViews[view];
+        if(cachedResponse) {
+            return res.send(cachedResponse);
+        }
         getStaticView(view, (error, result) => {
             if(error) {
                 console.error("Failed to render view " + view, error);
                 return res.fail(500);
             }
+            previouslyRenderedStaticViews[view] = result;
             res.send(result);
         });
     };
