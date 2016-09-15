@@ -4,6 +4,6 @@ layout: default
 <div class="floaty-content-box">
     <h1>{{ subscribers.length }} email-addresser indsamlet</h1>
     {{ #subscribers }}
-        {{ email }},<br>
+        {{ email }} (<a href="/unsubscribe/{{ id }}">Afmeld</a>)<br>
     {{ /subscribers }}
 </div>
