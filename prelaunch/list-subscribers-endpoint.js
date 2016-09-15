@@ -29,19 +29,19 @@ function listSubscribersEndpoint(pool, req, res) {
                 return match ? match.email : null;
             });
             subscriptionContents = subscriptionContents.filter(subscription => unsubscribedEmails.indexOf(subscription.email) == -1);
-        fs.readFile(path.join(__dirname, "list-subscribers-view.html"), function(error, viewBuf) {
-            if(error) {
-                console.error("Failed to read list-subscribers-view", error);
-                return res.fail(500);
-            }
-            renderView(viewBuf.toString(), { subscribers: subscriptionContents }, function(error, response) {
+            fs.readFile(path.join(__dirname, "list-subscribers-view.html"), function(error, viewBuf) {
                 if(error) {
-                    console.error("Failed to render subscriber list", error);
+                    console.error("Failed to read list-subscribers-view", error);
                     return res.fail(500);
                 }
-                res.send(response);
+                renderView(viewBuf.toString(), { subscribers: subscriptionContents }, function(error, response) {
+                    if(error) {
+                        console.error("Failed to render subscriber list", error);
+                        return res.fail(500);
+                    }
+                    res.send(response);
+                });
             });
-        });
         });
     });
 }
