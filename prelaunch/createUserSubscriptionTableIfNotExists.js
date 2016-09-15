@@ -1,6 +1,6 @@
 var fs = require("fs");
 var path = require("path");
-var sql = fs.readFileSync(path.join(__dirname, "create_table_if_not_exists.sql")).toString();
+var sql = fs.readFileSync(path.join(__dirname, "createUserSubscriptionTableIfNotExists.sql")).toString();
 
 function createTableIfNotExists(pool) {
     pool.query(sql, (error, result) => {
