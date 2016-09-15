@@ -7,6 +7,10 @@ var listSubscribersEndpoint = require("./prelaunch/list-subscribers-endpoint.js"
 var staticViewEndpoint = require("./staticViewEndpoint.js");
 var postgresStatusEndpoint = require("./status/postgres.js");
 var path = require("path");
+var Pool = require("pg-pool");
+var config = require("config");
+
+var pool = new Pool(config.postgres);
 
 var app = express();
 
@@ -26,7 +30,7 @@ app.use(function failMiddleware(req, res, next) {
 
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 app.get("/", staticViewEndpoint("prelaunch/view.html"));
-app.post("/subscribe", subscribeEndpoint);
+app.post("/subscribe", subscribeEndpoint(pool));
 app.get("/du-er-paa-listen", staticViewEndpoint("prelaunch/subscription-succesful-view.html"));
 app.get("/list-subscribers", listSubscribersEndpoint);
 app.get("/om", staticViewEndpoint("about/view.html"));
