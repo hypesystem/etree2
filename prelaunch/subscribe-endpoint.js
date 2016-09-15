@@ -4,8 +4,8 @@ var errorResponses = require("../error/responses.js");
 var Pool = require("pg-pool");
 var config = require("config");
 
-var createTableIfNotExists = require("./createTableIfNotExists.js");
-createTableIfNotExists();
+var createUserSubscriptionTableIfNotExists = require("./createUserSubscriptionTableIfNotExists.js");
+createUserSubscriptionTableIfNotExists();
 
 module.exports = function(req, res) {
     if(!req.body.email) {
