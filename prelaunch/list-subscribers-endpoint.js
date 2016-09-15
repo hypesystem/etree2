@@ -3,14 +3,11 @@ var async = require("async");
 var fs = require("fs");
 var path = require("path");
 var renderView = require("../renderView.js");
-var Pool = require("pg-pool");
-var config = require("config");
 
-module.exports = function(req, res) {
+function listSubscribersEndpoint(pool, req, res) {
     if(req.query.secret != "1241215124125123122215124") {
         return res.fail(400, "You don't know the secret, bruv.");
     }
-    var pool = new Pool(config.postgres);
     pool.query("SELECT * FROM user_signed_up_for_newsletter", (error, result) => {
         if(error) {
             console.error("Failed to get subscription list", error);
@@ -35,4 +32,8 @@ module.exports = function(req, res) {
             });
         });
     });
+}
+
+module.exports = function(pool) {
+    return listSubscribersEndpoint.bind(this, pool);
 };

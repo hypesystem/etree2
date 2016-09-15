@@ -32,7 +32,7 @@ app.use("/assets", express.static(path.join(__dirname, "assets")));
 app.get("/", staticViewEndpoint("prelaunch/view.html"));
 app.post("/subscribe", subscribeEndpoint(pool));
 app.get("/du-er-paa-listen", staticViewEndpoint("prelaunch/subscription-succesful-view.html"));
-app.get("/list-subscribers", listSubscribersEndpoint);
+app.get("/list-subscribers", listSubscribersEndpoint(pool));
 app.get("/om", staticViewEndpoint("about/view.html"));
 app.get("/pg-status", postgresStatusEndpoint());
 
