@@ -154,6 +154,10 @@ h1.headline {
     outline: none;
     border: 0;
     padding: 12px 12px;
+    cursor: pointer;
+}
+.prelaunch-form button:hover {
+  background: #306f3f;
 }
 input[type="text"] {
   display: block;
@@ -180,4 +184,45 @@ footer a {
 }
 footer.floaty-content-box {
   margin-bottom: 0;
+}
+.cookieNotice {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 0.75em;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(51, 51, 51, 0.3);
+  border: 1px solid rgb(77, 152, 95);
+  color: white;
+  padding: 10px;
+  transition: all .3s ease;
+}
+.cookieNotice:hover {
+  background: rgba(51, 51, 51, 1);
+  border-color: #306f3f;
+}
+.cookieNotice span {
+  padding: 5px 10px;
+  background: rgb(77, 152, 95);
+  margin-left: 15px;
+  cursor: pointer;
+}
+.cookieNotice span:hover {
+  background: #306f3f;
+}
+@media(max-width: 900px){
+  .cookieNotice {
+    width: 100%;
+    background: rgba(51, 51, 51, 0.9);
+    text-align: center;
+    bottom: 0;
+    left: 0;
+  }
+}
+.hidden {
+  opacity: 0;
 }
