@@ -13,7 +13,7 @@ function userHasVisitedBefore() {
         return false;
     }
     cookies = cookies.filter(function(cookie) {
-        return cookie.trim().match(/^maerkelexCookieNoticeShown=/);
+        return cookie.trim().match(/^etreeCookieNoticeShown=/);
     });
     var cookie = cookies[0];
     return !!cookie;
@@ -35,5 +35,5 @@ function elementFromHtml(html) {
 }
 
 function setUserHasVisitedBefore() {
-    document.cookie = "maerkelexCookieNoticeShown=1;expires=" + new Date(Date.now() + (1000 * 60 * 60 * 24 * 30)).toUTCString() + ";path=/";
+    document.cookie = "etreeCookieNoticeShown=1;expires=" + new Date(Date.now() + (1000 * 60 * 60 * 24 * 30)).toUTCString() + ";path=/";
 }
