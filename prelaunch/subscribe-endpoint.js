@@ -1,9 +1,7 @@
 var uuid = require("uuid");
 var kvfs = require("kvfs")(".subscriber-data");
 var errorResponses = require("../error/responses.js");
-
 var createUserSubscriptionTableIfNotExists = require("./createUserSubscriptionTableIfNotExists.js");
-createUserSubscriptionTableIfNotExists();
 
 function subscribeEndpoint(pool, req, res) {
     if(!req.body.email) {
@@ -28,5 +26,6 @@ function isValidEmail(email) {
 }
 
 module.exports = function(pool) {
+    createUserSubscriptionTableIfNotExists(pool);
     return subscribeEndpoint.bind(this, pool);
 };
