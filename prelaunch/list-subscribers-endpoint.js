@@ -15,9 +15,20 @@ function listSubscribersEndpoint(pool, req, res) {
         }
         var subscriptionContents = result.rows.map(row => {
             return {
+                id: row.id,
                 email: row.data.email
             };
         });
+        pool.query("SELECT * FROM user_unsubscribed_from_newsletter", (error, result) => {
+            if(error) {
+                console.error("Failed to check who has unsubscribed for subscriber list", error);
+                return res.fail(500);
+            }
+            var unsubscribedEmails = result.rows.map(row => {
+                var match = subscriptionContents.filter(subscription => subscription.id == row.id)[0];
+                return match ? match.email : null;
+            });
+            subscriptionContents = subscriptionContents.filter(subscription => unsubscribedEmails.indexOf(subscription.email) == -1);
         fs.readFile(path.join(__dirname, "list-subscribers-view.html"), function(error, viewBuf) {
             if(error) {
                 console.error("Failed to read list-subscribers-view", error);
@@ -30,6 +41,7 @@ function listSubscribersEndpoint(pool, req, res) {
                 }
                 res.send(response);
             });
+        });
         });
     });
 }
