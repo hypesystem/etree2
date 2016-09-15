@@ -28,7 +28,17 @@ function listSubscribersEndpoint(pool, req, res) {
                 var match = subscriptionContents.filter(subscription => subscription.id == row.id)[0];
                 return match ? match.email : null;
             });
-            subscriptionContents = subscriptionContents.filter(subscription => unsubscribedEmails.indexOf(subscription.email) == -1);
+            var alreadyIncludedEmails = [];
+            subscriptionContents = subscriptionContents.filter((subscription, index) => {
+                if(unsubscribedEmails.indexOf(subscription.email) != -1) {
+                    return false;
+                }
+                if(alreadyIncludedEmails.indexOf(subscription.email) != -1) {
+                    return false;
+                }
+                alreadyIncludedEmails.push(subscription.email);
+                return true;
+            });
             fs.readFile(path.join(__dirname, "list-subscribers-view.html"), function(error, viewBuf) {
                 if(error) {
                     console.error("Failed to read list-subscribers-view", error);
