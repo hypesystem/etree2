@@ -2,7 +2,7 @@ var kvfs = require("kvfs")(".subscriber-data");
 var async = require("async");
 var fs = require("fs");
 var path = require("path");
-var renderView = require("../renderView.js");
+var renderView = require("../../renderView.js");
 
 function listSubscribersEndpoint(pool, req, res) {
     if(req.query.secret != "1241215124125123122215124") {
@@ -12,9 +12,9 @@ function listSubscribersEndpoint(pool, req, res) {
         if(error) {
             return res.fail(500);
         }
-        fs.readFile(path.join(__dirname, "list-subscribers-view.html"), function(error, viewBuf) {
+        fs.readFile(path.join(__dirname, "view.html"), function(error, viewBuf) {
             if(error) {
-                console.error("Failed to read list-subscribers-view", error);
+                console.error("Failed to read list subscribers view", error);
                 return res.fail(500);
             }
             renderView(viewBuf.toString(), { subscribers: subscriptions }, function(error, response) {
