@@ -4,6 +4,7 @@ var fs = require("fs");
 var path = require("path");
 var renderView = require("../../renderView.js");
 var buildSubscriptionsState = require("./buildSubscriptionsState.js");
+var ensureSubscriptionsProjection = require("./ensureSubscriptionsProjection.js");
 
 function listSubscribersEndpoint(pool, req, res) {
     if(req.query.secret != "1241215124125123122215124") {
@@ -34,5 +35,6 @@ function getActiveSubscriptions(pool, callback) {
 }
 
 module.exports = function(pool) {
+    ensureSubscriptionsProjection(pool);
     return listSubscribersEndpoint.bind(this, pool);
 };
