@@ -4,14 +4,17 @@ var errorResponses = require("./error/responses.js");
 var pkg = require("./package.json");
 var subscribeEndpoint = require("./prelaunch/subscribe-endpoint.js");
 var unsubscribeEndpoint = require("./prelaunch/unsubscribe-endpoint.js");
-var listSubscribersEndpoint = require("./prelaunch/list-subscribers-endpoint.js");
+var listSubscribersEndpoint = require("./prelaunch/list-subscribers/endpoint.js");
 var staticViewEndpoint = require("./staticViewEndpoint.js");
 var postgresStatusEndpoint = require("./status/postgres.js");
 var path = require("path");
 var Pool = require("pg-pool");
 var config = require("config");
+var ensureProjectionsTable = require("./ensureProjectionsTable.js");
 
 var pool = new Pool(config.postgres);
+
+ensureProjectionsTable(pool);
 
 var app = express();
 
