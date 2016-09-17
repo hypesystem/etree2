@@ -12,19 +12,19 @@ function listSubscribersEndpoint(pool, req, res) {
         if(error) {
             return res.fail(500);
         }
-            fs.readFile(path.join(__dirname, "list-subscribers-view.html"), function(error, viewBuf) {
+        fs.readFile(path.join(__dirname, "list-subscribers-view.html"), function(error, viewBuf) {
+            if(error) {
+                console.error("Failed to read list-subscribers-view", error);
+                return res.fail(500);
+            }
+            renderView(viewBuf.toString(), { subscribers: subscriptions }, function(error, response) {
                 if(error) {
-                    console.error("Failed to read list-subscribers-view", error);
+                    console.error("Failed to render subscriber list", error);
                     return res.fail(500);
                 }
-                renderView(viewBuf.toString(), { subscribers: subscriptions }, function(error, response) {
-                    if(error) {
-                        console.error("Failed to render subscriber list", error);
-                        return res.fail(500);
-                    }
-                    res.send(response);
-                });
+                res.send(response);
             });
+        });
     });
 }
 
