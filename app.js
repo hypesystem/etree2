@@ -10,8 +10,11 @@ var postgresStatusEndpoint = require("./status/postgres.js");
 var path = require("path");
 var Pool = require("pg-pool");
 var config = require("config");
+var ensureProjectionsTable = require("./ensureProjectionsTable.js");
 
 var pool = new Pool(config.postgres);
+
+ensureProjectionsTable(pool);
 
 var app = express();
 
