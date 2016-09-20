@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css?family=Pacifico|Source+Sans+Pro:300,400,600,700';
+@import 'https://fonts.googleapis.com/css?family=Montserrat+Alternates:400,700|Pacifico|Source+Sans+Pro:300,400,600,700';
 
 body {
     background: rgb(160, 200, 170);
@@ -44,17 +44,30 @@ nav {
 }
 nav a {
     text-decoration: none;
-    padding: 15px 10px;
+    padding: 5px 10px;
     display: inline-block;
     transition: background 0.2s;
     color: black;
     font-size: 1.5em;
 }
 nav a:hover {
-    background: rgba(0,0,0,0.05);
     text-decoration: none;
 }
-
+nav .logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 2em;
+  padding-top: 0;
+}
+nav .logo span {
+  font-family: 'Montserrat Alternates', sans-serif;
+}
+nav .logo:hover {
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+nav .logo:hover i {
+  color: #306f3f;
+  text-shadow: none;
+}
 h1 {
   font-family: 'Pacifico', cursive;
   font-size: 3em;
