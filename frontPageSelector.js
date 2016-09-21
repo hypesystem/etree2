@@ -6,6 +6,10 @@ function frontPageSelector(req, res) {
         var sales = staticViewEndpoint("sales/view.html");
         return sales(req, res);
     }
+    if(req.query.forceState == "salesEnded") {
+        var downtime = staticViewEndpoint("downtime/view.html");
+        return downtime(req, res);
+    }
     
     var prelaunch = staticViewEndpoint("prelaunch/view.html");
     prelaunch(req, res);
