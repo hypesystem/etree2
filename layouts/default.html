@@ -18,17 +18,15 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     </head>
     <body>
-      <main>
-      <div class="background"></div>
-      <header>
-          <nav>
-              <a href="/"><i class="fa fa-tree" aria-hidden="true"></i> etree</a>
-          </nav>
-      </header>
-      <div class="container">
-        {{ &content }}
-      </div>
-      </main>
+        <main>
+            <div class="background"></div>
+            <header>
+                <nav>
+                    <a class="logo" href="/"><i class="fa fa-tree" aria-hidden="true"></i> <span>e</span>tree</a>
+                </nav>
+            </header>
+            {{ &content }}
+        </main>
 
         <footer>
             &copy; 2016 etree &mdash; <a href="mailto:kontakt@etree.dk">kontakt@etree.dk</a>
@@ -43,5 +41,6 @@
             ga('create', 'UA-84047401-1', 'auto');
             ga('send', 'pageview');
         </script>
+        <script src="/assets/script.js"></script>
     </body>
 </html>
