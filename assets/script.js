@@ -1,5 +1,3 @@
-console.log("Foobar");
-
 (function showCookieNoticeIfFirstVisit() {
     if(!userHasVisitedBefore()) {
         showCookieNotice();
