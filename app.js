@@ -11,6 +11,7 @@ var path = require("path");
 var Pool = require("pg-pool");
 var config = require("config");
 var ensureProjectionsTable = require("./ensureProjectionsTable.js");
+var frontPageSelector = require("./frontPageSelector.js");
 
 var pool = new Pool(config.postgres);
 
@@ -33,7 +34,7 @@ app.use(function failMiddleware(req, res, next) {
 });
 
 app.use("/assets", express.static(path.join(__dirname, "assets")));
-app.get("/", staticViewEndpoint("prelaunch/view.html"));
+app.get("/", frontPageSelector);
 app.post("/subscribe", subscribeEndpoint(pool));
 app.get("/du-er-paa-listen", staticViewEndpoint("prelaunch/subscription-succesful-view.html"));
 app.get("/unsubscribe/:id", unsubscribeEndpoint(pool));
