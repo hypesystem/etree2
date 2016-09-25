@@ -42,6 +42,7 @@ app.get("/unsubscribed", staticViewEndpoint("prelaunch/unsubscribed-succesfully.
 app.get("/list-subscribers", listSubscribersEndpoint(pool));
 app.get("/om", staticViewEndpoint("about/view.html"));
 app.get("/pg-status", postgresStatusEndpoint());
+app.get("/bliv-udbringer", staticViewEndpoint("become-deliverer/view.html"));
 
 app.use(function endpointNotFound(req, res) {
     res.fail(404);
