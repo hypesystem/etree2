@@ -12,6 +12,9 @@ var Pool = require("pg-pool");
 var config = require("config");
 var ensureProjectionsTable = require("./ensureProjectionsTable.js");
 var frontPageSelector = require("./frontPageSelector.js");
+var adminEndpoint = require("./admin/endpoint.js");
+var cookieSession = require("cookie-session");
+var adminAuthEndpoint = require("./admin/authEndpoint.js");
 
 var pool = new Pool(config.postgres);
 
@@ -21,6 +24,11 @@ var app = express();
 
 app.use(bodyParser.urlencoded({
     extended: false
+}));
+
+app.use(cookieSession({
+    name: "etree-session-cookie",
+    secret: "55b6b85d-46b2-47fe-9225-81c58faa432b"
 }));
 
 app.use(function failMiddleware(req, res, next) {
@@ -43,6 +51,8 @@ app.get("/list-subscribers", listSubscribersEndpoint(pool));
 app.get("/om", staticViewEndpoint("about/view.html"));
 app.get("/pg-status", postgresStatusEndpoint());
 app.get("/bliv-udbringer", staticViewEndpoint("become-deliverer/view.html"));
+app.get("/admin", adminEndpoint(pool));
+app.post("/admin", adminAuthEndpoint(pool));
 
 app.use(function endpointNotFound(req, res) {
     res.fail(404);
