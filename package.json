@@ -8,9 +8,9 @@
   },
   "author": "Niels Abildgaard <me@hypesystem.dk>",
   "contributors": [
-      "Niels Abildgaard",
-      "Asbjørn Thegler",
-      "Anders Enghøj"
+    "Niels Abildgaard",
+    "Asbjørn Thegler",
+    "Anders Enghøj"
   ],
   "license": "UNLICENSED",
   "dependencies": {
