@@ -2,8 +2,9 @@ var fs = require("fs");
 var path = require("path");
 var renderView = require("./renderView.js");
 
+var previouslyRenderedStaticViews = {};
+
 function staticViewEndpoint(view) {
-    var previouslyRenderedStaticViews = {};
     return function(req, res) {
         var cachedResponse = previouslyRenderedStaticViews[view];
         if(cachedResponse) {
