@@ -7,6 +7,7 @@ var errorResponses = {};
 
 [
     400,
+    401,
     404,
     500
 ].forEach(function(errorCode) {
