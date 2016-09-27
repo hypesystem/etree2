@@ -239,3 +239,28 @@ footer.floaty-content-box {
 .hidden {
   opacity: 0;
 }
+.sales-container {
+  width: 80%;
+  margin: 0 auto;
+}
+.trees {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.trees .tree-size {
+  width: 16.6%;
+}
+@media(max-width:900px){
+  .trees .tree-size {
+    width: 33.3%;
+  }
+}
+@media(max-width:600px){
+  .trees .tree-size {
+    width: 50%;
+  }
+}
+.trees .tree-size img {
+  width: 100%;
+}
