@@ -5,16 +5,125 @@ layout: default
     <!-- PICK TREE SIZE -->
     <!--  & with/without foot? -->
     <!--  & how does it look if we have 5 trees left of a size/when we've run out? -->
-    
+
     <!-- CUSTOMER INFORMATION -->
     <!-- Fakturaadresse inkl navn, vej linje 1+2, postnr, by -->
     <!-- Leveringsadresse hvis forskellig -->
     <!-- Email (påkrævet) -->
     <!-- Mobiltelefonnummer (valgfrit) -->
     <!-- Kommentarer (påkrævet) -->
-    
+
     <!-- SUMMARY (når alt er fyldt ud) -->
     <!-- Tryk køb for endeligt at gå til betaling -->
-    
-    something something sales
+
+    <div class="floaty-content-box">
+        <h1 class="center-text">Vælg størrelse</h1>
+
+        <div class="trees">
+          <div class="tree-size">
+            <h4>Mikro</h4>
+            <p>50-75 cm</p>
+            <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
+            <p>400 kr.</p>
+            <button>Vælg</button>
+          </div>
+          <div class="tree-size">
+            <h4>Mini</h4>
+            <p>75-110 cm</p>
+            <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
+            <p>400 kr.</p>
+            <button>Vælg</button>
+          </div>
+          <div class="tree-size">
+            <h4>Lille</h4>
+            <p>110-150 cm</p>
+            <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
+            <p>400 kr.</p>
+            <button>Vælg</button>
+          </div>
+          <div class="tree-size">
+            <h4>Standard</h4>
+            <p>150-200 cm</p>
+            <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
+            <p>400 kr.</p>
+            <button>Vælg</button>
+          </div>
+          <div class="tree-size">
+            <h4>Stor</h4>
+            <p>200-250 cm</p>
+            <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
+            <p>400 kr.</p>
+            <button>Vælg</button>
+          </div>
+          <div class="tree-size">
+            <h4>Kæmpe</h4>
+            <p>250-300 cm</p>
+            <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
+            <p>400 kr.</p>
+            <button>Vælg</button>
+          </div>
+        </div>
+
+        <div class="pickup">
+          <h1 class="center-text">Afhentnign</h1>
+          <p>Vi kan udbringe i København og stor Københavnsområdet. Se postnumre her.</p>
+          <div class="control-group">
+            <label class="control control--radio">Få udbragt træet (+100 kr)
+              <input type="radio" name="radio" checked="checked"/>
+              <div class="control__indicator"></div>
+            </label>
+            <label class="control control--radio shh">Jeg henter selv
+              <input type="radio" name="radio" />
+              <div class="control__indicator"></div>
+            </label>
+            <div class="pickup-places">
+              <div class="pickup-place">
+                <img src="../assets/firforest.jpg" />
+                <p><strong>Strandvejen 267</strong><br />
+                  Charlottenlund<br />
+                  30. nov kl. 12-16
+                </p>
+              </div>
+              <div class="pickup-place">
+                <img src="../assets/firforest.jpg" />
+                <p><strong>Strandvejen 267</strong><br />
+                  Charlottenlund<br />
+                  30. nov kl. 12-16
+                </p>
+              </div>
+              <div class="pickup-place">
+                <img src="../assets/firforest.jpg" />
+                <p><strong>Strandvejen 267</strong><br />
+                  Charlottenlund<br />
+                  30. nov kl. 12-16
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h1 class="center-text">Kundeoplysninger</h1>
+          <form>
+            <label for="name">Fuldt navn</label>
+            <input id="name" type="text" />
+            <div>
+              <label for="streetname">Addresse</label>
+              <input id="streetname" type="text" />
+              <label for="city">By</label>
+              <input id="city" type="text" />
+              <label for="zip">Postnummer</label>
+              <input id="zip" type="text" />
+            </div>
+            <label for="email">Email</label>
+            <input id="email" type="text" />
+            <label for="phone">Mobiltelefonnummer</label>
+            <input id="phone" type="text" />
+            <label for="comments">Kommentare</label>
+            <textarea id="comments" rows="4" cols="50">w3schools.com rocks!</textarea>
+          </form>
+        </div>
+
+    </div>
+
 </div>
