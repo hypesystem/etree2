@@ -2,7 +2,6 @@
 
 body {
     background: rgb(160, 200, 170);
-    text-align: center;
     margin: 0;
     display: flex;
     min-height: 100vh;
@@ -35,6 +34,7 @@ a:hover {
 header {
     background: rgb(240,240,240);
     padding: 0 5px;
+    text-align: center;
 }
 nav {
     display: inline-block;
@@ -94,7 +94,7 @@ h1.headline {
   }
 }
 .container {
-    display: inline-block;
+    margin: 0 auto;
     width: 100%;
     max-width: 900px;
     margin-top: 50px;
@@ -107,6 +107,9 @@ h1.headline {
     padding: 60px;
     margin-bottom: 25px;
     box-shadow: 0 0 2px rgba(0,0,0,0.2), 0 3px 2px rgba(0,0,0,0.2);
+}
+.center-text {
+  text-align: center;
 }
 @media (max-width:900px) {
   .floaty-content-box {
@@ -125,6 +128,7 @@ h1.headline {
   height: calc(100vh - 323px);
   padding: 20px;
   box-sizing: border-box;
+  text-align: center;
 }
 @media(max-width: 900px){
   .prelaunch-container {
@@ -140,6 +144,7 @@ h1.headline {
   background: rgba(51, 51, 51, 0.9);
   color: white;
   box-sizing: border-box;
+  text-align: center;
 }
 .sign-up-bar h2 {
   margin-top: 0;
@@ -247,6 +252,7 @@ footer.floaty-content-box {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  text-align: center;
 }
 .trees .tree-size {
   width: 16.6%;
@@ -403,6 +409,6 @@ footer.floaty-content-box {
   display: block;
 }
 
-.pickup-self:checked ~ .pickup-places {
-  display: none;
+.shh input:checked {
+  background-color: red !important;
 }
