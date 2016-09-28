@@ -105,7 +105,6 @@ h1.headline {
     display: inline-block;
     width: 100%;
     max-width: 900px;
-    margin-top: 50px;
     padding: 0 20px;
     box-sizing: border-box;
 }
@@ -126,12 +125,28 @@ h1.headline {
 .floaty-content-box h1:first-of-type {
   margin-top: 0;
 }
+.pitch {
+  background: rgb(250,250,250);
+}
+.columns {
+  display: flex;
+  justify-content: space-around;
+}
+@media(max-width:900px){
+  .columns {
+    flex-direction: column;
+  }
+}
+.columns .box {
+  padding: 20px;
+  width: 33.33%;
+}
 .prelaunch-container {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 323px);
+  height: calc(100vh - 275px);
   padding: 20px;
   box-sizing: border-box;
 }
