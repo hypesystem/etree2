@@ -17,7 +17,7 @@ layout: default
     <!-- Tryk køb for endeligt at gå til betaling -->
 
     <div class="floaty-content-box">
-        <h1>Vælg størrelse</h1>
+        <h1 class="center-text">Vælg størrelse</h1>
 
         <div class="trees">
           <div class="tree-size">
@@ -65,7 +65,7 @@ layout: default
         </div>
 
         <div class="pickup">
-          <h1>Afhentnign</h1>
+          <h1 class="center-text">Afhentnign</h1>
           <p>Vi kan udbringe i København og stor Københavnsområdet. Se postnumre her.</p>
           <div class="control-group">
             <label class="control control--radio">Få udbragt træet (+100 kr)
@@ -103,13 +103,24 @@ layout: default
         </div>
 
         <div>
-          <h1>Kundeoplysninger</h1>
+          <h1 class="center-text">Kundeoplysninger</h1>
           <form>
-            <label>Fuldt navn</label>
-            <input type="text" />
-            <label>Addresse</label>
-            <input type="text" />
-            <input type="text" />
+            <label for="name">Fuldt navn</label>
+            <input id="name" type="text" />
+            <div>
+              <label for="streetname">Addresse</label>
+              <input id="streetname" type="text" />
+              <label for="city">By</label>
+              <input id="city" type="text" />
+              <label for="zip">Postnummer</label>
+              <input id="zip" type="text" />
+            </div>
+            <label for="email">Email</label>
+            <input id="email" type="text" />
+            <label for="phone">Mobiltelefonnummer</label>
+            <input id="phone" type="text" />
+            <label for="comments">Kommentare</label>
+            <textarea id="comments" rows="4" cols="50">w3schools.com rocks!</textarea>
           </form>
         </div>
 
