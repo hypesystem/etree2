@@ -87,8 +87,8 @@ h1.headline {
 }
 .head-text {
   padding: 50px;
-  background: white;
-  border: 5px solid #f1f1f1;
+  background: rgb(250,250,250);
+  border: 5px solid #e2e2e2;
 }
 @media(max-width: 900px){
   h1.headline {
@@ -110,8 +110,9 @@ h1.headline {
     box-sizing: border-box;
 }
 .floaty-content-box {
-    background: rgb(240,240,240);
+    background: rgb(250,250,250);
     box-sizing: border-box;
+    border: 5px solid #e2e2e2;
     padding: 60px;
     margin-bottom: 25px;
     box-shadow: 0 0 2px rgba(0,0,0,0.2), 0 3px 2px rgba(0,0,0,0.2);
