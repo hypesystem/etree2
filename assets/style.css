@@ -130,19 +130,27 @@ h1.headline {
 }
 .pitch {
   background: rgb(250,250,250);
+  padding: 50px 0;
 }
 .columns {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
-}
-@media(max-width:900px){
-  .columns {
-    flex-direction: column;
-  }
 }
 .columns .box {
   padding: 20px;
   width: 33.33%;
+  box-sizing: border-box;
+}
+.columns .box h1 {
+  text-align: center;
+}
+@media(max-width:900px){
+  .columns .box {
+    width: 100%;
+  }
 }
 .prelaunch-container {
   position: relative;
