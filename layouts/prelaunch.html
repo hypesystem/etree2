@@ -18,8 +18,8 @@ layout: default
     </form>
 </div>
 <section class="pitch">
-  <div class="container center-text">
-    <h2>Hvorfor skulle du vælge etree?</h2>
+  <div class="case container center-text">
+    <h3>Hvorfor skulle du vælge etree?</h3>
     <p>
       Du kunne jo også tage ud og bruge en eftermiddag på at købe et træ. Det er rigtigt nok.
       Fordelen ved at købe et træ på nettet er at det først og fremmest er nemmere og mere overskueligt. Du
@@ -31,10 +31,11 @@ layout: default
       Derudover er der nogle konkrete fordele ved at vælge etree.
     </p>
   </div>
-  <div class="columns">
+  <div class="columns center-text">
 
     <div class="box">
-      <h1>Konkret fordel 1</h1>
+      <p class="pro">Fordel 1</p>
+      <h1>Service</h1>
       <p>
         Vi skruer helt op for service ved levering og afhentning. Vi er altid klar på at hjælpe dig, hvis der går
         noget galt, og vi kommunikerer tydeligt og i god tid.
@@ -45,39 +46,81 @@ layout: default
       </p>
     </div>
     <div class="box">
-      <h1>Konkret fordel 2</h1>
+      <p class="pro">Fordel 2</p>
+      <h1>kbh's billigste</h1>
       <p>
         Vi er de billigste på markedet i København, ligemeget om man sammenligner med online eller fysiske
         sælgere. Og hvis du vil spare endnu mere kan du skrive dig på vores liste nu og få 15% rabat på
         levering, der normalt koster 100 kr.
       </p>
-      <p>
-        Her er vores priser, så du selv kan sammenligne hvis du vil – vi regner med dejlige, runde tal, så det er
-        nemt at finde rundt i:
-      </p>
-      <ul>
-        <li>0,50–0,75 cm -- 100 kr</li>
-        <li>75-110 cm – 125 kr</li>
-        <li>110-150 cm – 180 kr</li>
-        <li>150-200 cm – 240 kr</li>
-        <li>200-250 cm – 340 kr</li>
-        <li>250-300 cm – 430 kr</li>
-      </ul>
-      <p>
-        Vi leverer også træer med fod, og hvis det har interesse skal vi nok hjælpe dig med at komme af med
-        træet efter jul – selvfølgelig på miljøvenlig vis.
-      </p>
-      <p>
-        Skriv dig på listen, så siger vi til, når vi starter salget
-      </p>
     </div>
     <div class="box">
-      <h1>Konkret fordel 3</h1>
+      <p class="pro">Fordel 3</p>
+      <h1>Hygge</h1>
       <p>
         Vi arbejder kun sammen med de hyggeligste firmaer og arrangementer, når vi vælger afhentningssteder.
         Det betyder at du får muligheden for at komme forbi et hyggeligt julemarked eller et dejligt lokalt
         foretagende, når du alligevel skal ud i kulden og hente dit træ.
       </p>
     </div>
+  </div>
+  <div class="container center-text">
+    <p>Skriv dig på vores liste, så kontakter vi dig, så snart vi starter juletræssalget — og du får 15% rabat på levering.</p>
+    <form action="/subscribe" method="post" class="prelaunch-form">
+        <label for="prelaunch-email-input">
+            <input type="email" name="email" id="prelaunch-email-input" placeholder="jens@jensen.dk">
+        </label>
+        <button type="submit">Skriv mig på listen!</button>
+    </form>
+  </div>
+  <div class="container center-text">
+    <h3>Priser</h3>
+    <p>
+      Her er vores priser, så du selv kan sammenligne hvis du vil – vi regner med dejlige, runde tal, så det er
+      nemt at finde rundt i:
+    </p>
+
+    <table class="price-table">
+        <thead>
+          <tr>
+              <th data-field="id">Højde</th>
+              <th data-field="name">Pris</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>0,50–0,75 cm</td>
+            <td>100 kr</td>
+          </tr>
+          <tr>
+            <td>75-110 cm</td>
+            <td>125 kr</td>
+          </tr>
+          <tr>
+            <td>110-150 cm</td>
+            <td>180 kr</td>
+          </tr>
+          <tr>
+            <td>150-200 cm</td>
+            <td>240 kr</td>
+          </tr>
+          <tr>
+            <td>200-250 cm</td>
+            <td>340 kr</td>
+          </tr>
+          <tr>
+            <td>250-300 cm</td>
+            <td>430 kr</td>
+          </tr>
+        </tbody>
+      </table>
+    <p>
+      Vi leverer også træer med fod, og hvis det har interesse skal vi nok hjælpe dig med at komme af med
+      træet efter jul – selvfølgelig på miljøvenlig vis.
+    </p>
+    <p>
+      Skriv dig på listen, så siger vi til, når vi starter salget
+    </p>
   </div>
 </section>
