@@ -76,6 +76,10 @@ h1 {
 h1 span {
   text-decoration: underline;
 }
+h1 span.percent {
+  font-size: 0.6em;
+  text-decoration: none;
+}
 h3 {
   font-size: 2.5em;
   margin-top: 0px;
@@ -195,8 +199,14 @@ h3.subline {
   font-size: 1.2em;
   margin: 0 auto;
   border-collapse: collapse;
-  min-width: 280px;
+  min-width: 460px;
   border: 2px solid #e2e2e2;
+}
+@media(max-width:900px){
+  .price-table {
+    max-width: 100%;
+    min-width: 100%;
+  }
 }
 .price-table tr {
   border-bottom: 1px solid #e2e2e2;
