@@ -195,9 +195,18 @@ h3.subline {
 .case p {
   font-size: 1.1em;
 }
+
+.price-table.desktop tr th,
+.price-table.desktop tr td {
+  padding: 15px;
+  display: table-cell;
+  vertical-align: middle;
+  border-radius: 2px;
+  width: 180px;
+}
 .price-table {
   font-size: 1.2em;
-  margin: 0 auto;
+  margin: 30px auto;
   border-collapse: collapse;
   min-width: 460px;
   border: 2px solid #e2e2e2;
@@ -221,6 +230,12 @@ h3.subline {
 }
 .price-table tr td:last-child {
   font-weight: 600;
+}
+@media(max-width:600px){
+  .price-table tr td:first-child,
+  .price-table tr th:first-child {
+    display: none;
+  }
 }
 .launch-logo {
   max-width: 280px;
