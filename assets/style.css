@@ -2,12 +2,12 @@
 
 body {
     background: rgb(160, 200, 170);
-    text-align: center;
     margin: 0;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
 }
 main {
     flex: 1 0 auto;
@@ -34,6 +34,7 @@ a:hover {
 header {
     background: rgb(240,240,240);
     padding: 0 5px;
+    text-align: center;
 }
 nav {
     display: inline-block;
@@ -75,14 +76,24 @@ h1 {
 h1 span {
   text-decoration: underline;
 }
+h1 span.percent {
+  font-size: 0.6em;
+  text-decoration: none;
+}
 h3 {
   font-size: 2.5em;
   margin-top: 0px;
-  font-weight: 100;
+  font-weight: 400;
   margin-bottom: 10px;
 }
 h1.headline {
   margin-top: 0;
+  margin-bottom: 10px;
+}
+h3.subline {
+  font-size: 2.5em;
+  margin-top: 0px;
+  font-weight: 300;
   margin-bottom: 10px;
 }
 .head-text {
@@ -102,12 +113,12 @@ h1.headline {
   }
 }
 .container {
-    display: inline-block;
+    margin: 0 auto;
     width: 100%;
     max-width: 900px;
-    margin-top: 50px;
     padding: 0 20px;
     box-sizing: border-box;
+    margin-bottom: 50px;
 }
 .floaty-content-box {
     background: rgb(250,250,250);
@@ -116,6 +127,9 @@ h1.headline {
     padding: 60px;
     margin-bottom: 25px;
     box-shadow: 0 0 2px rgba(0,0,0,0.2), 0 3px 2px rgba(0,0,0,0.2);
+}
+.center-text {
+  text-align: center;
 }
 @media (max-width:900px) {
   .floaty-content-box {
@@ -126,22 +140,113 @@ h1.headline {
 .floaty-content-box h1:first-of-type {
   margin-top: 0;
 }
+.pitch {
+  background: rgb(250,250,250);
+  padding: 80px 0;
+  padding-bottom: 30px;
+}
+.columns {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.columns .box {
+  padding: 20px;
+  width: 33.33%;
+  box-sizing: border-box;
+}
+.columns .box h1,
+.columns .box h2,
+.columns .box h3,
+.columns .box h4,
+.columns .box h5 {
+  margin-top: 0;
+}
+@media(max-width:600px){
+  .columns .box h1 {
+    margin-bottom: 0;
+  }
+}
+.columns .box p.pro {
+  text-align: center;
+  font-size: 1.3em;
+  color: rgb(77, 152, 95);
+  font-weight: bold;
+  margin-bottom: 0;
+}
+@media(max-width:900px){
+  .columns .box {
+    width: 100%;
+  }
+}
 .prelaunch-container {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 323px);
+  height: calc(100vh - 297px);
+  min-height: 550px;
   padding: 20px;
   box-sizing: border-box;
+  text-align: center;
 }
 @media(max-width: 900px){
   .prelaunch-container {
     min-height: 500px;
   }
 }
+.case p {
+  font-size: 1.1em;
+}
+
+.price-table.desktop tr th,
+.price-table.desktop tr td {
+  padding: 15px;
+  display: table-cell;
+  vertical-align: middle;
+  border-radius: 2px;
+  width: 180px;
+}
+.price-table {
+  font-size: 1.2em;
+  margin: 30px auto;
+  border-collapse: collapse;
+  min-width: 460px;
+  border: 2px solid #e2e2e2;
+}
+@media(max-width:900px){
+  .price-table {
+    max-width: 100%;
+    min-width: 100%;
+  }
+}
+.price-table tr {
+  border-bottom: 1px solid #e2e2e2;
+}
+.price-table tr th,
+.price-table tr td {
+  padding: 15px 5px;
+  display: table-cell;
+  vertical-align: middle;
+  border-radius: 2px;
+  width: 180px;
+}
+.price-table tr td:last-child {
+  font-weight: 600;
+}
+@media(max-width:600px){
+  .price-table tr td:first-child,
+  .price-table tr th:first-child {
+    display: none;
+  }
+}
+.price-table.striped>tbody>tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
 .launch-logo {
-  max-width: 300px;
+  max-width: 280px;
 }
 .sign-up-bar {
   width: 100%;
@@ -149,6 +254,7 @@ h1.headline {
   background: rgba(51, 51, 51, 0.9);
   color: white;
   box-sizing: border-box;
+  text-align: center;
 }
 .sign-up-bar h2 {
   margin-top: 0;
@@ -159,8 +265,9 @@ h1.headline {
     padding: 12px;
     font-size: 1.2em;
     box-sizing: border-box;
-    border: none;
     text-align: center;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.07);
 }
 @media(max-width: 900px){
   .prelaunch-form input {
@@ -168,7 +275,13 @@ h1.headline {
     margin-bottom: 10px;
   }
 }
-.prelaunch-form button {
+.pitch .sign-up-bar {
+  margin-bottom: 50px;
+}
+.sign-up-form input {
+  margin-bottom: 20px;
+}
+button {
     padding: 12px;
     font-size: 1.2em;
     background: rgb(77, 152, 95);
@@ -178,21 +291,28 @@ h1.headline {
     padding: 12px 12px;
     cursor: pointer;
 }
-.prelaunch-form button:hover {
+button:hover {
   background: #306f3f;
 }
 input[type="text"] {
   display: block;
   margin: 0;
   width: 100%;
+  max-width: 250px;
+  padding: 5px;
+  box-sizing: border-box;
   font-family: sans-serif;
   font-size: 18px;
   appearance: none;
   box-shadow: none;
   border-radius: none;
+  margin-bottom: 10px;
 }
 input[type="text"]:focus {
   outline: none;
+}
+textarea {
+  display: block;
 }
 footer {
   background: rgba(51, 51, 51, 1);
@@ -247,4 +367,172 @@ footer.floaty-content-box {
 }
 .hidden {
   opacity: 0;
+}
+.sales-container {
+  width: 80%;
+  margin: 0 auto;
+}
+.trees {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.trees .tree-size {
+  width: 16.6%;
+}
+@media(max-width:900px){
+  .trees .tree-size {
+    width: 33.3%;
+  }
+}
+@media(max-width:600px){
+  .trees .tree-size {
+    width: 50%;
+  }
+}
+.pickup-place img {
+  width: 100%;
+}
+
+.pickup-place {
+  width: 25%;
+  display: inline-block;
+  padding: 10px;
+  box-sizing: border-box;
+  background: #e6b6b6;
+}
+
+/* FORM STUFF */
+.control-group {
+  text-align: left;
+}
+.control {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 18px;
+}
+.control input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.control__indicator {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background: #e6e6e6;
+}
+.control--radio .control__indicator {
+  border-radius: 50%;
+}
+.control:hover input ~ .control__indicator,
+.control input:focus ~ .control__indicator {
+  background: #ccc;
+}
+.control input:checked ~ .control__indicator {
+  background: #2aa1c0;
+}
+.control:hover input:not([disabled]):checked ~ .control__indicator,
+.control input:checked:focus ~ .control__indicator {
+  background: #0e647d;
+}
+.control input:disabled ~ .control__indicator {
+  background: #e6e6e6;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.control__indicator:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+.control input:checked ~ .control__indicator:after {
+  display: block;
+}
+.control--checkbox .control__indicator:after {
+  left: 8px;
+  top: 4px;
+  width: 3px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.control--checkbox input:disabled ~ .control__indicator:after {
+  border-color: #7b7b7b;
+}
+.control--radio .control__indicator:after {
+  left: 7px;
+  top: 7px;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background: #fff;
+}
+.control--radio input:disabled ~ .control__indicator:after {
+  background: #7b7b7b;
+}
+.select {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+  width: 100%;
+}
+.select select {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  padding: 10px 15px;
+  outline: 0;
+  border: 0;
+  border-radius: 0;
+  background: #e6e6e6;
+  color: #7b7b7b;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.select select::-ms-expand {
+  display: none;
+}
+.select select:hover,
+.select select:focus {
+  color: #000;
+  background: #ccc;
+}
+.select select:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.select__arrow {
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  border-style: solid;
+  border-width: 8px 5px 0 5px;
+  border-color: #7b7b7b transparent transparent transparent;
+}
+.select select:hover ~ .select__arrow,
+.select select:focus ~ .select__arrow {
+  border-top-color: #000;
+}
+.select select:disabled ~ .select__arrow {
+  border-top-color: #ccc;
+}
+
+.pickup-places {
+  display: block;
+}
+
+.shh input:checked {
+  background-color: red !important;
 }
