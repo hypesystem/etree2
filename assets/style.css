@@ -164,6 +164,11 @@ h3.subline {
 .columns .box h5 {
   margin-top: 0;
 }
+@media(max-width:600px){
+  .columns .box h1 {
+    margin-bottom: 0;
+  }
+}
 .columns .box p.pro {
   text-align: center;
   font-size: 1.3em;
@@ -236,6 +241,9 @@ h3.subline {
   .price-table tr th:first-child {
     display: none;
   }
+}
+.price-table.striped>tbody>tr:nth-child(odd) {
+  background-color: #f2f2f2;
 }
 .launch-logo {
   max-width: 280px;
