@@ -1,5 +1,3 @@
-var kvfs = require("kvfs")(".subscriber-data");
-var async = require("async");
 var fs = require("fs");
 var path = require("path");
 var renderView = require("../../renderView.js");
