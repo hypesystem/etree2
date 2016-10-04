@@ -10,7 +10,7 @@ function createAdminApp(pool) {
     
     app.get("/", authenticate(pool), adminEndpoint(pool));
     app.post("/", adminAuthEndpoint(pool));
-    app.get("/list-subscribers", listSubscribersEndpoint(pool));
+    app.get("/list-subscribers", authenticate(pool), listSubscribersEndpoint(pool));
     
     return app;
 }
