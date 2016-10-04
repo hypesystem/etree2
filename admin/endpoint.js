@@ -2,10 +2,8 @@ var ensureFirstAdmin = require("./ensureFirstAdmin.js");
 var path = require("path");
 var fs = require("fs");
 var renderView = require("../renderView.js");
-var authenticate = require("./authenticate.js");
 
 function adminEndpoint(pool, req, res) {
-    authenticate(pool, req, res, (req, res) => {
         fs.readFile(path.join(__dirname, "adminView.html"), (error, buf) => {
             if(error) {
                 console.error("Failed to read adminView", error);
@@ -19,7 +17,6 @@ function adminEndpoint(pool, req, res) {
                 res.send(result);
             });
         });
-    });
 }
 
 module.exports = function(pool) {

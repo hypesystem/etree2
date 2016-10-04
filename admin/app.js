@@ -1,11 +1,12 @@
 var express = require("express");
 var adminEndpoint = require("./endpoint.js");
 var adminAuthEndpoint = require("./authEndpoint.js");
+var authenticate = require("./authenticate.js");
 
 function createAdminApp(pool) {
     var app = express();
     
-    app.get("/", adminEndpoint(pool));
+    app.get("/", authenticate(pool), adminEndpoint(pool));
     app.post("/", adminAuthEndpoint(pool));
     
     return app;

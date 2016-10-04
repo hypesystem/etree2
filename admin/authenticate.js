@@ -22,8 +22,10 @@ function authenticate(pool, req, res, next) {
             return res.fail(401, "Din session var ikke gyldig (kodeord). Logget ud.");
         }
         req.currentAdmin = admin;
-        next(req, res);
+        next();
     });
 }
 
-module.exports = authenticate;
+module.exports = function(pool) {
+    return authenticate.bind(this, pool);
+};
