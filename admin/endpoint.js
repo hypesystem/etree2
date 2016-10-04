@@ -1,4 +1,3 @@
-var ensureFirstAdmin = require("./ensureFirstAdmin.js");
 var path = require("path");
 var fs = require("fs");
 var renderView = require("../renderView.js");
@@ -20,6 +19,5 @@ function adminEndpoint(pool, req, res) {
 }
 
 module.exports = function(pool) {
-    ensureFirstAdmin(pool);
     return adminEndpoint.bind(this, pool);
 };
