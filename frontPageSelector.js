@@ -1,5 +1,5 @@
 var staticViewEndpoint = require("./staticViewEndpoint.js");
-var sales = staticViewEndpoint("sales/view.html");
+var sales = staticViewEndpoint("sales/view.html", "sales/productData.json");
 var downtime = staticViewEndpoint("downtime/view.html");
 var prelaunch = staticViewEndpoint("prelaunch/view.html");
 
