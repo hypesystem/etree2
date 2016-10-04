@@ -1,0 +1,78 @@
+{
+    "treeSizes": [
+        {
+            "name": "Mikro",
+            "minHeight": 50,
+            "maxHeight": 75,
+            "salesLimit": null,
+            "price": 100
+        },
+        {
+            "name": "Mini",
+            "minHeight": 75,
+            "maxHeight": 110,
+            "salesLimit": null,
+            "price": 125
+        },
+        {
+            "name": "Lille",
+            "minHeight": 110,
+            "maxHeight": 150,
+            "salesLimit": null,
+            "price": 180
+        },
+        {
+            "name": "Standard",
+            "minHeight": 150,
+            "maxHeight": 200,
+            "salesLimit": null,
+            "price": 240
+        },
+        {
+            "name": "Stor",
+            "minHeight": 200,
+            "maxHeight": 250,
+            "salesLimit": null,
+            "price": 340
+        },
+        {
+            "name": "Kæmpe",
+            "minHeight": 250,
+            "maxHeight": 300,
+            "salesLimit": null,
+            "price": 430
+        }
+    ],
+    "pickUpLocations": [],
+    "allowedPostCodes": [
+        {
+            "min": "1000",
+            "max": "1999"
+        },
+        "2000",
+        "2100",
+        "2200",
+        "2300",
+        "2400",
+        "2450",
+        "2500",
+        "2600",
+        "2605",
+        "2610",
+        "2650",
+        "2700",
+        "2720",
+        "2730",
+        "2740",
+        "2750",
+        "2770",
+        "2800",
+        "2900",
+        "2920",
+        "2930",
+        "2820",
+        "2860"   
+    ],
+    "footPrice": 50,
+    "collectionPrice": 200
+}
