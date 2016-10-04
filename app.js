@@ -4,7 +4,6 @@ var errorResponses = require("./error/responses.js");
 var pkg = require("./package.json");
 var subscribeEndpoint = require("./prelaunch/subscribe-endpoint.js");
 var unsubscribeEndpoint = require("./prelaunch/unsubscribe-endpoint.js");
-var listSubscribersEndpoint = require("./prelaunch/list-subscribers/endpoint.js");
 var staticViewEndpoint = require("./staticViewEndpoint.js");
 var postgresStatusEndpoint = require("./status/postgres.js");
 var path = require("path");
@@ -12,9 +11,8 @@ var Pool = require("pg-pool");
 var config = require("config");
 var ensureProjectionsTable = require("./ensureProjectionsTable.js");
 var frontPageSelector = require("./frontPageSelector.js");
-var adminEndpoint = require("./admin/endpoint.js");
 var cookieSession = require("cookie-session");
-var adminAuthEndpoint = require("./admin/authEndpoint.js");
+var adminApp = require("./admin/app.js");
 
 var pool = new Pool(config.postgres);
 
@@ -47,12 +45,10 @@ app.post("/subscribe", subscribeEndpoint(pool));
 app.get("/du-er-paa-listen", staticViewEndpoint("prelaunch/subscription-succesful-view.html"));
 app.get("/unsubscribe/:id", unsubscribeEndpoint(pool));
 app.get("/unsubscribed", staticViewEndpoint("prelaunch/unsubscribed-succesfully.html"));
-app.get("/list-subscribers", listSubscribersEndpoint(pool));
 app.get("/om", staticViewEndpoint("about/view.html"));
 app.get("/pg-status", postgresStatusEndpoint());
 app.get("/bliv-udbringer", staticViewEndpoint("become-deliverer/view.html"));
-app.get("/admin", adminEndpoint(pool));
-app.post("/admin", adminAuthEndpoint(pool));
+app.use("/admin", adminApp(pool));
 
 app.use(function endpointNotFound(req, res) {
     res.fail(404);

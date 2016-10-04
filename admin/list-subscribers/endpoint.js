@@ -1,5 +1,3 @@
-var kvfs = require("kvfs")(".subscriber-data");
-var async = require("async");
 var fs = require("fs");
 var path = require("path");
 var renderView = require("../../renderView.js");
@@ -9,9 +7,6 @@ var getCurrentStateAndLastEventTimestamp = fs.readFileSync(path.join(__dirname, 
 var updateSubscriptionsProjectionIfExists = fs.readFileSync(path.join(__dirname, "updateSubscriptionsProjectionIfExists.sql")).toString();
 
 function listSubscribersEndpoint(pool, req, res) {
-    if(req.query.secret != "1241215124125123122215124") {
-        return res.fail(400, "You don't know the secret, bruv.");
-    }
     getActiveSubscriptions(pool, (error, subscriptions) => {
         if(error) {
             console.error("Failed to get active subscriptions", error);
