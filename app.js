@@ -12,9 +12,8 @@ var Pool = require("pg-pool");
 var config = require("config");
 var ensureProjectionsTable = require("./ensureProjectionsTable.js");
 var frontPageSelector = require("./frontPageSelector.js");
-var adminEndpoint = require("./admin/endpoint.js");
 var cookieSession = require("cookie-session");
-var adminAuthEndpoint = require("./admin/authEndpoint.js");
+var adminApp = require("./admin/app.js");
 
 var pool = new Pool(config.postgres);
 
@@ -51,8 +50,7 @@ app.get("/list-subscribers", listSubscribersEndpoint(pool));
 app.get("/om", staticViewEndpoint("about/view.html"));
 app.get("/pg-status", postgresStatusEndpoint());
 app.get("/bliv-udbringer", staticViewEndpoint("become-deliverer/view.html"));
-app.get("/admin", adminEndpoint(pool));
-app.post("/admin", adminAuthEndpoint(pool));
+app.use("/admin", adminApp(pool));
 
 app.use(function endpointNotFound(req, res) {
     res.fail(404);
