@@ -1,11 +1,9 @@
 var getAdminFromUsername = require("./getAdminFromUsername.js");
 var crypto = require("crypto");
-var staticViewEndpoint = require("../staticViewEndpoint.js");
-var loginView = staticViewEndpoint("admin/loginView.html");
 
 function authenticate(pool, req, res, next) {
     if(!req.session.username || !req.session.password) {
-        return loginView(req, res);
+        return res.redirect("/admin/login");
     }
     getAdminFromUsername(pool, req.session.username, (error, admin) => {
         if(error) {
