@@ -19,6 +19,9 @@ function adminAuthEndpoint(pool, req, res) {
         }
         req.session.username = req.body.username;
         req.session.password = req.body.password;
+        if(req.query.then) {
+            return res.redirect(req.query.then);
+        }
         res.redirect("/admin");
     });
 }

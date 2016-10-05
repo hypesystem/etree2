@@ -3,7 +3,7 @@ var crypto = require("crypto");
 
 function authenticate(pool, req, res, next) {
     if(!req.session.username || !req.session.password) {
-        return res.redirect("/admin/login");
+        return res.redirect("/admin/login?then=" + req.originalUrl);
     }
     getAdminFromUsername(pool, req.session.username, (error, admin) => {
         if(error) {
