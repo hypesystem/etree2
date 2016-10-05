@@ -7,7 +7,7 @@ function authenticate(pool, req, res, next) {
     }
     getAdminFromUsername(pool, req.session.username, (error, admin) => {
         if(error) {
-            console.error("Failed to get admin from session username", req.session.username);
+            console.error("Failed to get admin from session username", req.session.username, error);
             return res.fail(500);
         }
         if(!admin) {
