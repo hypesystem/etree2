@@ -1,9 +1,11 @@
+var getAdmins = require("../getAdmins.js");
+
 function getAdminFromUsername(pool, username, callback) {
-    pool.query("SELECT * FROM admin_created", (error, result) => {
+    getAdmins(pool, (error, admins) => {
         if(error) {
             return callback(error);
         }
-        var admin = result.rows.map(row => row.data).find(admin => {
+        var admin = admins.find(admin => {
             return admin.username == username;
         });
         callback(null, admin);
