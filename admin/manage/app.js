@@ -10,6 +10,7 @@ function createManageAdministratorsApp(pool) {
     app.get("/", adminOverviewEndpoint(pool));
     app.post("/create", createAdminEndpoint(pool));
     app.post("/update", updateAdminEndpoint(pool));
+    app.post("/update-password", updatePasswordEndpoint(pool));
     
     return app;
 }
