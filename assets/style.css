@@ -378,23 +378,59 @@ footer.floaty-content-box {
   flex-wrap: wrap;
   text-align: center;
 }
-.trees .tree-size {
+.trees .tree-size-container {
   width: 16.6%;
+  padding: 10px;
+  box-sizing: border-box;
 }
-@media(max-width:900px){
-  .trees .tree-size {
+.trees .tree-size {
+  background: rgb(77, 152, 95);
+  color: white;
+  padding: 20px 0;
+  cursor: pointer;
+}
+.trees .tree-size:hover {
+  background: rgb(70, 140, 87);
+}
+@media(max-width:1100px){
+  .trees .tree-size-container {
     width: 33.3%;
   }
 }
 @media(max-width:600px){
-  .trees .tree-size {
+  .trees .tree-size-container {
     width: 50%;
   }
+}
+.tree .tree-size ul {
+  list-style: none;
+  padding: 0;
+}
+.trees .tree-size h4 {
+  background: #306f3f;
+  padding: 10px;
+  margin-bottom: 0;
+}
+.trees .tree-size ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: black;
+  background: white;
+}
+.tree-size ul li {
+  padding: 10px 0;
+}
+.tree-size ul li:nth-child(odd) {
+  background: #eee;
+}
+.tree-size button {
+  padding: 6px 12px;
+  margin-top: 20px;
 }
 .pickup-place img {
   width: 100%;
 }
-
 .pickup-place {
   width: 25%;
   display: inline-block;
