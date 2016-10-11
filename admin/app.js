@@ -7,6 +7,7 @@ var listSubscribersEndpoint = require("./list-subscribers/endpoint.js");
 var logoutEndpoint = require("./authentication/logoutEndpoint.js");
 var staticViewEndpoint = require("../staticViewEndpoint.js");
 var adminManagementApp = require("./manage/app.js");
+var createAdminUpdateTableIfNotExists = require("./createAdminUpdateTableIfNotExists.js");
 
 function createAdminApp(pool) {
     var app = express();
@@ -23,5 +24,10 @@ function createAdminApp(pool) {
 
 module.exports = function(pool) {
     ensureFirstAdmin(pool);
+    createAdminUpdateTableIfNotExists(pool, error => {
+        if(error) {
+            console.error("Failed to ensure admin_updated table on launch", error);
+        }
+    });
     return createAdminApp(pool);
 };
