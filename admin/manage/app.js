@@ -3,6 +3,7 @@ var staticViewEndpoint = require("../../staticViewEndpoint.js");
 var adminOverviewEndpoint = require("./adminOverviewEndpoint.js");
 var createAdminEndpoint = require("./createAdminEndpoint.js");
 var updateAdminEndpoint = require("./updateAdminEndpoint.js");
+var updatePasswordEndpoint = require("./updatePasswordEndpoint.js");
 
 function createManageAdministratorsApp(pool) {
     var app = express();
