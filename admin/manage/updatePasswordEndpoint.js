@@ -1,6 +1,6 @@
 var fs = require("fs");
 var path = require("path");
-var updateAdminSql = fs.readFileSync(path.join(__dirname, "updateAdmin.sql"));
+var updateAdminSql = fs.readFileSync(path.join(__dirname, "updateAdmin.sql")).toString();
 var uuid = require("uuid");
 var crypto = require("crypto");
 
@@ -14,7 +14,7 @@ function updatePasswordEndpoint(pool, req, res) {
         req.currentAdmin.id,
         JSON.stringify({ salt: salt, password: hashedInputtedPassword }),
         new Date().toISOString()
-    ], error => {
+    ], (error) => {
         if(error) {
             console.error("Failed to update password for " + currentAdmin.username + "/" + currentAdmin.id + " (insert event failed)", error);
             return res.fail(500);
