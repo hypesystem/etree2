@@ -1,4 +1,4 @@
-FROM node:argon
+FROM node:slim
 MAINTAINER Asbjørn Thegler <asbjoern@gmail.com>
 
 # Create app directory
