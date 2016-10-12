@@ -1,0 +1,41 @@
+---
+layout: oldstyle
+---
+<div class="floaty-content-box">
+    <a href="/admin">Tilbage til admin-oversigt</a>
+    <div>
+        <h1>Skift kodeord</h1>
+        <form action="/admin/manage/update-password" method="post">
+            <p>(For egen bruger.)</p>
+            Password
+            <input type="password" name="password">
+            <button type="submit">Skift</button>
+        </form>
+    </div>
+    <div>
+        <h1>Ny admin</h1>
+        <form action="/admin/manage/create" method="post">
+            Name
+            <input type="text" placeholder="Jens Jensen" name="name">
+            Username
+            <input type="text" placeholder="jens.jensen" name="username">
+            Password
+            <input type="password" name="password">
+            <button type="submit">Opret</button>
+        </form>
+    </div>
+    <div>
+        <h1>Administrer eksisterende</h1>
+        {{ # admins }}
+            <form action="/admin/manage/update" method="post">
+                <input type="hidden" name="id" value="{{ id }}">
+                Name
+                <input type="text" value="{{ name }}" name="name">
+                Username
+                <input type="text" value="{{ username }}" name="username">
+                <button type="submit">Opdater</button>
+            </form>
+            <hr>
+        {{ / admins }}
+    </div>
+</div>
