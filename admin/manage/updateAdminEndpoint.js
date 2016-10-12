@@ -40,6 +40,9 @@ function updateAdminEndpoint(pool, req, res) {
                 console.error("Failed to update info for admin " + id + " (insert event failed)", error);
                 return res.fail(500);
             }
+            if(req.currentAdmin.id == id) {
+                req.session.username = username;
+            }
             res.redirect("/admin/manage");
         });
     });

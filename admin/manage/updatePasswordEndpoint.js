@@ -19,6 +19,7 @@ function updatePasswordEndpoint(pool, req, res) {
             console.error("Failed to update password for " + currentAdmin.username + "/" + currentAdmin.id + " (insert event failed)", error);
             return res.fail(500);
         }
+        req.session.password = req.body.password;
         res.redirect("/admin/manage");
     });
 }
