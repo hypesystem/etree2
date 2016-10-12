@@ -24,7 +24,6 @@ function getAdmins(pool, callback) {
                         console.error("When building admin projection, ignored key " + key + "!! Should not have existed...");
                         return;
                     }
-                    console.log("updating " + key + " for admin " + result.username + "/" + result.id);
                     result[key] = updatedData[key];
                 });
             });
