@@ -16,7 +16,7 @@ function updatePasswordEndpoint(pool, req, res) {
         new Date().toISOString()
     ], (error) => {
         if(error) {
-            console.error("Failed to update password for " + currentAdmin.username + "/" + currentAdmin.id + " (insert event failed)", error);
+            console.error("Failed to update password for " + req.currentAdmin.username + "/" + req.currentAdmin.id + " (insert event failed)", error);
             return res.fail(500);
         }
         req.session.password = req.body.password;
