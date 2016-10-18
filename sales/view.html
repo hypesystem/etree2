@@ -19,7 +19,8 @@ layout: default
     <div class="floaty-content-box">
         <h1 class="center-text">Vælg størrelse</h1>
 
-        <div class="trees">
+        <section class="trees">
+          <input id="size-mikro" type="radio" name="treeSize" />
           <label for="size-mikro" class="tree-size-container">
             <div class="tree-size">
               <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
@@ -30,9 +31,10 @@ layout: default
                 <li>Leveres til døren</li>
               </ul>
               <button>Vælg</button>
-              <input id="size-mikro" type="radio" name="treeSize" />
             </div>
           </label>
+
+          <input id="size-mini" type="radio" name="treeSize" />
           <label for="size-mini" class="tree-size-container">
             <div class="tree-size">
               <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
@@ -43,99 +45,133 @@ layout: default
                 <li>Leveres til døren</li>
               </ul>
               <button>Vælg</button>
-              <input id="size-mini" type="radio" name="treeSize" />
             </div>
           </label>
-          <label for="size-medium" class="tree-size-container">
+
+          <input id="size-small" type="radio" name="treeSize" />
+          <label for="size-small" class="tree-size-container">
             <div class="tree-size">
               <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
-              <h4>Medium</h4>
+              <h4>Lille</h4>
               <ul>
                 <li>400 kr.</li>
                 <li>50-75 cm</li>
                 <li>Leveres til døren</li>
               </ul>
               <button>Vælg</button>
-              <input id="size-medium" type="radio" name="treeSize" />
             </div>
           </label>
-          <div class="tree-size-container">
-            <div class="tree-size">
-              <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
-              <h4>Mikro</h4>
-              <ul>
-                <li>400 kr.</li>
-                <li>50-75 cm</li>
-                <li>400 kr.</li>
-              </ul>
-              <button>Vælg</button>
-            </div>
-          </div>
-          <div class="tree-size-container">
-            <div class="tree-size">
-              <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
-              <h4>Mikro</h4>
-              <ul>
-                <li>400 kr.</li>
-                <li>50-75 cm</li>
-                <li>400 kr.</li>
-              </ul>
-              <button>Vælg</button>
-            </div>
-          </div>
-          <div class="tree-size-container">
-            <div class="tree-size">
-              <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
-              <h4>Mikro</h4>
-              <ul>
-                <li>400 kr.</li>
-                <li>50-75 cm</li>
-                <li>400 kr.</li>
-              </ul>
-              <button>Vælg</button>
-            </div>
-          </div>
-        </div>
 
-        <div class="pickup">
-          <h1 class="center-text">Afhentnign</h1>
-          <p>Vi kan udbringe i København og stor Københavnsområdet. Se postnumre her.</p>
+          <input id="size-standard" type="radio" name="treeSize" />
+          <label for="size-standard" class="tree-size-container">
+            <div class="tree-size">
+              <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
+              <h4>Standard</h4>
+              <ul>
+                <li>400 kr.</li>
+                <li>50-75 cm</li>
+                <li>Leveres til døren</li>
+              </ul>
+              <button>Vælg</button>
+            </div>
+          </label>
+
+          <input id="size-large" type="radio" name="treeSize" />
+          <label for="size-large" class="tree-size-container">
+            <div class="tree-size">
+              <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
+              <h4>Stor</h4>
+              <ul>
+                <li>400 kr.</li>
+                <li>50-75 cm</li>
+                <li>Leveres til døren</li>
+              </ul>
+              <button>Vælg</button>
+            </div>
+          </label>
+
+          <input id="size-giant" type="radio" name="treeSize" />
+          <label for="size-giant" class="tree-size-container">
+            <div class="tree-size">
+              <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
+              <h4>Kæmpe</h4>
+              <ul>
+                <li>400 kr.</li>
+                <li>50-75 cm</li>
+                <li>Leveres til døren</li>
+              </ul>
+              <button>Vælg</button>
+            </div>
+          </label>
+        </section>
+
+        <section class="pickup">
+          <h1 class="center-text">Afhentning</h1>
+          <p>Vi kan udbringe i København og Storkøbenhavnsområdet. Se postnumre her.</p>
           <div class="control-group">
             <label class="control control--radio">Få udbragt træet (+100 kr)
-              <input type="radio" name="radio" checked="checked"/>
+              <input type="radio" id="pickup-false" name="radio" checked="checked" onclick="checkPickup()"/>
               <div class="control__indicator"></div>
             </label>
             <label class="control control--radio shh">Jeg henter selv
-              <input type="radio" name="radio" />
+              <input type="radio" id="pickup-true" name="radio" onclick="checkPickup()" />
               <div class="control__indicator"></div>
             </label>
             <div class="pickup-places">
-              <div class="pickup-place">
-                <img src="../assets/firforest.jpg" />
-                <p><strong>Strandvejen 267</strong><br />
-                  Charlottenlund<br />
-                  30. nov kl. 12-16
-                </p>
-              </div>
-              <div class="pickup-place">
-                <img src="../assets/firforest.jpg" />
-                <p><strong>Strandvejen 267</strong><br />
-                  Charlottenlund<br />
-                  30. nov kl. 12-16
-                </p>
-              </div>
-              <div class="pickup-place">
-                <img src="../assets/firforest.jpg" />
-                <p><strong>Strandvejen 267</strong><br />
-                  Charlottenlund<br />
-                  30. nov kl. 12-16
-                </p>
-              </div>
+              <h2 style="width:100%;">Vælg afhentningssted</h2>
+
+              <input id="pickupPlace-1" type="radio" name="pickupPlace" />
+              <label for="pickupPlace-1" class="pickup-place-container">
+                <div class="pickup-place">
+                  <img src="../assets/firforest.jpg" />
+                  <p><strong>Strandvejen 267</strong><br />
+                    Charlottenlund<br />
+                    30. nov kl. 12-16
+                  </p>
+                  <button>Vælg</button>
+                </div>
+              </label>
+
+              <input id="pickupPlace-2" type="radio" name="pickupPlace" />
+              <label for="pickupPlace-2" class="pickup-place-container">
+                <div class="pickup-place">
+                  <img src="../assets/firforest.jpg" />
+                  <p><strong>Strandvejen 267</strong><br />
+                    Charlottenlund<br />
+                    30. nov kl. 12-16
+                  </p>
+                  <button>Vælg</button>
+                </div>
+              </label>
+
+              <input id="pickupPlace-3" type="radio" name="pickupPlace" />
+              <label for="pickupPlace-3" class="pickup-place-container">
+                <div class="pickup-place">
+                  <img src="../assets/firforest.jpg" />
+                  <p><strong>Strandvejen 267</strong><br />
+                    Charlottenlund<br />
+                    30. nov kl. 12-16
+                  </p>
+                  <button>Vælg</button>
+                </div>
+              </label>
+
+              <input id="pickupPlace-4" type="radio" name="pickupPlace" />
+              <label for="pickupPlace-4" class="pickup-place-container">
+                <div class="pickup-place">
+                  <img src="../assets/firforest.jpg" />
+                  <p><strong>Strandvejen 267</strong><br />
+                    Charlottenlund<br />
+                    30. nov kl. 12-16
+                  </p>
+                  <button>Vælg</button>
+                </div>
+              </label>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div>
+        <section>
           <h1 class="center-text">Kundeoplysninger</h1>
           <form>
             <label for="name">Fuldt navn</label>
@@ -155,8 +191,24 @@ layout: default
             <label for="comments">Kommentare</label>
             <textarea id="comments" rows="4" cols="50">w3schools.com rocks!</textarea>
           </form>
-        </div>
+        </section>
 
     </div>
 
 </div>
+<script>
+  console.log("plz");
+  var pickupPlaces = document.querySelector(".pickup-places");
+  pickupPlaces.style.display = "none";
+
+  function checkPickup() {
+    console.log("check pickup");
+    if(document.getElementById('pickup-true').checked) {
+      pickupPlaces.style.display = "flex";
+    } else if (document.getElementById('pickup-false').checked) {
+      pickupPlaces.style.display = "none";
+    }
+  }
+
+
+</script>

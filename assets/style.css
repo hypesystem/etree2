@@ -112,6 +112,9 @@ h3.subline {
     padding: 20px;
   }
 }
+textarea {
+  width: 100%;
+}
 .container {
     margin: 0 auto;
     width: 100%;
@@ -368,9 +371,20 @@ footer.floaty-content-box {
 .hidden {
   opacity: 0;
 }
+
+/* SALES */
+
 .sales-container {
   width: 80%;
   margin: 0 auto;
+}
+@media(max-width: 900px){
+  .sales-container {
+    width: 90%;
+  }
+}
+.sales-container section {
+  margin-bottom: 70px;
 }
 .trees {
   display: flex;
@@ -378,9 +392,18 @@ footer.floaty-content-box {
   flex-wrap: wrap;
   text-align: center;
 }
+input[name="treeSize"],
+input[name="pickupPlace"] {
+  display: none;
+}
+input[name="treeSize"]:checked+label,
+input[name="pickupPlace"]:checked+label {
+  background: #306F3F;
+  transform: scale(1.15);
+}
 .trees .tree-size-container {
   width: 16.6%;
-  padding: 10px;
+  padding: 5px;
   box-sizing: border-box;
 }
 .trees .tree-size {
@@ -400,6 +423,15 @@ footer.floaty-content-box {
 @media(max-width:600px){
   .trees .tree-size-container {
     width: 50%;
+  }
+  .trees .tree-size-container i {
+    display: none;
+  }
+  .trees .tree-size {
+    padding-top: 0;
+  }
+  .tree-size h4 {
+    margin-top: 0;
   }
 }
 .tree .tree-size ul {
@@ -428,15 +460,27 @@ footer.floaty-content-box {
   padding: 6px 12px;
   margin-top: 20px;
 }
+.pickup-places {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.pickup-place-container {
+  padding: 5px;
+  width: 25%;
+  box-sizing: border-box;
+}
 .pickup-place img {
   width: 100%;
 }
 .pickup-place {
-  width: 25%;
-  display: inline-block;
-  padding: 10px;
-  box-sizing: border-box;
   background: #e6b6b6;
+}
+@media(max-width: 1100px){
+  .pickup-place {
+    width: 50%;
+  }
 }
 
 /* FORM STUFF */
@@ -563,10 +607,6 @@ footer.floaty-content-box {
 }
 .select select:disabled ~ .select__arrow {
   border-top-color: #ccc;
-}
-
-.pickup-places {
-  display: block;
 }
 
 .shh input:checked {
