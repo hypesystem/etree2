@@ -471,6 +471,32 @@ input[name="pickupPlace"]:checked+label {
   width: 25%;
   box-sizing: border-box;
 }
+.tree .tree-size ul {
+  list-style: none;
+  padding: 0;
+}
+.trees .tree-size h4 {
+  background: #306f3f;
+  padding: 10px;
+  margin-bottom: 0;
+}
+.trees .tree-size ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: black;
+  background: white;
+}
+.tree-size ul li {
+  padding: 10px 0;
+}
+.tree-size ul li:nth-child(odd) {
+  background: #eee;
+}
+.tree-size button {
+  padding: 6px 12px;
+  margin-top: 20px;
+}
 .pickup-place img {
   width: 100%;
 }
