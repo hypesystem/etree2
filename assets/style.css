@@ -297,7 +297,9 @@ button {
 button:hover {
   background: #306f3f;
 }
-input[type="text"] {
+input[type="text"],
+input[type="email"],
+input[type="phone"] {
   display: block;
   margin: 0;
   width: 100%;
@@ -311,7 +313,17 @@ input[type="text"] {
   border-radius: none;
   margin-bottom: 10px;
 }
-input[type="text"]:focus {
+@media(max-width: 900px){
+  input[type="text"],
+  input[type="email"],
+  input[type="phone"] {
+    max-width: none;
+  }
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="phone"]:focus
+ {
   outline: none;
 }
 textarea {
@@ -405,6 +417,7 @@ input[name="pickupPlace"]:checked+label {
   width: 16.6%;
   padding: 5px;
   box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 .trees .tree-size {
   background: rgb(77, 152, 95);
@@ -460,17 +473,6 @@ input[name="pickupPlace"]:checked+label {
   padding: 6px 12px;
   margin-top: 20px;
 }
-.pickup-places {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  text-align: center;
-}
-.pickup-place-container {
-  padding: 5px;
-  width: 25%;
-  box-sizing: border-box;
-}
 .tree .tree-size ul {
   list-style: none;
   padding: 0;
@@ -497,16 +499,28 @@ input[name="pickupPlace"]:checked+label {
   padding: 6px 12px;
   margin-top: 20px;
 }
+.pickup-places {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.pickup-place-container {
+  padding: 5px;
+  width: 25%;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+@media(max-width: 1100px){
+  .pickup-place-container {
+    width: 50%;
+  }
+}
 .pickup-place img {
   width: 100%;
 }
 .pickup-place {
   background: #e6b6b6;
-}
-@media(max-width: 1100px){
-  .pickup-place {
-    width: 50%;
-  }
 }
 
 /* FORM STUFF */
