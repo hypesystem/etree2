@@ -106,16 +106,30 @@ layout: default
 
         </section>
 
+        <section class="tree-foot">
+          <h3>Juletræs fod</h3>
+          <p>Skal der sættes fod på dit træ?.</p>
+          <div class="control-group">
+            <label class="control control--radio">Sæt fod på det! (+50 kr)
+              <input type="radio" id="tree-foot-true" name="tree-foot" checked="checked" />
+              <div class="control__indicator"></div>
+            </label>
+            <label class="control control--radio shh">Nej tak
+              <input type="radio" id="tree-foot-false" name="tree-foot" />
+              <div class="control__indicator"></div>
+            </label>
+          </section>
+
         <section class="pickup">
-          <h1 class="center-text">Afhentning</h1>
+          <h3>Afhentning</h3>
           <p>Vi kan udbringe i København og Storkøbenhavnsområdet. Se postnumre her.</p>
           <div class="control-group">
             <label class="control control--radio">Få udbragt træet (+100 kr)
-              <input type="radio" id="pickup-false" name="radio" checked="checked" onclick="checkPickup()"/>
+              <input type="radio" id="pickup-false" name="pickup-place" checked="checked" onclick="checkPickup()"/>
               <div class="control__indicator"></div>
             </label>
             <label class="control control--radio shh">Jeg henter selv
-              <input type="radio" id="pickup-true" name="radio" onclick="checkPickup()" />
+              <input type="radio" id="pickup-true" name="pickup-place" onclick="checkPickup()" />
               <div class="control__indicator"></div>
             </label>
             <div class="pickup-places">
@@ -173,25 +187,74 @@ layout: default
         </section>
 
         <section>
+          <h3>Post-jul</h3>
+          <p>Vi kan hente træet igen efter jul, så du er fri for selv at skille dig af med det.</p>
+          <div class="control-group">
+            <label class="control control--radio shh">Jeg kommer selv af med træet
+              <input type="radio" id="pickup-true" name="afterChristmas" checked="checked" />
+              <div class="control__indicator"></div>
+            </label>
+            <label class="control control--radio">Få træet hentet efter jul (+200 kr)
+              <input type="radio" id="pickup-false" name="afterChristmas" />
+              <div class="control__indicator"></div>
+            </label>
+        </section>
+
+        <section>
           <h1 class="center-text">Kunde&shy;oplysninger</h1>
-          <form>
-            <label for="name">Fuldt navn</label>
-            <input id="name" type="text" />
-            <div>
-              <label for="streetname">Addresse</label>
-              <input id="streetname" type="text" />
-              <label for="city">By</label>
-              <input id="city" type="text" />
-              <label for="zip">Postnummer</label>
-              <input id="zip" type="text" />
+          <div class="address-container">
+            <div class="address">
+              <p><strong>Faktureringsadresse</strong></p>
+              <form>
+                <label for="name">Fuldt navn</label>
+                <input id="name" type="text" />
+                <div>
+                  <label for="streetname">Addresse</label>
+                  <input id="streetname" type="text" />
+                  <label for="city">By</label>
+                  <input id="city" type="text" />
+                  <label for="zip">Postnummer</label>
+                  <input id="zip" type="text" />
+                  <label id="delivery-checkbox-container" class="control control--checkbox">Er det også leveringsadresse?
+                    <input type="checkbox" id="delivery-checkbox" name="shh" onClick="checkDelivery()" checked />
+                    <div class="control__indicator"></div>
+                  </label>
+                </div>
+                <label for="email">Email</label>
+                <input id="email" type="email" />
+                <label for="phone">Mobiltelefonnummer</label>
+                <input id="phone" type="phone" />
+                <label for="comments">Kommentare</label>
+                <textarea id="comments" rows="4" cols="50">w3schools.com rocks!</textarea>
+                <button type="submit">Gå til betaling</button>
+              </form>
             </div>
-            <label for="email">Email</label>
-            <input id="email" type="email" />
-            <label for="phone">Mobiltelefonnummer</label>
-            <input id="phone" type="phone" />
-            <label for="comments">Kommentare</label>
-            <textarea id="comments" rows="4" cols="50">w3schools.com rocks!</textarea>
-          </form>
+            <div class="address">
+              <p><strong>Leveringsadresse</strong></p>
+              <form id="deliveryAddress">
+                <label for="name">Fuldt navn</label>
+                <input id="name" type="text" />
+                <div>
+                  <label for="streetname">Addresse</label>
+                  <input id="streetname" type="text" />
+                  <label for="city">By</label>
+                  <input id="city" type="text" />
+                  <label for="zip">Postnummer</label>
+                  <input id="zip" type="text" />
+                </div>
+              </form>
+              <div id="delivery-pickup-place" class="pickup-place-container" style="display:none;">
+                <div class="pickup-place">
+                  <img src="../assets/firforest.jpg" />
+                  <p><strong>Strandvejen 267</strong><br />
+                    Charlottenlund<br />
+                    30. nov kl. 12-16
+                  </p>
+                  <button>Vælg</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
     </div>
@@ -206,10 +269,29 @@ layout: default
     console.log("check pickup");
     if(document.getElementById('pickup-true').checked) {
       pickupPlaces.style.display = "flex";
+      document.querySelector("#delivery-pickup-place").style.display = "block";
+      document.querySelector("#deliveryAddress").style.display = "none";
+      document.querySelector("#delivery-checkbox-container").style.display = "none";
     } else if (document.getElementById('pickup-false').checked) {
       pickupPlaces.style.display = "none";
+      document.querySelector("#delivery-pickup-place").style.display = "none";
+      document.querySelector("#deliveryAddress").style.display = "block";
+      document.querySelector("#delivery-checkbox-container").style.display = "block";
+      checkDelivery();
     }
   }
+
+  function checkDelivery() {
+    console.log("check Delivery");
+    if(document.getElementById('delivery-checkbox').checked) {
+      document.querySelector("#deliveryAddress").style.display = "none";
+    } else {
+      document.querySelector("#deliveryAddress").style.display = "block";
+      document.querySelector("#delivery-pickup-place").style.display = "none";
+    }
+  }
+
+  checkDelivery();
 
 
 </script>
