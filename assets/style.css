@@ -114,6 +114,8 @@ h3.subline {
 }
 textarea {
   width: 100%;
+  padding: 10px 5px;
+  box-sizing: border-box;
 }
 .container {
     margin: 0 auto;
@@ -517,11 +519,17 @@ input[name="pickupPlace"]:checked+label {
     width: 50%;
   }
 }
+.pickup-content {
+  padding: 10px;
+}
 .pickup-place img {
   width: 100%;
 }
+.pickup-place p {
+  margin-top: 0px;
+}
 .pickup-place {
-  background: #e6b6b6;
+  background: #eee;
 }
 
 /* Address stuff */
@@ -537,16 +545,33 @@ input[name="pickupPlace"]:checked+label {
   flex: 1;
   padding: 10px 20px;
 }
-.address input {
+@media(max-width: 600px){
+  .address {
+    padding: 10px 0;
+  }
+}
+.address input,
+.address-contact input {
   width: 100%;
   max-width: none;
-}
-.address button {
-  margin-top: 15px;
 }
 .address .pickup-place-container {
   text-align: center;
   width: 100%;
+}
+.address-contact {
+  width: 50%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+@media(max-width: 600px){
+  .address-contact {
+    width: 100%;
+    padding: 0;
+  }
+}
+.address-contact button {
+  margin-top: 15px;
 }
 
 /* FORM STUFF */

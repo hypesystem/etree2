@@ -40,7 +40,7 @@ layout: default
               <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
               <h4>Mini</h4>
               <ul>
-                <li>50-75 cm</li>
+                <li>75-110 cm</li>
                 <li>få på lager</li>
                 <li>Leveres til døren</li>
               </ul>
@@ -54,7 +54,7 @@ layout: default
               <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
               <h4>Lille</h4>
               <ul>
-                <li>50-75 cm</li>
+                <li>110-150 cm</li>
                 <li>Kun 5 tilbage!</li>
                 <li>Leveres til døren</li>
               </ul>
@@ -68,7 +68,7 @@ layout: default
               <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
               <h4>Standard</h4>
               <ul>
-                <li>50-75 cm</li>
+                <li>150-200 cm</li>
                 <li>Mange på lager</li>
                 <li>Leveres til døren</li>
               </ul>
@@ -82,7 +82,7 @@ layout: default
               <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
               <h4>Stor</h4>
               <ul>
-                <li>50-75 cm</li>
+                <li>200-250 cm</li>
                 <li>Mange på lager</li>
                 <li>Leveres til døren</li>
               </ul>
@@ -96,7 +96,7 @@ layout: default
               <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
               <h4>Kæmpe</h4>
               <ul>
-                <li>50-75 cm</li>
+                <li>250-300 cm</li>
                 <li>Sidste træ!</li>
                 <li>Leveres til døren</li>
               </ul>
@@ -121,7 +121,7 @@ layout: default
           </section>
 
         <section class="pickup">
-          <h3>Afhentning</h3>
+          <h3>Levering</h3>
           <p>Vi kan udbringe i København og Storkøbenhavnsområdet. Se postnumre her.</p>
           <div class="control-group">
             <label class="control control--radio">Få udbragt træet (+100 kr)
@@ -139,11 +139,13 @@ layout: default
               <label for="pickupPlace-1" class="pickup-place-container">
                 <div class="pickup-place">
                   <img src="../assets/firforest.jpg" />
-                  <p><strong>Strandvejen 267</strong><br />
-                    Charlottenlund<br />
-                    30. nov kl. 12-16
-                  </p>
-                  <button>Vælg</button>
+                  <div class="pickup-content">
+                    <p><strong>Strandvejen 267</strong><br />
+                      Charlottenlund<br />
+                      30. nov kl. 12-16
+                    </p>
+                    <button>Vælg</button>
+                  </div>
                 </div>
               </label>
 
@@ -151,11 +153,13 @@ layout: default
               <label for="pickupPlace-2" class="pickup-place-container">
                 <div class="pickup-place">
                   <img src="../assets/firforest.jpg" />
-                  <p><strong>Strandvejen 267</strong><br />
-                    Charlottenlund<br />
-                    30. nov kl. 12-16
-                  </p>
-                  <button>Vælg</button>
+                  <div class="pickup-content">
+                    <p><strong>Strandvejen 267</strong><br />
+                      Charlottenlund<br />
+                      30. nov kl. 12-16
+                    </p>
+                    <button>Vælg</button>
+                  </div>
                 </div>
               </label>
 
@@ -163,11 +167,13 @@ layout: default
               <label for="pickupPlace-3" class="pickup-place-container">
                 <div class="pickup-place">
                   <img src="../assets/firforest.jpg" />
-                  <p><strong>Strandvejen 267</strong><br />
-                    Charlottenlund<br />
-                    30. nov kl. 12-16
-                  </p>
-                  <button>Vælg</button>
+                  <div class="pickup-content">
+                    <p><strong>Strandvejen 267</strong><br />
+                      Charlottenlund<br />
+                      30. nov kl. 12-16
+                    </p>
+                    <button>Vælg</button>
+                  </div>
                 </div>
               </label>
 
@@ -175,11 +181,13 @@ layout: default
               <label for="pickupPlace-4" class="pickup-place-container">
                 <div class="pickup-place">
                   <img src="../assets/firforest.jpg" />
-                  <p><strong>Strandvejen 267</strong><br />
-                    Charlottenlund<br />
-                    30. nov kl. 12-16
-                  </p>
-                  <button>Vælg</button>
+                  <div class="pickup-content">
+                    <p><strong>Strandvejen 267</strong><br />
+                      Charlottenlund<br />
+                      30. nov kl. 12-16
+                    </p>
+                    <button>Vælg</button>
+                  </div>
                 </div>
               </label>
             </div>
@@ -220,18 +228,11 @@ layout: default
                     <div class="control__indicator"></div>
                   </label>
                 </div>
-                <label for="email">Email</label>
-                <input id="email" type="email" />
-                <label for="phone">Mobiltelefonnummer</label>
-                <input id="phone" type="phone" />
-                <label for="comments">Kommentare</label>
-                <textarea id="comments" rows="4" cols="50">w3schools.com rocks!</textarea>
-                <button type="submit">Gå til betaling</button>
               </form>
             </div>
             <div class="address">
-              <p><strong>Leveringsadresse</strong></p>
               <form id="deliveryAddress">
+                <p><strong>Leveringsadresse</strong></p>
                 <label for="name">Fuldt navn</label>
                 <input id="name" type="text" />
                 <div>
@@ -244,16 +245,28 @@ layout: default
                 </div>
               </form>
               <div id="delivery-pickup-place" class="pickup-place-container" style="display:none;">
+                <p style="text-align:left;"><strong>Leveringsadresse</strong></p>
                 <div class="pickup-place">
                   <img src="../assets/firforest.jpg" />
-                  <p><strong>Strandvejen 267</strong><br />
-                    Charlottenlund<br />
-                    30. nov kl. 12-16
-                  </p>
-                  <button>Vælg</button>
+                  <div class="pickup-content">
+                    <p><strong>Strandvejen 267</strong><br />
+                      Charlottenlund<br />
+                      30. nov kl. 12-16
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div class="address-contact">
+            <p><strong>Kontaktoplysninger</strong></p>
+            <label for="email">Email</label>
+            <input id="email" type="email" />
+            <label for="phone">Mobiltelefonnummer</label>
+            <input id="phone" type="phone" />
+            <label for="comments">Kommentare</label>
+            <textarea id="comments" rows="4" cols="50">w3schools.com rocks!</textarea>
+            <button type="submit">Gå til betaling</button>
           </div>
         </section>
 
