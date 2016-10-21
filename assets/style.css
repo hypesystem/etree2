@@ -112,6 +112,11 @@ h3.subline {
     padding: 20px;
   }
 }
+textarea {
+  width: 100%;
+  padding: 10px 5px;
+  box-sizing: border-box;
+}
 .container {
     margin: 0 auto;
     width: 100%;
@@ -259,7 +264,7 @@ h3.subline {
 .sign-up-bar h2 {
   margin-top: 0;
 }
-.prelaunch-form input {
+.prelaunch-form input[type="email"] {
     width: 350px;
     max-width: 100%;
     padding: 12px;
@@ -268,6 +273,7 @@ h3.subline {
     text-align: center;
     border: 1px solid #ccc;
     box-shadow: inset 0 1px 1px rgba(0,0,0,.07);
+    display: inline-block;
 }
 @media(max-width: 900px){
   .prelaunch-form input {
@@ -282,24 +288,25 @@ h3.subline {
   margin-bottom: 20px;
 }
 button {
-    padding: 12px;
+    padding: 13px;
     font-size: 1.2em;
     background: rgb(77, 152, 95);
     color: white;
     outline: none;
     border: 0;
-    padding: 12px 12px;
     cursor: pointer;
 }
 button:hover {
   background: #306f3f;
 }
-input[type="text"] {
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
   display: block;
   margin: 0;
   width: 100%;
   max-width: 250px;
-  padding: 5px;
+  padding: 10px 5px;
   box-sizing: border-box;
   font-family: sans-serif;
   font-size: 18px;
@@ -308,7 +315,17 @@ input[type="text"] {
   border-radius: none;
   margin-bottom: 10px;
 }
-input[type="text"]:focus {
+@media(max-width: 900px){
+  input[type="text"],
+  input[type="email"],
+  input[type="phone"] {
+    max-width: none;
+  }
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="phone"]:focus
+ {
   outline: none;
 }
 textarea {
@@ -368,9 +385,21 @@ footer.floaty-content-box {
 .hidden {
   opacity: 0;
 }
+
+/* SALES */
+
 .sales-container {
   width: 80%;
   margin: 0 auto;
+  margin-top: 20px;
+}
+@media(max-width: 900px){
+  .sales-container {
+    width: 90%;
+  }
+}
+.sales-container section {
+  margin-bottom: 70px;
 }
 .trees {
   display: flex;
@@ -378,29 +407,182 @@ footer.floaty-content-box {
   flex-wrap: wrap;
   text-align: center;
 }
-.trees .tree-size {
-  width: 16.6%;
+input[name="treeSize"],
+input[name="pickupPlace"] {
+  display: none;
 }
-@media(max-width:900px){
-  .trees .tree-size {
+input[name="treeSize"]:checked+label,
+input[name="pickupPlace"]:checked+label {
+  background: #306F3F;
+  transform: scale(1.15);
+}
+.trees .tree-size-container {
+  width: 16.6%;
+  padding: 5px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+.trees .tree-size-container .fa-tree {
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.trees .tree-size {
+  background: rgb(77, 152, 95);
+  color: white;
+  padding: 20px 0;
+  cursor: pointer;
+  overflow: hidden;
+}
+.trees .tree-size:hover {
+  background: rgb(70, 140, 87);
+}
+@media(max-width:1100px){
+  .trees .tree-size-container {
     width: 33.3%;
   }
 }
 @media(max-width:600px){
-  .trees .tree-size {
+  .trees .tree-size-container {
     width: 50%;
   }
+  .trees .tree-size-container .fa-tree {
+    display: none;
+  }
+  .trees .tree-size {
+    padding-top: 0;
+  }
+  .tree-size h4 {
+    margin-top: 0;
+  }
+}
+.tree .tree-size ul {
+  list-style: none;
+  padding: 0;
+}
+.trees .tree-size ul li:first-of-type {
+  font-weight: 600;
+}
+.trees .tree-size h4 {
+  background: #306f3f;
+  padding: 10px;
+  margin-bottom: 0;
+}
+.trees .tree-size ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: black;
+  background: white;
+}
+.tree-size ul li {
+  padding: 10px 0;
+}
+.tree-size ul li:nth-child(odd) {
+  background: #eee;
+}
+.tree-size button {
+  padding: 6px 12px;
+  margin-top: 20px;
+  font-weight: 600;
+}
+.tree .tree-size ul {
+  list-style: none;
+  padding: 0;
+}
+.trees .tree-size h4 {
+  background: #306f3f;
+  padding: 10px;
+  margin-bottom: 0;
+}
+.trees .tree-size ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: black;
+  background: white;
+}
+.tree-size ul li {
+  padding: 10px 0;
+}
+.tree-size ul li:nth-child(odd) {
+  background: #eee;
+}
+.tree-size button {
+  padding: 6px 12px;
+  margin-top: 20px;
+}
+.pickup-places {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.pickup-place-container {
+  padding: 5px;
+  width: 25%;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+@media(max-width: 1100px){
+  .pickup-place-container {
+    width: 50%;
+  }
+}
+.pickup-content {
+  padding: 10px;
 }
 .pickup-place img {
   width: 100%;
 }
-
+.pickup-place p {
+  margin-top: 0px;
+}
 .pickup-place {
-  width: 25%;
-  display: inline-block;
-  padding: 10px;
+  background: #eee;
+}
+
+/* Address stuff */
+.address-container {
+  display: flex;
+}
+@media(max-width: 600px){
+  .address-container {
+    flex-direction: column;
+  }
+}
+.address {
+  flex: 1;
+  padding: 10px 20px;
+}
+@media(max-width: 600px){
+  .address {
+    padding: 10px 0;
+  }
+}
+.address input,
+.address-contact input {
+  width: 100%;
+  max-width: none;
+}
+.address .pickup-place-container {
+  text-align: center;
+  width: 100%;
+}
+.address-contact {
+  width: 50%;
+  padding: 0 20px;
   box-sizing: border-box;
-  background: #e6b6b6;
+}
+@media(max-width: 600px){
+  .address-contact {
+    width: 100%;
+    padding: 0;
+  }
+}
+.address-contact button {
+  margin-top: 15px;
 }
 
 /* FORM STUFF */
@@ -527,10 +709,6 @@ footer.floaty-content-box {
 }
 .select select:disabled ~ .select__arrow {
   border-top-color: #ccc;
-}
-
-.pickup-places {
-  display: block;
 }
 
 .shh input:checked {
