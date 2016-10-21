@@ -422,7 +422,7 @@ input[name="pickupPlace"]:checked+label {
   box-sizing: border-box;
   transition: all 0.3s ease;
 }
-.trees .tree-size-container i {
+.trees .tree-size-container .fa-tree {
   height: 90px;
   display: flex;
   justify-content: center;
@@ -447,7 +447,7 @@ input[name="pickupPlace"]:checked+label {
   .trees .tree-size-container {
     width: 50%;
   }
-  .trees .tree-size-container i {
+  .trees .tree-size-container .fa-tree {
     display: none;
   }
   .trees .tree-size {

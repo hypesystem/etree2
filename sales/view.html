@@ -107,7 +107,7 @@ layout: default
         </section>
 
         <section class="tree-foot">
-          <h3>Juletræs fod</h3>
+          <h3>Juletræsfod</h3>
           <p>Skal der sættes fod på dit træ?.</p>
           <div class="control-group">
             <label class="control control--radio">Sæt fod på det! (+50 kr)
@@ -118,7 +118,8 @@ layout: default
               <input type="radio" id="tree-foot-false" name="tree-foot" />
               <div class="control__indicator"></div>
             </label>
-          </section>
+          </div>
+        </section>
 
         <section class="pickup">
           <h3>Levering</h3>
@@ -132,70 +133,70 @@ layout: default
               <input type="radio" id="pickup-true" name="pickup-place" onclick="checkPickup()" />
               <div class="control__indicator"></div>
             </label>
-            <div class="pickup-places">
-              <h2 style="width:100%;">Vælg afhentningssted</h2>
+          </div>
+          <div class="pickup-places">
+            <h2 style="width:100%;">Vælg afhentningssted</h2>
 
-              <input id="pickupPlace-1" type="radio" name="pickupPlace" />
-              <label for="pickupPlace-1" class="pickup-place-container">
-                <div class="pickup-place">
-                  <img src="../assets/firforest.jpg" />
-                  <div class="pickup-content">
-                    <p><strong>Strandvejen 267</strong><br />
-                      Charlottenlund<br />
-                      30. nov kl. 12-16
-                    </p>
-                    <button>Vælg</button>
-                  </div>
+            <input id="pickupPlace-1" type="radio" name="pickupPlace" />
+            <label for="pickupPlace-1" class="pickup-place-container">
+              <div class="pickup-place">
+                <img src="../assets/firforest.jpg" alt="" />
+                <div class="pickup-content">
+                  <p><strong>Strandvejen 267</strong><br />
+                    Charlottenlund<br />
+                    30. nov kl. 12-16
+                  </p>
+                  <button>Vælg</button>
                 </div>
-              </label>
+              </div>
+            </label>
 
-              <input id="pickupPlace-2" type="radio" name="pickupPlace" />
-              <label for="pickupPlace-2" class="pickup-place-container">
-                <div class="pickup-place">
-                  <img src="../assets/firforest.jpg" />
-                  <div class="pickup-content">
-                    <p><strong>Strandvejen 267</strong><br />
-                      Charlottenlund<br />
-                      30. nov kl. 12-16
-                    </p>
-                    <button>Vælg</button>
-                  </div>
+            <input id="pickupPlace-2" type="radio" name="pickupPlace" />
+            <label for="pickupPlace-2" class="pickup-place-container">
+              <div class="pickup-place">
+                <img src="../assets/firforest.jpg" alt="" />
+                <div class="pickup-content">
+                  <p><strong>Strandvejen 267</strong><br />
+                    Charlottenlund<br />
+                    30. nov kl. 12-16
+                  </p>
+                  <button>Vælg</button>
                 </div>
-              </label>
+              </div>
+            </label>
 
-              <input id="pickupPlace-3" type="radio" name="pickupPlace" />
-              <label for="pickupPlace-3" class="pickup-place-container">
-                <div class="pickup-place">
-                  <img src="../assets/firforest.jpg" />
-                  <div class="pickup-content">
-                    <p><strong>Strandvejen 267</strong><br />
-                      Charlottenlund<br />
-                      30. nov kl. 12-16
-                    </p>
-                    <button>Vælg</button>
-                  </div>
+            <input id="pickupPlace-3" type="radio" name="pickupPlace" />
+            <label for="pickupPlace-3" class="pickup-place-container">
+              <div class="pickup-place">
+                <img src="../assets/firforest.jpg" alt="" />
+                <div class="pickup-content">
+                  <p><strong>Strandvejen 267</strong><br />
+                    Charlottenlund<br />
+                    30. nov kl. 12-16
+                  </p>
+                  <button>Vælg</button>
                 </div>
-              </label>
+              </div>
+            </label>
 
-              <input id="pickupPlace-4" type="radio" name="pickupPlace" />
-              <label for="pickupPlace-4" class="pickup-place-container">
-                <div class="pickup-place">
-                  <img src="../assets/firforest.jpg" />
-                  <div class="pickup-content">
-                    <p><strong>Strandvejen 267</strong><br />
-                      Charlottenlund<br />
-                      30. nov kl. 12-16
-                    </p>
-                    <button>Vælg</button>
-                  </div>
+            <input id="pickupPlace-4" type="radio" name="pickupPlace" />
+            <label for="pickupPlace-4" class="pickup-place-container">
+              <div class="pickup-place">
+                <img src="../assets/firforest.jpg" alt="" />
+                <div class="pickup-content">
+                  <p><strong>Strandvejen 267</strong><br />
+                    Charlottenlund<br />
+                    30. nov kl. 12-16
+                  </p>
+                  <button>Vælg</button>
                 </div>
-              </label>
-            </div>
+              </div>
+            </label>
           </div>
         </section>
 
         <section>
-          <h3>Post-jul</h3>
+          <h3>Efter jul</h3>
           <p>Vi kan hente træet igen efter jul, så du er fri for selv at skille dig af med det.</p>
           <div class="control-group">
             <label class="control control--radio shh">Jeg kommer selv af med træet
@@ -206,6 +207,7 @@ layout: default
               <input type="radio" id="pickup-false" name="afterChristmas" />
               <div class="control__indicator"></div>
             </label>
+          </div>
         </section>
 
         <section>
@@ -233,21 +235,21 @@ layout: default
             <div class="address">
               <form id="deliveryAddress">
                 <p><strong>Leveringsadresse</strong></p>
-                <label for="name">Fuldt navn</label>
-                <input id="name" type="text" />
+                <label for="delivery-name">Fuldt navn</label>
+                <input id="delivery-name" type="text" />
                 <div>
-                  <label for="streetname">Addresse</label>
-                  <input id="streetname" type="text" />
-                  <label for="city">By</label>
-                  <input id="city" type="text" />
-                  <label for="zip">Postnummer</label>
-                  <input id="zip" type="text" />
+                  <label for="delivery-streetname">Addresse</label>
+                  <input id="delivery-streetname" type="text" />
+                  <label for="delivery-city">By</label>
+                  <input id="delivery-city" type="text" />
+                  <label for="delivery-zip">Postnummer</label>
+                  <input id="delivery-zip" type="text" />
                 </div>
               </form>
               <div id="delivery-pickup-place" class="pickup-place-container" style="display:none;">
                 <p style="text-align:left;"><strong>Leveringsadresse</strong></p>
                 <div class="pickup-place">
-                  <img src="../assets/firforest.jpg" />
+                  <img src="../assets/firforest.jpg" alt="" />
                   <div class="pickup-content">
                     <p><strong>Strandvejen 267</strong><br />
                       Charlottenlund<br />
