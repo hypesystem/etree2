@@ -301,7 +301,7 @@ button:hover {
 }
 input[type="text"],
 input[type="email"],
-input[type="phone"] {
+input[type="tel"] {
   display: block;
   margin: 0;
   width: 100%;
@@ -391,6 +391,7 @@ footer.floaty-content-box {
 .sales-container {
   width: 80%;
   margin: 0 auto;
+  margin-top: 20px;
 }
 @media(max-width: 900px){
   .sales-container {
@@ -421,11 +422,18 @@ input[name="pickupPlace"]:checked+label {
   box-sizing: border-box;
   transition: all 0.3s ease;
 }
+.trees .tree-size-container i {
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
 .trees .tree-size {
   background: rgb(77, 152, 95);
   color: white;
   padding: 20px 0;
   cursor: pointer;
+  overflow: hidden;
 }
 .trees .tree-size:hover {
   background: rgb(70, 140, 87);
@@ -452,6 +460,9 @@ input[name="pickupPlace"]:checked+label {
 .tree .tree-size ul {
   list-style: none;
   padding: 0;
+}
+.trees .tree-size ul li:first-of-type {
+  font-weight: 600;
 }
 .trees .tree-size h4 {
   background: #306f3f;
