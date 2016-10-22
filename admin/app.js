@@ -8,6 +8,7 @@ var logoutEndpoint = require("./authentication/logoutEndpoint.js");
 var staticViewEndpoint = require("../staticViewEndpoint.js");
 var adminManagementApp = require("./manage/app.js");
 var createAdminUpdateTableIfNotExists = require("./createAdminUpdateTableIfNotExists.js");
+var emailEndpoint = require("./send-email/endpoint.js");
 
 function createAdminApp(pool) {
     var app = express();
@@ -18,6 +19,8 @@ function createAdminApp(pool) {
     app.get("/list-subscribers", authenticate(pool), listSubscribersEndpoint(pool));
     app.get("/logout", authenticate(pool), logoutEndpoint);
     app.use("/manage", authenticate(pool), adminManagementApp(pool));
+    app.get("/email", authenticate(pool), staticViewEndpoint("admin/send-email/form.html"));
+    app.post("/email", authenticate(pool), emailEndpoint(pool));
     
     return app;
 }

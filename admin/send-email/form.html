@@ -1,0 +1,36 @@
+---
+layout: oldstyle
+---
+<div class="floaty-content-box">
+    <h1>Send email to users</h1>
+    <form method="post" action="/admin/email">
+        <label for="other-recipients">
+            Other recipients (comma-separated, optionally {name} &lt;{email}&gt;; otherwise just {email}):
+        </label>
+        <textarea name="other-recipients" id="other-recipients" placeholder="email1@email.com, James <james@email.com>"></textarea>
+        <br>
+        <label for="newsletter-recipients">
+            <input type="checkbox" name="newsletter-recipients" id="newsletter-recipients" value="include">
+            Send to all newsletter signups?
+        </label>
+        <br>
+        <label for="email-subject">
+            Email subject
+        </label>
+        <input type="text" name="email-subject" id="email-subject">
+        <br>
+        <p>In the email contents you can use these fields: <code>&#123;&#123; email &#125;&#125;</code>, <code>&#123;&#123; id &#125;&#125;</code>.</p>
+        <br>
+        <label for="email-content-html">
+            Email content (HTML version, no template!!!)
+        </label>
+        <textarea name="email-content-html" id="email-content-html"></textarea>
+        <br>
+        <label for="email-content-text">
+            Email content (text version)
+        </label>
+        <textarea name="email-content-text" id="email-content-text"></textarea>
+        <br>
+        <button type="submit">Send!</button>
+    </form>
+</div>
