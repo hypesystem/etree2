@@ -1,5 +1,5 @@
 function salesEndpoint(pool, req, res) {
-    res.send("hello");
+    res.send(req.body);
 }
 
 module.exports = function(pool) {

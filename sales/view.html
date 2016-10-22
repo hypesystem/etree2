@@ -2,19 +2,6 @@
 layout: default
 ---
 <div class="sales-container">
-    <!-- PICK TREE SIZE -->
-    <!--  & with/without foot? -->
-    <!--  & how does it look if we have 5 trees left of a size/when we've run out? -->
-
-    <!-- CUSTOMER INFORMATION -->
-    <!-- Fakturaadresse inkl navn, vej linje 1+2, postnr, by -->
-    <!-- Leveringsadresse hvis forskellig -->
-    <!-- Email (påkrævet) -->
-    <!-- Mobiltelefonnummer (valgfrit) -->
-    <!-- Kommentarer (påkrævet) -->
-
-    <!-- SUMMARY (når alt er fyldt ud) -->
-    <!-- Tryk køb for endeligt at gå til betaling -->
 
     <span id="start" class="target"><!-- Hidden anchor to close all modals --></span>
     <span id="about" class="target"><!-- Hidden anchor to open adjesting modal container--></span>
@@ -43,14 +30,16 @@ layout: default
         <section class="trees">
 
           {{#treeSizes}}
-          <input id="size-{{name}}" type="radio" name="treeSize" />
+          <input id="size-{{name}}" type="radio" name="tree-size" value="{{name}}" required />
           <label for="size-{{name}}" class="tree-size-container">
             <div class="tree-size">
               <i class="fa fa-tree tree-icon-{{name}}" aria-hidden="true"></i>
               <h4>{{name}}</h4>
               <ul>
                 <li>{{minHeight}}-{{maxHeight}} cm</li>
-                <li>Mange på lager</li>
+                {{#salesLimit}}
+                <li>Kun {{salesLimit}} tilbage!</li>
+                {{/salesLimit}}
                 <li>Leveres til døren</li>
               </ul>
               <a class="btn">{{price}} kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
@@ -65,11 +54,11 @@ layout: default
           <p>Skal der sættes fod på dit træ?.</p>
           <div class="control-group">
             <label class="control control--radio">Sæt fod på det! (+50 kr)
-              <input type="radio" id="tree-foot-true" name="tree-foot" checked="checked" />
+              <input type="radio" id="tree-foot-true" name="tree-foot" value="yes" checked="checked" />
               <div class="control__indicator"></div>
             </label>
-            <label class="control control--radio shh">Nej tak
-              <input type="radio" id="tree-foot-false" name="tree-foot" />
+            <label class="control control--radio">Nej tak
+              <input type="radio" id="tree-foot-false" value="no" name="tree-foot" />
               <div class="control__indicator"></div>
             </label>
           </div>
@@ -85,11 +74,11 @@ layout: default
           {{#pickUpLocations.length}}
           <div class="control-group">
             <label class="control control--radio">Få udbragt træet (+100 kr)
-              <input type="radio" id="pickup-false" name="pickup-place" checked="checked" onclick="checkPickup()"/>
+              <input type="radio" id="pickup-false" name="delivery" value="yes" checked="checked" onclick="checkPickup()"/>
               <div class="control__indicator"></div>
             </label>
-            <label class="control control--radio shh">Jeg henter selv
-              <input type="radio" id="pickup-true" name="pickup-place" onclick="checkPickup()" />
+            <label class="control control--radio">Jeg henter selv
+              <input type="radio" id="pickup-true" name="delivery" value="no" onclick="checkPickup()" />
               <div class="control__indicator"></div>
             </label>
           </div>
@@ -97,7 +86,7 @@ layout: default
             <h2 style="width:100%;">Vælg afhentningssted</h2>
 
             {{#pickUpLocations}}
-              <input id="pickupPlace-{{name}}" type="radio" name="pickupPlace" />
+              <input id="pickupPlace-{{name}}" value="{{name}}" type="radio" name="pickup-place" />
               <label for="pickupPlace-{{name}}" class="pickup-place-container">
                 <div class="pickup-place">
                   <img src="../assets/{{image}}" alt="" />
@@ -119,12 +108,12 @@ layout: default
           <h3>Efter jul</h3>
           <p>Vi kan hente træet igen efter jul, så du er fri for selv at skille dig af med det.</p>
           <div class="control-group">
-            <label class="control control--radio shh">Jeg kommer selv af med træet
-              <input type="radio" id="pickup-true" name="afterChristmas" checked="checked" />
+            <label class="control control--radio">Jeg kommer selv af med træet
+              <input type="radio" id="pickup-true" value="no" name="tree-disposal" checked="checked" />
               <div class="control__indicator"></div>
             </label>
             <label class="control control--radio">Få træet hentet efter jul (+200 kr)
-              <input type="radio" id="pickup-false" name="afterChristmas" />
+              <input type="radio" id="pickup-false" value="yes" name="tree-disposal" />
               <div class="control__indicator"></div>
             </label>
           </div>
@@ -136,16 +125,20 @@ layout: default
             <div class="address">
               <p><strong>Faktureringsadresse</strong></p>
                 <label for="name">Fuldt navn</label>
-                <input id="name" type="text" />
-                <div>
+                <input id="name" name="billing-name" type="text" required />
+                <div class="flex-form">
                   <label for="streetname">Addresse</label>
-                  <input id="streetname" type="text" />
-                  <label for="city">By</label>
-                  <input id="city" type="text" />
-                  <label for="zip">Postnummer</label>
-                  <input id="zip" type="text" />
+                  <input id="streetname" name="billing-streetname" type="text" required />
+                  <div class="zip-input">
+                    <label for="zip">Postnummer</label>
+                    <input id="zip" name="billing-zip" pattern="[0-9]{4}" type="text" required />
+                  </div>
+                  <div class="city-input">
+                    <label for="city">By</label>
+                    <input id="city" name="billing-city" type="text" required />
+                  </div>
                   <label id="delivery-checkbox-container" class="control control--checkbox">Er det også leveringsadresse?
-                    <input type="checkbox" id="delivery-checkbox" name="shh" onClick="checkDelivery()" checked />
+                    <input type="checkbox" id="delivery-checkbox" name="delivery-same-as-billing" onClick="checkDelivery()" checked />
                     <div class="control__indicator"></div>
                   </label>
                 </div>
@@ -154,14 +147,18 @@ layout: default
               <div id="deliveryAddress">
                 <p><strong>Leveringsadresse</strong></p>
                 <label for="delivery-name">Fuldt navn</label>
-                <input id="delivery-name" type="text" />
-                <div>
+                <input id="delivery-name" name="delivery-name" type="text" />
+                <div class="flex-form">
                   <label for="delivery-streetname">Addresse</label>
-                  <input id="delivery-streetname" type="text" />
-                  <label for="delivery-city">By</label>
-                  <input id="delivery-city" type="text" />
-                  <label for="delivery-zip">Postnummer</label>
-                  <input id="delivery-zip" type="text" />
+                  <input id="delivery-streetname" name="delivery-streetname" type="text" />
+                  <div class="zip-input">
+                    <label for="delivery-zip">Postnummer</label>
+                    <input id="delivery-zip" name="delivery-zip" pattern="[0-9]{4}" type="text" />
+                  </div>
+                  <div class="city-input">
+                    <label for="delivery-city">By</label>
+                    <input id="delivery-city" name="delivery-city" type="text" />
+                  </div>
                 </div>
               </div>
               <div id="delivery-pickup-place" class="pickup-place-container" style="display:none;">
@@ -181,11 +178,11 @@ layout: default
           <div class="address-contact">
             <p><strong>Kontaktoplysninger</strong></p>
             <label for="email">Email</label>
-            <input id="email" type="email" placeholder="mikkel-l@rsen.dk" />
-            <label for="phone">Telefonnummer</label>
-            <input id="phone" type="tel" placeholder="+45 21 43 54 76" />
+            <input id="email" name="contact-email" type="email" placeholder="mikkel-l@rsen.dk" required />
+            <label for="phone">Telefonnummer (valgfri)</label>
+            <input id="phone" name="contact-phone" type="tel" placeholder="+45 21 43 54 76" />
             <label for="comments">Kommentare til ordren</label>
-            <textarea id="comments" rows="2" cols="50">w3schools.com rocks!</textarea>
+            <textarea id="comments" name="comments" rows="2" cols="50" placeholder="Tak for god service etree!"></textarea>
             <button type="submit">Gå til betaling</button>
           </div>
         </section>

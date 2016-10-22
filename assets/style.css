@@ -310,7 +310,8 @@ a.btn:hover {
 input[type="text"],
 input[type="email"],
 input[type="tel"],
-input[type="password"] {
+input[type="password"],
+input[type="number"] {
   display: block;
   margin: 0;
   width: 100%;
@@ -327,14 +328,17 @@ input[type="password"] {
 @media(max-width: 900px){
   input[type="text"],
   input[type="email"],
-  input[type="phone"],
-  input[type="password"] {
+  input[type="tel"],
+  input[type="password"],
+  input[type="number"] {
     max-width: none;
   }
 }
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="phone"]:focus
+input[type="tel"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus
  {
   outline: none;
 }
@@ -414,17 +418,17 @@ footer.floaty-content-box {
   flex-wrap: wrap;
   text-align: center;
 }
-input[name="treeSize"],
-input[name="pickupPlace"] {
+input[name="tree-size"],
+input[name="pickup-place"] {
   display: none;
 }
-input[name="treeSize"]:checked+label,
-input[name="pickupPlace"]:checked+label {
+input[name="tree-size"]:checked+label,
+input[name="pickup-place"]:checked+label {
   background: #306F3F;
   transform: scale(1.15);
 }
-input[name="treeSize"]:checked+label .checkmark-icon,
-input[name="pickupPlace"]:checked+label .checkmark-icon {
+input[name="tree-size"]:checked+label .checkmark-icon,
+input[name="pickup-place"]:checked+label .checkmark-icon {
   display: inline-block;
 }
 .checkmark-icon {
@@ -613,6 +617,31 @@ i.tree-icon-Kæmpe {
   .address-contact {
     width: 100%;
     padding: 0;
+  }
+}
+.address .flex-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.address .zip-input {
+  width: 25%;
+  box-sizing: border-box;
+  padding-right: 10px;
+  min-width: 100px;
+}
+.address .city-input {
+  width: 75%;
+  box-sizing: border-box;
+}
+@media(max-width: 900px){
+  .address .city-input,
+  .address .zip-input {
+    width: 100%;
+    padding: 0;
+  }
+  .address .zip-input {
+    max-width: 110px;
   }
 }
 .address-contact button {
