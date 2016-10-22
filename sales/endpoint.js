@@ -2,6 +2,7 @@ var uuid = require("uuid");
 var renderView = require("../renderView.js");
 var fs = require("fs");
 var path = require("path");
+var ensurePaymentEventTables = require("./ensurePaymentEventTables.js");
 
 function salesEndpoint(pool, paymentGateway, req, res) {
     if(req.body.payment_method_nonce) {
@@ -109,5 +110,6 @@ function completePayment(pool, paymentGateway, req, res) {
 }
 
 module.exports = function(pool, paymentGateway) {
+    ensurePaymentEventTables(pool);
     return salesEndpoint.bind(this, pool, paymentGateway);
 };
