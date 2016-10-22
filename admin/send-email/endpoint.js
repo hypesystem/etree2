@@ -68,7 +68,7 @@ function parseOtherRecipients(raw, callback) {
     catch(e) {
         return callback(e);
     }
-    var recipientsMissingField = parsed.filter(recipient => !recipient.name || !recipient.email);
+    var recipientsMissingField = parsed.filter(recipient => !recipient.email);
     if(recipientsMissingField.length > 0) {
         return callback({
             type: "input",
