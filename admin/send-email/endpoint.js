@@ -1,3 +1,5 @@
+var getActiveSubscriptions = require("../list-subscribers/getActiveSubscriptions.js");
+
 function sendEmailEndpoint(pool, mailer, req, res) {
     if(!req.body["email-subject"]) {
         return res.fail(400, "Missing email subject!");
@@ -77,7 +79,7 @@ function parseOtherRecipients(raw, callback) {
 }
 
 function parseNewsletterRecipients(pool, callback) {
-    callback("not implemented");
+    getActiveSubscriptions(pool, callback);
 }
 
 module.exports = function(pool, mailer) {
