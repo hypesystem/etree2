@@ -120,5 +120,6 @@
         }
     ],
     "footPrice": 50,
-    "collectionPrice": 200
+    "collectionPrice": 200,
+    "deliveryPrice": 100
 }

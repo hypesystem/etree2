@@ -3,6 +3,7 @@ var renderView = require("../renderView.js");
 var fs = require("fs");
 var path = require("path");
 var ensurePaymentEventTables = require("./ensurePaymentEventTables.js");
+var productData = require("./productData.json");
 
 function salesEndpoint(pool, paymentGateway, req, res) {
     if(req.body.payment_method_nonce) {
@@ -83,7 +84,57 @@ function parseOrderInfo(raw, callback) {
 }
 
 function parseOrderLines(raw, callback) {
-    callback("not implemented");
+    var orderLines = [];
+    var amount = 0;
+    
+    var treeSizeInput = raw["tree-size"];
+    if(!treeSizeInput || treeSizeInput == "") {
+        return callback({
+            type: "input",
+            message: "Mangler træstørrelse",
+            error: new Error("Missing tree size")
+        });
+    }
+    var treeSize = productData.treeSizes.find(treeSize => treeSize.name == treeSizeInput);
+    if(!treeSize) {
+        return callback({
+            type: "input",
+            message: "Invalid træstørrelse",
+            error: new Error("Wrong tree size")
+        });
+    }
+    orderLines.push({
+        name: "Træ, " + treeSize.name + ", " + treeSize.minHeight + "-" + treeSize.maxHeight + " cm",
+        price: treeSize.price 
+    });
+    amount += treeSize.price;
+    
+    var footIncluded = raw["tree-foot"] == "yes";
+    if(footIncluded) {
+        orderLines.push({
+            name: "+ fod",
+            price: productData.footPrice
+        });
+        amount += productData.footPrice;
+    }
+    
+    //TODO: pickup?
+    orderLines.push({
+        name: "Levering",
+        price: productData.deliveryPrice
+    });
+    amount += productData.deliveryPrice;
+    
+    var disposalIncluded = raw["tree-disposal"] == "yes";
+    if(disposalIncluded) {
+        orderLines.push({
+            name: "Afhentning efter jul",
+            price: productData.collectionPrice
+        });
+        amount += productData.collectionPrice;
+    }
+    
+    callback(null, orderLines, amount);
 }
 
 function parseCustomerInfo(raw, callback) {
