@@ -5,9 +5,9 @@ layout: oldstyle
     <h1>Send email to users</h1>
     <form method="post" action="/admin/email">
         <label for="other-recipients">
-            Other recipients (comma-separated, optionally {name} &lt;{email}&gt;; otherwise just {email}):
+            Other recipients (JSON structure. Fields for each recipient: name, email, id (if appliccable)):
         </label>
-        <textarea name="other-recipients" id="other-recipients" placeholder="email1@email.com, James <james@email.com>"></textarea>
+        <textarea name="other-recipients" id="other-recipients"></textarea>
         <br>
         <label for="newsletter-recipients">
             <input type="checkbox" name="newsletter-recipients" id="newsletter-recipients" value="include">
