@@ -113,9 +113,12 @@ h3.subline {
   }
 }
 textarea {
+  display: block;
   width: 100%;
   padding: 10px 5px;
   box-sizing: border-box;
+  font-size: inherit;
+  font-family: inherit;
 }
 .container {
     margin: 0 auto;
@@ -334,9 +337,6 @@ input[type="email"]:focus,
 input[type="phone"]:focus
  {
   outline: none;
-}
-textarea {
-  display: block;
 }
 footer {
   background: rgba(51, 51, 51, 1);
