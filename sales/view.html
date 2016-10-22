@@ -16,6 +16,26 @@ layout: default
     <!-- SUMMARY (når alt er fyldt ud) -->
     <!-- Tryk køb for endeligt at gå til betaling -->
 
+    <span id="start" class="target"><!-- Hidden anchor to close all modals --></span>
+    <span id="about" class="target"><!-- Hidden anchor to open adjesting modal container--></span>
+    <div class="modal">
+      <div class="content vertical-align-middle">
+        <h2 class="center-text">Postnumre vi leverer til</h2>
+        <div>
+          {{#allowedPostCodes}}
+            {{ #exact }}
+              <span class="exact-zip">{{ exact }}</span>
+            {{ /exact }}
+            {{ ^exact }}
+              <p>Alle postnumre mellem <strong>{{min}}</strong> og <strong>{{max}}</strong></p>
+              <p>Samt disse postnumre:</p>
+            {{ /exact }}
+          {{/allowedPostCodes}}
+        </div>
+        <a class="close-btn" href="#start">&#10005;</a>
+      </div>
+    </div>
+
     <div class="floaty-content-box">
         <h1 class="center-text">Vælg størrelse</h1>
 
@@ -56,7 +76,7 @@ layout: default
 
         <section class="pickup">
           <h3>Levering</h3>
-          <p>Vi kan udbringe i København og Storkøbenhavnsområdet. Se postnumre her.</p>
+          <p>Vi kan udbringe i København og Storkøbenhavnsområdet. <a href="#about">Se postnumre her.</a></p>
           <div class="control-group">
             <label class="control control--radio">Få udbragt træet (+100 kr)
               <input type="radio" id="pickup-false" name="pickup-place" checked="checked" onclick="checkPickup()"/>
