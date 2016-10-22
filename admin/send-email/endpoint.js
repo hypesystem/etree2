@@ -27,7 +27,7 @@ function sendEmailEndpoint(pool, mailer, req, res) {
                 console.error("Failed to send email to recipients", recipients, error);
                 return res.fail(500);
             }
-            res.send("ok");
+            res.redirect("/admin/email/success");
         });
     });
 }
