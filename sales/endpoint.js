@@ -148,6 +148,13 @@ function parseCustomerInfo(raw, callback) {
             error: new Error("Missing contact email")
         });
     }
+    if(!email.match(/[^@]+@[^@]+/)) {
+        return callback({
+            type: "input",
+            message: "Invalid email " + email,
+            error: new Error("Invalid email")
+        });
+    }
     customer.email = email;
     
     var phoneNumber = raw["contact-phone"];
