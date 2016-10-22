@@ -58,7 +58,7 @@ layout: default
               <div class="control__indicator"></div>
             </label>
             <label class="control control--radio">Nej tak
-              <input type="radio" id="tree-foot-false" value="false" name="tree-foot" />
+              <input type="radio" id="tree-foot-false" value="no" name="tree-foot" />
               <div class="control__indicator"></div>
             </label>
           </div>
@@ -74,11 +74,11 @@ layout: default
           {{#pickUpLocations.length}}
           <div class="control-group">
             <label class="control control--radio">Få udbragt træet (+100 kr)
-              <input type="radio" id="pickup-false" name="pickup-self" value="no" checked="checked" onclick="checkPickup()"/>
+              <input type="radio" id="pickup-false" name="delivery" value="yes" checked="checked" onclick="checkPickup()"/>
               <div class="control__indicator"></div>
             </label>
             <label class="control control--radio">Jeg henter selv
-              <input type="radio" id="pickup-true" name="pickup-self" value="yes" onclick="checkPickup()" />
+              <input type="radio" id="pickup-true" name="delivery" value="no" onclick="checkPickup()" />
               <div class="control__indicator"></div>
             </label>
           </div>
@@ -109,11 +109,11 @@ layout: default
           <p>Vi kan hente træet igen efter jul, så du er fri for selv at skille dig af med det.</p>
           <div class="control-group">
             <label class="control control--radio">Jeg kommer selv af med træet
-              <input type="radio" id="pickup-true" value="yes" name="self-deposit" checked="checked" />
+              <input type="radio" id="pickup-true" value="no" name="tree-disposal" checked="checked" />
               <div class="control__indicator"></div>
             </label>
             <label class="control control--radio">Få træet hentet efter jul (+200 kr)
-              <input type="radio" id="pickup-false" value="no" name="self-deposit" />
+              <input type="radio" id="pickup-false" value="yes" name="tree-disposal" />
               <div class="control__indicator"></div>
             </label>
           </div>
