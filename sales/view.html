@@ -37,6 +37,7 @@ layout: default
     </div>
 
     <div class="floaty-content-box">
+      <form action="/buy" method="post">
         <h1 class="center-text">Vælg størrelse</h1>
 
         <section class="trees">
@@ -134,7 +135,6 @@ layout: default
           <div class="address-container">
             <div class="address">
               <p><strong>Faktureringsadresse</strong></p>
-              <form>
                 <label for="name">Fuldt navn</label>
                 <input id="name" type="text" />
                 <div>
@@ -149,10 +149,9 @@ layout: default
                     <div class="control__indicator"></div>
                   </label>
                 </div>
-              </form>
             </div>
             <div class="address">
-              <form id="deliveryAddress">
+              <div id="deliveryAddress">
                 <p><strong>Leveringsadresse</strong></p>
                 <label for="delivery-name">Fuldt navn</label>
                 <input id="delivery-name" type="text" />
@@ -164,7 +163,7 @@ layout: default
                   <label for="delivery-zip">Postnummer</label>
                   <input id="delivery-zip" type="text" />
                 </div>
-              </form>
+              </div>
               <div id="delivery-pickup-place" class="pickup-place-container" style="display:none;">
                 <p style="text-align:left;"><strong>Leveringsadresse</strong></p>
                 <div class="pickup-place">
@@ -190,14 +189,17 @@ layout: default
             <button type="submit">Gå til betaling</button>
           </div>
         </section>
-
+      </form>
     </div>
 
 </div>
 <script>
   console.log("plz");
+  checkDelivery();
   var pickupPlaces = document.querySelector(".pickup-places");
-  pickupPlaces.style.display = "none";
+  if(pickupPlaces){
+    pickupPlaces.style.display = "none";
+  }
 
   function checkPickup() {
     console.log("check pickup");
@@ -218,14 +220,11 @@ layout: default
   function checkDelivery() {
     console.log("check Delivery");
     if(document.getElementById('delivery-checkbox').checked) {
-      document.querySelector("#deliveryAddress").style.display = "none";
+      document.getElementById("deliveryAddress").style.display = "none";
     } else {
       document.querySelector("#deliveryAddress").style.display = "block";
       document.querySelector("#delivery-pickup-place").style.display = "none";
     }
   }
-
-  checkDelivery();
-
 
 </script>
