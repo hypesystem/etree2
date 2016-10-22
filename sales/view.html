@@ -20,6 +20,11 @@ layout: default
         <h1 class="center-text">Vælg størrelse</h1>
 
         <section class="trees">
+
+          {{#treeSize}}
+            <b>{{name}}</b>
+          {{/treeSize}}
+
           <input id="size-mikro" type="radio" name="treeSize" />
           <label for="size-mikro" class="tree-size-container">
             <div class="tree-size">
