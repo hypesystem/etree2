@@ -130,7 +130,7 @@ textarea {
     box-sizing: border-box;
     border: 5px solid #e2e2e2;
     padding: 60px;
-    margin-bottom: 25px;
+    margin: 25px 0;
     box-shadow: 0 0 2px rgba(0,0,0,0.2), 0 3px 2px rgba(0,0,0,0.2);
 }
 .center-text {
@@ -287,7 +287,8 @@ textarea {
 .sign-up-form input {
   margin-bottom: 20px;
 }
-button {
+button,
+a.btn {
     padding: 13px;
     font-size: 1.2em;
     background: rgb(77, 152, 95);
@@ -295,8 +296,12 @@ button {
     outline: none;
     border: 0;
     cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    font-family: inherit;
 }
-button:hover {
+button:hover,
+a.btn:hover {
   background: #306f3f;
 }
 input[type="text"],
@@ -418,10 +423,11 @@ input[name="pickupPlace"]:checked+label {
   background: #306F3F;
   transform: scale(1.15);
 }
-input[name="treeSize"]:checked+label .tree-check {
+input[name="treeSize"]:checked+label .checkmark-icon,
+input[name="pickupPlace"]:checked+label .checkmark-icon {
   display: inline-block;
 }
-.trees .tree-check {
+.checkmark-icon {
   display: none;
 }
 .trees .tree-size-container {
@@ -490,7 +496,7 @@ input[name="treeSize"]:checked+label .tree-check {
 .tree-size ul li:nth-child(odd) {
   background: #eee;
 }
-.tree-size button {
+.tree-size a.btn {
   padding: 6px 12px;
   margin-top: 20px;
   font-weight: 600;
@@ -546,6 +552,10 @@ input[name="treeSize"]:checked+label .tree-check {
 }
 .pickup-place {
   background: #eee;
+  cursor: pointer;
+}
+.pickup-place:hover {
+  background: #e0e0e0;
 }
 
 /* Address stuff */
