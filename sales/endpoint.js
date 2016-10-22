@@ -7,7 +7,7 @@ var productData = require("./productData.json");
 
 function salesEndpoint(pool, paymentGateway, req, res) {
     if(req.body.payment_method_nonce) {
-        completePayment(pool, paymentGateway, req, res);
+        return completePayment(pool, paymentGateway, req, res);
     }
     startPayment(pool, paymentGateway, req, res);
 }
@@ -239,7 +239,7 @@ function completePayment(pool, paymentGateway, req, res) {
             return res.fail(400, "Forkert transaktions-ID (findes ikke)");
         }
         var amount = result.rows[0].data.amount;
-        gateway.transaction.sale({
+        paymentGateway.transaction.sale({
             amount: amount,
             paymentMethodNonce: nonce,
             options: {
