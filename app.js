@@ -15,9 +15,12 @@ var cookieSession = require("cookie-session");
 var adminApp = require("./admin/app.js");
 var MailgunMustacheMailer = require("mailgun-mustache-mailer");
 var salesEndpoint = require("./sales/endpoint.js");
+var braintree = require("braintree");
 
 var pool = new Pool(config.postgres);
 var mailer = new MailgunMustacheMailer(config.mailgun);
+config.braintree.environment = braintree.Environment[config.braintree.environment];
+var paymentGateway = braintree.connect(config.braintree);
 
 ensureProjectionsTable(pool);
 
@@ -44,7 +47,7 @@ app.use(function failMiddleware(req, res, next) {
 
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 app.get("/", frontPageSelector);
-app.post("/buy", salesEndpoint(pool));
+app.post("/buy", salesEndpoint(pool, paymentGateway));
 app.post("/subscribe", subscribeEndpoint(pool));
 app.get("/du-er-paa-listen", staticViewEndpoint("prelaunch/subscription-succesful-view.html"));
 app.get("/unsubscribe/:id", unsubscribeEndpoint(pool));
@@ -53,6 +56,7 @@ app.get("/om", staticViewEndpoint("about/view.html"));
 app.get("/pg-status", postgresStatusEndpoint());
 app.get("/bliv-udbringer", staticViewEndpoint("become-deliverer/view.html"));
 app.use("/admin", adminApp(pool, mailer));
+app.get("/tak-for-handlen", staticViewEndpoint("sales/thanks.html"));
 
 app.use(function endpointNotFound(req, res) {
     res.fail(404);

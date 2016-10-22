@@ -1,5 +1,8 @@
 {
     "postgres": {
         "host": "postgres"
+    },
+    "braintree": {
+        "environment": "Production"
     }
 }

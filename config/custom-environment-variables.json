@@ -1,5 +1,10 @@
 {
     "mailgun": {
         "apiKey": "MAILGUN_APIKEY"
+    },
+    "braintree": {
+        "merchantId": "BRAINTREE_MERCHANTID",
+        "publicKey": "BRAINTREE_PUBLICKEY",
+        "privateKey": "BRAINTREE_PRIVATEKEY"
     }
 }

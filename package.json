@@ -1,6 +1,6 @@
 {
   "name": "etree2",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "description": "etree service in node",
   "scripts": {
     "start": "node app.js",
@@ -16,6 +16,7 @@
   "dependencies": {
     "async": "^2.0.0",
     "body-parser": "^1.15.2",
+    "braintree": "^1.42.0",
     "config": "^1.21.0",
     "cookie-session": "^2.0.0-alpha.1",
     "express": "^4.14.0",

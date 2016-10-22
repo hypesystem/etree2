@@ -68,7 +68,7 @@ layout: default
           <h3>Levering</h3>
           <p>Vi kan udbringe i København og Storkøbenhavnsområdet. <a href="#about">Se postnumre her.</a></p>
           {{^pickUpLocations.length}}
-            <p>Levering koster <strong>100 kr</strong></p>
+            <p>Levering koster <strong>{{ deliveryPrice }} kr</strong></p>
           {{/pickUpLocations.length}}
 
           {{#pickUpLocations.length}}
