@@ -418,17 +418,17 @@ footer.floaty-content-box {
   flex-wrap: wrap;
   text-align: center;
 }
-input[name="treeSize"],
-input[name="pickupPlace"] {
+input[name="tree-size"],
+input[name="pickup-place"] {
   display: none;
 }
-input[name="treeSize"]:checked+label,
-input[name="pickupPlace"]:checked+label {
+input[name="tree-size"]:checked+label,
+input[name="pickup-place"]:checked+label {
   background: #306F3F;
   transform: scale(1.15);
 }
-input[name="treeSize"]:checked+label .checkmark-icon,
-input[name="pickupPlace"]:checked+label .checkmark-icon {
+input[name="tree-size"]:checked+label .checkmark-icon,
+input[name="pickup-place"]:checked+label .checkmark-icon {
   display: inline-block;
 }
 .checkmark-icon {

@@ -2,19 +2,6 @@
 layout: default
 ---
 <div class="sales-container">
-    <!-- PICK TREE SIZE -->
-    <!--  & with/without foot? -->
-    <!--  & how does it look if we have 5 trees left of a size/when we've run out? -->
-
-    <!-- CUSTOMER INFORMATION -->
-    <!-- Fakturaadresse inkl navn, vej linje 1+2, postnr, by -->
-    <!-- Leveringsadresse hvis forskellig -->
-    <!-- Email (påkrævet) -->
-    <!-- Mobiltelefonnummer (valgfrit) -->
-    <!-- Kommentarer (påkrævet) -->
-
-    <!-- SUMMARY (når alt er fyldt ud) -->
-    <!-- Tryk køb for endeligt at gå til betaling -->
 
     <span id="start" class="target"><!-- Hidden anchor to close all modals --></span>
     <span id="about" class="target"><!-- Hidden anchor to open adjesting modal container--></span>
@@ -43,7 +30,7 @@ layout: default
         <section class="trees">
 
           {{#treeSizes}}
-          <input id="size-{{name}}" type="radio" name="treeSize" />
+          <input id="size-{{name}}" type="radio" name="tree-size" value="{{name}}" />
           <label for="size-{{name}}" class="tree-size-container">
             <div class="tree-size">
               <i class="fa fa-tree tree-icon-{{name}}" aria-hidden="true"></i>
@@ -67,11 +54,11 @@ layout: default
           <p>Skal der sættes fod på dit træ?.</p>
           <div class="control-group">
             <label class="control control--radio">Sæt fod på det! (+50 kr)
-              <input type="radio" id="tree-foot-true" name="tree-foot" checked="checked" />
+              <input type="radio" id="tree-foot-true" name="tree-foot" value="yes" checked="checked" />
               <div class="control__indicator"></div>
             </label>
-            <label class="control control--radio shh">Nej tak
-              <input type="radio" id="tree-foot-false" name="tree-foot" />
+            <label class="control control--radio">Nej tak
+              <input type="radio" id="tree-foot-false" value="false" name="tree-foot" />
               <div class="control__indicator"></div>
             </label>
           </div>
@@ -87,11 +74,11 @@ layout: default
           {{#pickUpLocations.length}}
           <div class="control-group">
             <label class="control control--radio">Få udbragt træet (+100 kr)
-              <input type="radio" id="pickup-false" name="pickup-place" checked="checked" onclick="checkPickup()"/>
+              <input type="radio" id="pickup-false" name="pickup-self" value="no" checked="checked" onclick="checkPickup()"/>
               <div class="control__indicator"></div>
             </label>
-            <label class="control control--radio shh">Jeg henter selv
-              <input type="radio" id="pickup-true" name="pickup-place" onclick="checkPickup()" />
+            <label class="control control--radio">Jeg henter selv
+              <input type="radio" id="pickup-true" name="pickup-self" value="yes" onclick="checkPickup()" />
               <div class="control__indicator"></div>
             </label>
           </div>
@@ -99,7 +86,7 @@ layout: default
             <h2 style="width:100%;">Vælg afhentningssted</h2>
 
             {{#pickUpLocations}}
-              <input id="pickupPlace-{{name}}" type="radio" name="pickupPlace" />
+              <input id="pickupPlace-{{name}}" value="{{name}}" type="radio" name="pickup-place" />
               <label for="pickupPlace-{{name}}" class="pickup-place-container">
                 <div class="pickup-place">
                   <img src="../assets/{{image}}" alt="" />
@@ -121,12 +108,12 @@ layout: default
           <h3>Efter jul</h3>
           <p>Vi kan hente træet igen efter jul, så du er fri for selv at skille dig af med det.</p>
           <div class="control-group">
-            <label class="control control--radio shh">Jeg kommer selv af med træet
-              <input type="radio" id="pickup-true" name="afterChristmas" checked="checked" />
+            <label class="control control--radio">Jeg kommer selv af med træet
+              <input type="radio" id="pickup-true" value="yes" name="self-deposit" checked="checked" />
               <div class="control__indicator"></div>
             </label>
             <label class="control control--radio">Få træet hentet efter jul (+200 kr)
-              <input type="radio" id="pickup-false" name="afterChristmas" />
+              <input type="radio" id="pickup-false" value="no" name="self-deposit" />
               <div class="control__indicator"></div>
             </label>
           </div>
@@ -151,7 +138,7 @@ layout: default
                     <input id="city" type="text" />
                   </div>
                   <label id="delivery-checkbox-container" class="control control--checkbox">Er det også leveringsadresse?
-                    <input type="checkbox" id="delivery-checkbox" name="shh" onClick="checkDelivery()" checked />
+                    <input type="checkbox" id="delivery-checkbox" name="delivery-same-as-billing" onClick="checkDelivery()" checked />
                     <div class="control__indicator"></div>
                   </label>
                 </div>
