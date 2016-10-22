@@ -30,7 +30,7 @@ layout: default
         <section class="trees">
 
           {{#treeSizes}}
-          <input id="size-{{name}}" type="radio" name="tree-size" value="{{name}}" />
+          <input id="size-{{name}}" type="radio" name="tree-size" value="{{name}}" required />
           <label for="size-{{name}}" class="tree-size-container">
             <div class="tree-size">
               <i class="fa fa-tree tree-icon-{{name}}" aria-hidden="true"></i>
@@ -125,17 +125,17 @@ layout: default
             <div class="address">
               <p><strong>Faktureringsadresse</strong></p>
                 <label for="name">Fuldt navn</label>
-                <input id="name" type="text" />
+                <input id="name" name="billing-name" type="text" required />
                 <div class="flex-form">
                   <label for="streetname">Addresse</label>
-                  <input id="streetname" type="text" />
+                  <input id="streetname" name="billing-streetname" type="text" required />
                   <div class="zip-input">
                     <label for="zip">Postnummer</label>
-                    <input id="zip" pattern="[0-9]{4}" type="text" />
+                    <input id="zip" name="billing-zip" pattern="[0-9]{4}" type="text" required />
                   </div>
                   <div class="city-input">
                     <label for="city">By</label>
-                    <input id="city" type="text" />
+                    <input id="city" name="billing-city" type="text" required />
                   </div>
                   <label id="delivery-checkbox-container" class="control control--checkbox">Er det også leveringsadresse?
                     <input type="checkbox" id="delivery-checkbox" name="delivery-same-as-billing" onClick="checkDelivery()" checked />
@@ -147,17 +147,17 @@ layout: default
               <div id="deliveryAddress">
                 <p><strong>Leveringsadresse</strong></p>
                 <label for="delivery-name">Fuldt navn</label>
-                <input id="delivery-name" type="text" />
+                <input id="delivery-name" name="delivery-name" type="text" />
                 <div class="flex-form">
                   <label for="delivery-streetname">Addresse</label>
-                  <input id="delivery-streetname" type="text" />
+                  <input id="delivery-streetname" name="delivery-streetname" type="text" />
                   <div class="zip-input">
                     <label for="delivery-zip">Postnummer</label>
-                    <input id="delivery-zip" pattern="[0-9]{4}" type="text" />
+                    <input id="delivery-zip" name="delivery-zip" pattern="[0-9]{4}" type="text" />
                   </div>
                   <div class="city-input">
                     <label for="delivery-city">By</label>
-                    <input id="delivery-city" type="text" />
+                    <input id="delivery-city" name="delivery-city" type="text" />
                   </div>
                 </div>
               </div>
@@ -178,11 +178,11 @@ layout: default
           <div class="address-contact">
             <p><strong>Kontaktoplysninger</strong></p>
             <label for="email">Email</label>
-            <input id="email" type="email" placeholder="mikkel-l@rsen.dk" />
-            <label for="phone">Telefonnummer</label>
-            <input id="phone" type="tel" placeholder="+45 21 43 54 76" />
+            <input id="email" name="contact-email" type="email" placeholder="mikkel-l@rsen.dk" required />
+            <label for="phone">Telefonnummer (valgfri)</label>
+            <input id="phone" name="contact-phone" type="tel" placeholder="+45 21 43 54 76" />
             <label for="comments">Kommentare til ordren</label>
-            <textarea id="comments" rows="2" cols="50" placeholder="Tak for god service etree!"></textarea>
+            <textarea id="comments" name="comments" rows="2" cols="50" placeholder="Tak for god service etree!"></textarea>
             <button type="submit">Gå til betaling</button>
           </div>
         </section>
