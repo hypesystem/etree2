@@ -4,5 +4,10 @@
         "user": "postgres",
         "password": "postgres",
         "database": "postgres"
+    },
+    "mailgun": {
+        "from": "etree.dk <kontakt@etree.dk>",
+        "domain": "etree.dk",
+        "apiKey": "please-supply-mailgun-apikey-in-env"
     }
 }

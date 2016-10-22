@@ -8,8 +8,9 @@ var logoutEndpoint = require("./authentication/logoutEndpoint.js");
 var staticViewEndpoint = require("../staticViewEndpoint.js");
 var adminManagementApp = require("./manage/app.js");
 var createAdminUpdateTableIfNotExists = require("./createAdminUpdateTableIfNotExists.js");
+var emailEndpoint = require("./send-email/endpoint.js");
 
-function createAdminApp(pool) {
+function createAdminApp(pool, mailer) {
     var app = express();
     
     app.get("/", authenticate(pool), adminEndpoint(pool));
@@ -18,16 +19,19 @@ function createAdminApp(pool) {
     app.get("/list-subscribers", authenticate(pool), listSubscribersEndpoint(pool));
     app.get("/logout", authenticate(pool), logoutEndpoint);
     app.use("/manage", authenticate(pool), adminManagementApp(pool));
+    app.get("/email", authenticate(pool), staticViewEndpoint("admin/send-email/form.html"));
+    app.post("/email", authenticate(pool), emailEndpoint(pool, mailer));
+    app.get("/email/success", authenticate(pool), staticViewEndpoint("admin/send-email/success.html"));
     
     return app;
 }
 
-module.exports = function(pool) {
+module.exports = function(pool, mailer) {
     ensureFirstAdmin(pool);
     createAdminUpdateTableIfNotExists(pool, error => {
         if(error) {
             console.error("Failed to ensure admin_updated table on launch", error);
         }
     });
-    return createAdminApp(pool);
+    return createAdminApp(pool, mailer);
 };

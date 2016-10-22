@@ -1,6 +1,6 @@
 {
   "name": "etree2",
-  "version": "0.4.4",
+  "version": "0.5.0",
   "description": "etree service in node",
   "scripts": {
     "start": "node app.js",
@@ -21,6 +21,7 @@
     "express": "^4.14.0",
     "frontmatter": "0.0.3",
     "kvfs": "^0.2.6",
+    "mailgun-mustache-mailer": "0.0.1",
     "mustache": "^2.2.1",
     "pg": "^6.1.0",
     "pg-pool": "^1.4.3",

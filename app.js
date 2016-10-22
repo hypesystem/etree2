@@ -13,8 +13,10 @@ var ensureProjectionsTable = require("./ensureProjectionsTable.js");
 var frontPageSelector = require("./frontPageSelector.js");
 var cookieSession = require("cookie-session");
 var adminApp = require("./admin/app.js");
+var MailgunMustacheMailer = require("mailgun-mustache-mailer");
 
 var pool = new Pool(config.postgres);
+var mailer = new MailgunMustacheMailer(config.mailgun);
 
 ensureProjectionsTable(pool);
 
@@ -48,7 +50,7 @@ app.get("/unsubscribed", staticViewEndpoint("prelaunch/unsubscribed-succesfully.
 app.get("/om", staticViewEndpoint("about/view.html"));
 app.get("/pg-status", postgresStatusEndpoint());
 app.get("/bliv-udbringer", staticViewEndpoint("become-deliverer/view.html"));
-app.use("/admin", adminApp(pool));
+app.use("/admin", adminApp(pool, mailer));
 
 app.use(function endpointNotFound(req, res) {
     res.fail(404);
