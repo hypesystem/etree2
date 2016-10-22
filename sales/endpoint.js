@@ -21,23 +21,20 @@ function startPayment(pool, paymentGateway, req, res) {
             console.error("Failed to parse order lines", error);
             return res.fail(500);
         }
-        
-    //generate client token
-    paymentGateway.clientToken.generate({}, (error, response) => {
-        if(error) {
-            console.error("Failed to generate client token for payment", error);
-            return res.fail(500);
-        }
-        if(!response.success) {
-            console.error("Failed to generate client token from braintree", response);
-            return res.fail(500);
-        }
-        var transactionId = uuid.v4();
-        var viewModel = {
-            clientToken: response.clientToken,
-            transactionId: transactionId
-        };
-        
+        paymentGateway.clientToken.generate({}, (error, response) => {
+            if(error) {
+                console.error("Failed to generate client token for payment", error);
+                return res.fail(500);
+            }
+            if(!response.success) {
+                console.error("Failed to generate client token from braintree", response);
+                return res.fail(500);
+            }
+            var transactionId = uuid.v4();
+            var viewModel = {
+                clientToken: response.clientToken,
+                transactionId: transactionId
+            };
             var paymentData = {
                 originalRequest: req.body,
                 orderLines: orderLines,
@@ -53,21 +50,19 @@ function startPayment(pool, paymentGateway, req, res) {
                     console.error("Failed to insert payment_started", error);
                     return res.fail(500);
                 }
-        
-        fs.readFile(path.join(__dirname, "paymentForm.html"), (error, buf) => {
-            if(error) {
-                console.error("Failed to read paymentForm view", error);
-                return res.fail(500);
-            }
-            renderView(buf.toString(), viewModel, (error, result) => {
-                if(error) {
-                    console.error("Failed to build paymentForm view", error);
-                    return res.fail(500);
-                }
-                res.send(result);
-            });
-        });
-        
+                fs.readFile(path.join(__dirname, "paymentForm.html"), (error, buf) => {
+                    if(error) {
+                        console.error("Failed to read paymentForm view", error);
+                        return res.fail(500);
+                    }
+                    renderView(buf.toString(), viewModel, (error, result) => {
+                        if(error) {
+                            console.error("Failed to build paymentForm view", error);
+                            return res.fail(500);
+                        }
+                        res.send(result);
+                    });
+                });
             });
         });
     });
