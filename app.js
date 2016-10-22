@@ -14,6 +14,7 @@ var frontPageSelector = require("./frontPageSelector.js");
 var cookieSession = require("cookie-session");
 var adminApp = require("./admin/app.js");
 var MailgunMustacheMailer = require("mailgun-mustache-mailer");
+var salesEndpoint = require("./sales/endpoint.js");
 
 var pool = new Pool(config.postgres);
 var mailer = new MailgunMustacheMailer(config.mailgun);
@@ -43,6 +44,7 @@ app.use(function failMiddleware(req, res, next) {
 
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 app.get("/", frontPageSelector);
+app.post("/buy", salesEndpoint(pool));
 app.post("/subscribe", subscribeEndpoint(pool));
 app.get("/du-er-paa-listen", staticViewEndpoint("prelaunch/subscription-succesful-view.html"));
 app.get("/unsubscribe/:id", unsubscribeEndpoint(pool));
