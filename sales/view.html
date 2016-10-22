@@ -50,7 +50,9 @@ layout: default
               <h4>{{name}}</h4>
               <ul>
                 <li>{{minHeight}}-{{maxHeight}} cm</li>
-                <li>Mange på lager</li>
+                {{#salesLimit}}
+                <li>Kun {{salesLimit}} tilbage!</li>
+                {{/salesLimit}}
                 <li>Leveres til døren</li>
               </ul>
               <a class="btn">{{price}} kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
