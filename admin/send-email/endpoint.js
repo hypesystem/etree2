@@ -55,7 +55,7 @@ function getRecipients(pool, otherRecipients, newsletterRecipients, callback) {
                 return callback(error);
             }
             console.log("newsletter recipients", newsletterRecipients);
-            callback(null, newsletterRecipients.append(otherRecipients));
+            callback(null, newsletterRecipients.concat(otherRecipients));
         });
     });
 }

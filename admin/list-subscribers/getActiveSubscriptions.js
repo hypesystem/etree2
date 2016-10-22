@@ -1,3 +1,5 @@
+var fs = require("fs");
+var path = require("path");
 var buildSubscriptionsState = require("./buildSubscriptionsState.js");
 var getCurrentStateAndLastEventTimestamp = fs.readFileSync(path.join(__dirname, "getCurrentStateAndLastEventTimestamp.sql")).toString();
 var updateSubscriptionsProjectionIfExists = fs.readFileSync(path.join(__dirname, "updateSubscriptionsProjectionIfExists.sql")).toString();
