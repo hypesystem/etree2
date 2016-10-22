@@ -56,6 +56,7 @@ app.get("/om", staticViewEndpoint("about/view.html"));
 app.get("/pg-status", postgresStatusEndpoint());
 app.get("/bliv-udbringer", staticViewEndpoint("become-deliverer/view.html"));
 app.use("/admin", adminApp(pool, mailer));
+app.get("/tak-for-handlen", staticViewEndpoint("sales/thanks.html"));
 
 app.use(function endpointNotFound(req, res) {
     res.fail(404);
