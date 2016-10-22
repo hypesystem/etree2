@@ -138,7 +138,86 @@ function parseOrderLines(raw, callback) {
 }
 
 function parseCustomerInfo(raw, callback) {
-    callback("not implemented");
+    var customer = {};
+    
+    var email = raw["contact-email"];
+    if(!email) {
+        return callback({
+            type: "input",
+            message: "Mangler email",
+            error: new Error("Missing contact email")
+        });
+    }
+    customer.email = email;
+    
+    var phoneNumber = raw["contact-phone"];
+    if(phoneNumber) {
+        customer.phoneNumber = phoneNumber;
+    }
+    
+    customer.comments = raw["comments"];
+    
+    parseAddress(raw, "billing-", (error, billingAddress) => {
+        if(error) {
+            return callback(error);
+        }
+        customer.billingAddress = billingAddress;
+        var deliverySameAsBilling = raw["delivery-same-as-billing"] == "on";
+        customer.deliverySameAsBilling = deliverySameAsBilling;
+        if(deliverySameAsBilling) {
+            customer.deliveryAddress = billingAddress;
+            return callback(null, customer);
+        }
+        parseAddress(raw, "delivery-", (error, deliveryAddress) => {
+            if(error) {
+                return callback(error);
+            }
+            customer.deliveryAddress = deliveryAddress;
+            callback(null, customer);
+        });
+    });
+}
+
+function parseAddress(raw, prefix, callback) {
+    var address = {};
+    
+    var name = raw[prefix + "name"];
+    if(!name) {
+        return callback({
+            type: "input",
+            message: "Mangler navn på adresseejer",
+            error: new Error("Missing address name for " + prefix)
+        });
+    }
+    
+    var streetAddress = raw[prefix + "streetname"];
+    if(!streetAddress) {
+        return callback({
+            type: "input",
+            message: "Mangler vejadresse",
+            error: new Error("Missing street address for " + prefix)
+        });
+    }
+    
+    var zip = raw[prefix + "zip"];
+    if(!zip || zip.length != 4) {
+        return callback({
+            type: "input",
+            message: "Mangler postnr",
+            error: new Error("Missing zip for " + prefix)
+        });
+    }
+    
+    var city = raw[prefix + "city"];
+    if(!city) {
+        return callback({
+            type: "input",
+            message: "Mangler by",
+            error: new Error("Missing city for " + prefix)
+        });
+    }
+    
+    callback(null, address);
 }
 
 function completePayment(pool, paymentGateway, req, res) {
