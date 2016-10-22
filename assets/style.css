@@ -558,6 +558,25 @@ input[name="pickupPlace"]:checked+label .checkmark-icon {
   background: #e0e0e0;
 }
 
+i.tree-icon-Mikro {
+  font-size: 1em;
+}
+i.tree-icon-Mini {
+  font-size: 2em;
+}
+i.tree-icon-Lille {
+  font-size: 3em;
+}
+i.tree-icon-Standard {
+  font-size: 4em;
+}
+i.tree-icon-Stor {
+  font-size: 5em;
+}
+i.tree-icon-Kæmpe {
+  font-size: 7.5em;
+}
+
 /* Address stuff */
 .address-container {
   display: flex;

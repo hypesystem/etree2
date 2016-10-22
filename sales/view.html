@@ -20,89 +20,22 @@ layout: default
         <h1 class="center-text">Vælg størrelse</h1>
 
         <section class="trees">
-          <input id="size-mikro" type="radio" name="treeSize" />
-          <label for="size-mikro" class="tree-size-container">
+
+          {{#treeSizes}}
+          <input id="size-{{name}}" type="radio" name="treeSize" />
+          <label for="size-{{name}}" class="tree-size-container">
             <div class="tree-size">
-              <i class="fa fa-tree fa-1x" aria-hidden="true"></i>
-              <h4>Mikro</h4>
+              <i class="fa fa-tree tree-icon-{{name}}" aria-hidden="true"></i>
+              <h4>{{name}}</h4>
               <ul>
-                <li>50-75 cm</li>
+                <li>{{minHeight}}-{{maxHeight}} cm</li>
                 <li>Mange på lager</li>
                 <li>Leveres til døren</li>
               </ul>
-              <a class="btn">100 kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
+              <a class="btn">{{price}} kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
             </div>
           </label>
-
-          <input id="size-mini" type="radio" name="treeSize" />
-          <label for="size-mini" class="tree-size-container">
-            <div class="tree-size">
-              <i class="fa fa-tree fa-2x" aria-hidden="true"></i>
-              <h4>Mini</h4>
-              <ul>
-                <li>75-110 cm</li>
-                <li>få på lager</li>
-                <li>Leveres til døren</li>
-              </ul>
-              <a class="btn">125 kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
-            </div>
-          </label>
-
-          <input id="size-small" type="radio" name="treeSize" />
-          <label for="size-small" class="tree-size-container">
-            <div class="tree-size">
-              <i class="fa fa-tree fa-3x" aria-hidden="true"></i>
-              <h4>Lille</h4>
-              <ul>
-                <li>110-150 cm</li>
-                <li>Kun 5 tilbage!</li>
-                <li>Leveres til døren</li>
-              </ul>
-              <a class="btn">180 kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
-            </div>
-          </label>
-
-          <input id="size-standard" type="radio" name="treeSize" />
-          <label for="size-standard" class="tree-size-container">
-            <div class="tree-size">
-              <i class="fa fa-tree fa-4x" aria-hidden="true"></i>
-              <h4>Standard</h4>
-              <ul>
-                <li>150-200 cm</li>
-                <li>Mange på lager</li>
-                <li>Leveres til døren</li>
-              </ul>
-              <a class="btn">240 kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
-            </div>
-          </label>
-
-          <input id="size-large" type="radio" name="treeSize" />
-          <label for="size-large" class="tree-size-container">
-            <div class="tree-size">
-              <i class="fa fa-tree fa-5x" aria-hidden="true"></i>
-              <h4>Stor</h4>
-              <ul>
-                <li>200-250 cm</li>
-                <li>Mange på lager</li>
-                <li>Leveres til døren</li>
-              </ul>
-              <a class="btn">340 kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
-            </div>
-          </label>
-
-          <input id="size-giant" type="radio" name="treeSize" />
-          <label for="size-giant" class="tree-size-container">
-            <div class="tree-size">
-              <i class="fa fa-tree" style="font-size: 7.5em;" aria-hidden="true"></i>
-              <h4>Kæmpe</h4>
-              <ul>
-                <li>250-300 cm</li>
-                <li>Sidste træ!</li>
-                <li>Leveres til døren</li>
-              </ul>
-              <a class="btn">430 kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
-            </div>
-          </label>
+          {{/treeSizes}}
 
         </section>
 
