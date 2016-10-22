@@ -9,5 +9,11 @@
         "from": "etree.dk <kontakt@etree.dk>",
         "domain": "etree.dk",
         "apiKey": "please-supply-mailgun-apikey-in-env"
+    },
+    "braintree": {
+        "environment": "Sandbox",
+        "merchantId": "please-supply-in-env",
+        "publicKey": "please-supply-in-env",
+        "privateKey": "please-supply-in-env"
     }
 }
