@@ -139,13 +139,17 @@ layout: default
               <p><strong>Faktureringsadresse</strong></p>
                 <label for="name">Fuldt navn</label>
                 <input id="name" type="text" />
-                <div>
+                <div class="flex-form">
                   <label for="streetname">Addresse</label>
                   <input id="streetname" type="text" />
-                  <label for="city">By</label>
-                  <input id="city" type="text" />
-                  <label for="zip">Postnummer</label>
-                  <input id="zip" type="text" />
+                  <div class="zip-input">
+                    <label for="zip">Postnummer</label>
+                    <input id="zip" pattern="[0-9]{4}" type="text" />
+                  </div>
+                  <div class="city-input">
+                    <label for="city">By</label>
+                    <input id="city" type="text" />
+                  </div>
                   <label id="delivery-checkbox-container" class="control control--checkbox">Er det også leveringsadresse?
                     <input type="checkbox" id="delivery-checkbox" name="shh" onClick="checkDelivery()" checked />
                     <div class="control__indicator"></div>
@@ -157,13 +161,17 @@ layout: default
                 <p><strong>Leveringsadresse</strong></p>
                 <label for="delivery-name">Fuldt navn</label>
                 <input id="delivery-name" type="text" />
-                <div>
+                <div class="flex-form">
                   <label for="delivery-streetname">Addresse</label>
                   <input id="delivery-streetname" type="text" />
-                  <label for="delivery-city">By</label>
-                  <input id="delivery-city" type="text" />
-                  <label for="delivery-zip">Postnummer</label>
-                  <input id="delivery-zip" type="text" />
+                  <div class="zip-input">
+                    <label for="delivery-zip">Postnummer</label>
+                    <input id="delivery-zip" pattern="[0-9]{4}" type="text" />
+                  </div>
+                  <div class="city-input">
+                    <label for="delivery-city">By</label>
+                    <input id="delivery-city" type="text" />
+                  </div>
                 </div>
               </div>
               <div id="delivery-pickup-place" class="pickup-place-container" style="display:none;">
@@ -187,7 +195,7 @@ layout: default
             <label for="phone">Telefonnummer</label>
             <input id="phone" type="tel" placeholder="+45 21 43 54 76" />
             <label for="comments">Kommentare til ordren</label>
-            <textarea id="comments" rows="2" cols="50">w3schools.com rocks!</textarea>
+            <textarea id="comments" rows="2" cols="50" placeholder="Tak for god service etree!"></textarea>
             <button type="submit">Gå til betaling</button>
           </div>
         </section>
