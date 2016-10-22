@@ -12,7 +12,16 @@ function salesEndpoint(pool, paymentGateway, req, res) {
 }
 
 function startPayment(pool, paymentGateway, req, res) {
-    //TODO: validate form input
+    parseOrderInfo(req.body, (error, orderLines, amount, customerInfo) => {
+        if(error && error.type == "input") {
+            console.log("Invalid input to parse order info", error);
+            return res.fail(400, "Forkert input: " + error.message);
+        }
+        if(error) {
+            console.error("Failed to parse order lines", error);
+            return res.fail(500);
+        }
+        
     //generate client token
     paymentGateway.clientToken.generate({}, (error, response) => {
         if(error) {
@@ -23,11 +32,28 @@ function startPayment(pool, paymentGateway, req, res) {
             console.error("Failed to generate client token from braintree", response);
             return res.fail(500);
         }
+        var transactionId = uuid.v4();
         var viewModel = {
             clientToken: response.clientToken,
-            transactionId: uuid.v4()
+            transactionId: transactionId
         };
-        //TODO: Insert payment started event with amount etc.
+        
+            var paymentData = {
+                originalRequest: req.body,
+                orderLines: orderLines,
+                amount: amount,
+                customerInfo: customerInfo
+            };
+            pool.query("INSERT INTO payment_started (id, data, happened_at) VALUES ($1::uuid, $2::json, $3::timestamp)", [
+                transactionId,
+                JSON.stringify(paymentData),
+                new Date().toISOString()
+            ], (error) => {
+                if(error) {
+                    console.error("Failed to insert payment_started", error);
+                    return res.fail(500);
+                }
+        
         fs.readFile(path.join(__dirname, "paymentForm.html"), (error, buf) => {
             if(error) {
                 console.error("Failed to read paymentForm view", error);
@@ -41,11 +67,35 @@ function startPayment(pool, paymentGateway, req, res) {
                 res.send(result);
             });
         });
+        
+            });
+        });
     });
 }
 
+function parseOrderInfo(raw, callback) {
+    parseOrderLines(raw, (error, orderLines, amount) => {
+        if(error) {
+            return callback(error);
+        }
+        parseCustomerInfo(raw, (error, customerInfo) => {
+            if(error) {
+                return callback(error);
+            }
+            callback(null, orderLines, amount, customerInfo);
+        });
+    });
+}
+
+function parseOrderLines(raw, callback) {
+    callback("not implemented");
+}
+
+function parseCustomerInfo(raw, callback) {
+    callback("not implemented");
+}
+
 function completePayment(pool, paymentGateway, req, res) {
-    console.log("got", req.body);
     var nonce = req.body.payment_method_nonce;
     if(!nonce) {
         return res.fail(400, "No nonce given!");
