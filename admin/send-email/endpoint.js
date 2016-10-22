@@ -1,4 +1,4 @@
-function sendEmailEndpoint(pool, req, res) {
+function sendEmailEndpoint(pool, mailer, req, res) {
     if(!req.body["email-subject"]) {
         return res.fail(400, "Missing email subject!");
     }
@@ -17,7 +17,18 @@ function sendEmailEndpoint(pool, req, res) {
             console.error("Failed to get recipients for email", error);
             return res.fail(500);
         }
-        res.send("ok");
+        var template = {
+            subject: req.body["email-subject"],
+            html: req.body["email-content-html"],
+            text: req.body["email-content-text"]
+        };
+        mailer.sendBatch(template, recipients, (error, mailId) => {
+            if(error) {
+                console.error("Failed to send email to recipients", recipients, error);
+                return res.fail(500);
+            }
+            res.send("ok");
+        });
     });
 }
 
@@ -41,6 +52,7 @@ function getRecipients(pool, otherRecipients, newsletterRecipients, callback) {
             if(error) {
                 return callback(error);
             }
+            console.log("newsletter recipients", newsletterRecipients);
             callback(null, newsletterRecipients.append(otherRecipients));
         });
     });
@@ -68,6 +80,6 @@ function parseNewsletterRecipients(pool, callback) {
     callback("not implemented");
 }
 
-module.exports = function(pool) {
-    return sendEmailEndpoint.bind(this, pool);
+module.exports = function(pool, mailer) {
+    return sendEmailEndpoint.bind(this, pool, mailer);
 };
