@@ -526,7 +526,7 @@ input[name="pickupPlace"]:checked+label .checkmark-icon {
 }
 .pickup-places {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   text-align: center;
 }

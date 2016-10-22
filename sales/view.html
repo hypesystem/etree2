@@ -77,6 +77,11 @@ layout: default
         <section class="pickup">
           <h3>Levering</h3>
           <p>Vi kan udbringe i København og Storkøbenhavnsområdet. <a href="#about">Se postnumre her.</a></p>
+          {{^pickUpLocations.length}}
+            <p>Levering koster <strong>100 kr</strong></p>
+          {{/pickUpLocations.length}}
+
+          {{#pickUpLocations.length}}
           <div class="control-group">
             <label class="control control--radio">Få udbragt træet (+100 kr)
               <input type="radio" id="pickup-false" name="pickup-place" checked="checked" onclick="checkPickup()"/>
@@ -90,63 +95,24 @@ layout: default
           <div class="pickup-places">
             <h2 style="width:100%;">Vælg afhentningssted</h2>
 
-            <input id="pickupPlace-1" type="radio" name="pickupPlace" />
-            <label for="pickupPlace-1" class="pickup-place-container">
-              <div class="pickup-place">
-                <img src="../assets/firforest.jpg" alt="" />
-                <div class="pickup-content">
-                  <p><strong>Strandvejen 267</strong><br />
-                    Charlottenlund<br />
-                    30. nov kl. 12-16
-                  </p>
-                  <a class="btn">Vælg<span class="checkmark-icon">&nbsp;&#10003;</span></a>
+            {{#pickUpLocations}}
+              <input id="pickupPlace-{{name}}" type="radio" name="pickupPlace" />
+              <label for="pickupPlace-{{name}}" class="pickup-place-container">
+                <div class="pickup-place">
+                  <img src="../assets/{{image}}" alt="" />
+                  <div class="pickup-content">
+                    <p><strong>{{name}}</strong><br />
+                      {{address}}<br />
+                      {{time}}
+                    </p>
+                    <a class="btn">Vælg<span class="checkmark-icon">&nbsp;&#10003;</span></a>
+                  </div>
                 </div>
-              </div>
-            </label>
+              </label>
+            {{/pickUpLocations}}
 
-            <input id="pickupPlace-2" type="radio" name="pickupPlace" />
-            <label for="pickupPlace-2" class="pickup-place-container">
-              <div class="pickup-place">
-                <img src="../assets/firforest.jpg" alt="" />
-                <div class="pickup-content">
-                  <p><strong>Strandvejen 267</strong><br />
-                    Charlottenlund<br />
-                    30. nov kl. 12-16
-                  </p>
-                  <a class="btn">Vælg<span class="checkmark-icon">&nbsp;&#10003;</span></a>
-                </div>
-              </div>
-            </label>
-
-            <input id="pickupPlace-3" type="radio" name="pickupPlace" />
-            <label for="pickupPlace-3" class="pickup-place-container">
-              <div class="pickup-place">
-                <img src="../assets/firforest.jpg" alt="" />
-                <div class="pickup-content">
-                  <p><strong>Strandvejen 267</strong><br />
-                    Charlottenlund<br />
-                    30. nov kl. 12-16
-                  </p>
-                  <a class="btn">Vælg<span class="checkmark-icon">&nbsp;&#10003;</span></a>
-                </div>
-              </div>
-            </label>
-
-            <input id="pickupPlace-4" type="radio" name="pickupPlace" />
-            <label for="pickupPlace-4" class="pickup-place-container">
-              <div class="pickup-place">
-                <img src="../assets/firforest.jpg" alt="" />
-                <div class="pickup-content">
-                  <p><strong>Strandvejen 267</strong><br />
-                    Charlottenlund<br />
-                    30. nov kl. 12-16
-                  </p>
-                  <a class="btn">Vælg<span class="checkmark-icon">&nbsp;&#10003;</span></a>
-                </div>
-              </div>
-            </label>
-          </div>
-        </section>
+            {{/pickUpLocations.length}}
+          </section>
 
         <section>
           <h3>Efter jul</h3>

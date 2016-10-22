@@ -1,0 +1,10 @@
+{
+  "pickUpLocations": [
+    {
+        "name": "Sjov & spas",
+        "image": "firforest.jpg",
+        "address": "Strandvejen 267, Charlottenlund",
+        "time": "30. nov kl. 12-16"
+    }
+  ]
+}
