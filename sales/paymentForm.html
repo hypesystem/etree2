@@ -2,8 +2,37 @@
 layout: oldstyle
 ---
 <div class="floaty-content-box">
-    <!-- TODO: display purchase (list items you are buying and amount) -->
+    <h1>Betal for bestilling</h1>
+    <h2>Ordreoversigt</h2>
+    <style scoped>
+        .order-overview {
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+        .order-overview td, .order-overview th {
+            padding: 8px 16px;
+            border: 1px solid rgba(0,0,0,0.4);
+            background: rgba(255,255,255,0.8);
+            text-align: left;
+        }
+        .order-overview td:nth-child(2), .order-overview th:nth-child(2) {
+            text-align: right;
+        }
+    </style>
+    <table class="order-overview">
+        {{ #orderLines }}
+        <tr>
+            <td>{{ name }}</td>
+            <td>{{ price }} kr</td>
+        </tr>
+        {{ /orderLines }}
+        <tr>
+            <th>Total</th>
+            <th>{{ amount }} kr</th>
+        </tr>
+    </table>
     
+    <h2>Betaling</h2>
     <form method="post" action="/buy">
         <input type="hidden" name="transaction_id" value="{{ transactionId }}" />
         <div id="dropin-container"></div>

@@ -34,7 +34,9 @@ function startPayment(pool, paymentGateway, req, res) {
             var transactionId = uuid.v4();
             var viewModel = {
                 clientToken: response.clientToken,
-                transactionId: transactionId
+                transactionId: transactionId,
+                orderLines: orderLines,
+                amount: amount
             };
             var paymentData = {
                 originalRequest: req.body,
