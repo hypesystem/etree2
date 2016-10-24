@@ -305,14 +305,16 @@ function completePayment(pool, mailer, paymentGateway, req, res) {
 }
 
 function sendReceiptEmail(mailer, transactionId, transactionStartData, callback) {
+    //TODO: Save sent emails to db for later inspection (viewmodel + html email + text email)
     var viewModel = {
         orderNumber: transactionId.substring(0, 8).toUpperCase(),
         orderDate: new Date().toISOString().substring(0, 10),
-        customer: transactionStartData.customer,
+        customer: transactionStartData.customerInfo,
         orderLines: transactionStartData.orderLines,
         amount: transactionStartData.amount,
         vat: (transactionStartData.amount * 0.2).toFixed(2)
     };
+    console.log("view model", viewModel);
     fs.readFile(path.join(__dirname, "email-receipt.html"), (error, buf) => {
         if(error) {
             return callback(error);
@@ -331,7 +333,7 @@ function sendReceiptEmail(mailer, transactionId, transactionStartData, callback)
                         html: emailContentsHtml,
                         text: emailContentsText
                     };
-                    var recipient = { email: transactionStartData.customer.email };
+                    var recipient = { email: transactionStartData.customerInfo.email };
                     console.log("email rendered", emailContentsHtml, "& text", emailContentsText);
                     mailer.send(template, recipient, callback);
                 });
