@@ -322,15 +322,15 @@ function sendReceiptEmail(mailer, transactionId, transactionStartData, callback)
                     return callback(error);
                 }
                 renderView(buf.toString(), viewModel, (error, emailContentsText) => {
-            var template = {
-                subject: "Ordrebekræftigelse (juletræ fra etree.dk)",
-                html: emailContentsHtml,
-                text: emailContentsText
-            };
-            var recipient = { email: transactionStartData.customer.email };
-            console.log("email rendered", emailContentsHtml, "& text", emailContentsText);
-            mailer.send(template, recipient, callback);
-        });
+                    var template = {
+                        subject: "Ordrebekræftigelse (juletræ fra etree.dk)",
+                        html: emailContentsHtml,
+                        text: emailContentsText
+                    };
+                    var recipient = { email: transactionStartData.customer.email };
+                    console.log("email rendered", emailContentsHtml, "& text", emailContentsText);
+                    mailer.send(template, recipient, callback);
+                });
             });
         });
     });
