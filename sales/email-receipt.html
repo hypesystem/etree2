@@ -6,37 +6,37 @@ layout: email
 <!--p>TODO: pickup: Når du henter træet, skal du bruge ordrenummeret.</p-->
 
 <h2>Ordrebekræftigelse</h2>
-<table>
+<table style="font-size: 12px; width: 100%; max-width: 550px;">
     <tr>
-        <td class="address-cell">
+        <td class="address-cell" style="width: 200px">
             {{ customer.billingAddress.name }}<br>
             {{ customer.billingAddress.streetAddress}}<br>
             {{ customer.billingAddress.zip }} {{ customer.billingAddress.city }}
         </td>
         <td></td>
-        <td class="address-cell">
+        <td class="address-cell" style="width: 200px; text-align: right;">
             Ordrenummer {{ orderNumber }}<br>
             Ordredato {{ orderDate }}
         </td>
     </tr>
 </table>
-<table>
+<table style="margin: 0 50px; font-size: 12px; margin-top: 20px; border-collapse: collapse; width: 450px;">
     {{ #orderLines }}
     <tr>
-        <td>{{ name }}</td>
-        <td>{{ price }} kr</td>
+        <td style="padding: 6px 12px;">{{ name }}</td>
+        <td style="padding: 6px 12px; text-align: right;">{{ price }} kr</td>
     </tr>
     {{ /orderLines }}
     <tr>
-        <td>Total</td>
-        <td>{{ amount }} kr</td>
+        <td style="padding: 6px 12px; font-weight: bold; border-top: 1px solid rgba(0,0,0,0.4); border-bottom: 1px solid rgba(0,0,0,0.4);">Total</td>
+        <td style="padding: 6px 12px; font-weight: bold; border-top: 1px solid rgba(0,0,0,0.4); border-bottom: 1px solid rgba(0,0,0,0.4); text-align: right;">{{ amount }} kr</td>
     </tr>
     <tr>
         <td>(Deraf moms, 25%)</td>
         <td>{{ vat }} kr</td>
     </tr>
 </table>
-<div>
+<div style="font-size: 10px; color: rgba(0,0,0,0.5); margin: 20px 0; font-weight: bold;">
     etree IVS &#183; CVR ???? &#183; Markskellet 8 st th, 2720 Vanløse
 </div>
 <!-- TODO: what if pickup location? -->
