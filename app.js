@@ -47,7 +47,7 @@ app.use(function failMiddleware(req, res, next) {
 
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 app.get("/", frontPageSelector);
-app.post("/buy", salesEndpoint(pool, paymentGateway));
+app.post("/buy", salesEndpoint(pool, mailer, paymentGateway));
 app.post("/subscribe", subscribeEndpoint(pool));
 app.get("/du-er-paa-listen", staticViewEndpoint("prelaunch/subscription-succesful-view.html"));
 app.get("/unsubscribe/:id", unsubscribeEndpoint(pool));

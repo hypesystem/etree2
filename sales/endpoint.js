@@ -5,9 +5,9 @@ var path = require("path");
 var ensurePaymentEventTables = require("./ensurePaymentEventTables.js");
 var productData = require("./productData.json");
 
-function salesEndpoint(pool, paymentGateway, req, res) {
+function salesEndpoint(pool, mailer, paymentGateway, req, res) {
     if(req.body.payment_method_nonce) {
-        return completePayment(pool, paymentGateway, req, res);
+        return completePayment(pool, mailer, paymentGateway, req, res);
     }
     startPayment(pool, paymentGateway, req, res);
 }
@@ -229,7 +229,7 @@ function parseAddress(raw, prefix, callback) {
     callback(null, address);
 }
 
-function completePayment(pool, paymentGateway, req, res) {
+function completePayment(pool, mailer, paymentGateway, req, res) {
     var nonce = req.body.payment_method_nonce;
     if(!nonce) {
         return res.fail(400, "No nonce given!");
@@ -247,7 +247,8 @@ function completePayment(pool, paymentGateway, req, res) {
             console.log("Got request for non-exist transaction id", transactionId);
             return res.fail(400, "Forkert transaktions-ID (findes ikke)");
         }
-        var amount = result.rows[0].data.amount;
+        var transactionStartData = result.rows[0].data;
+        var amount = transactionStartData.amount;
         paymentGateway.transaction.sale({
             amount: amount,
             paymentMethodNonce: nonce,
@@ -274,6 +275,7 @@ function completePayment(pool, paymentGateway, req, res) {
                     if(error) {
                         console.error("Failed to insert payment failed into db", error);
                     }
+                    //TODO: Better errors?
                     res.fail(500);
                 });
             }
@@ -286,14 +288,43 @@ function completePayment(pool, paymentGateway, req, res) {
                     console.error("Failed to save succesful transaction " + transactionId + " in db", error, transactionData);
                     return res.fail(500);
                 }
-                //TODO: Send faktura email
-                res.redirect("/tak-for-handlen");
+                sendReceiptEmail(mailer, transactionId, transactionStartData, (error) => {
+                    if(error) {
+                        console.error("Failed to send receipt", error);
+                        return res.fail(500);
+                    }
+                    res.redirect("/tak-for-handlen");
+                });
             });
         });
     });
 }
 
-module.exports = function(pool, paymentGateway) {
+function sendReceiptEmail(mailer, transactionId, transactionStartData, callback) {
+    //TODO: What about text only emails?
+    fs.readFile(path.join(__dirname, "email-receipt.html"), (error, buf) => {
+        if(error) {
+            return callback(error);
+        }
+        renderView(buf.toString(), {
+            orderNumber: transactionId.substring(0, 8).toUpperCase(),
+            orderDate: new Date().toISOString().substring(0, 10),
+            customer: transactionStartData.customer,
+            orderLines: transactionStartData.orderLines,
+            amount: transactionStartData.amount,
+            vat: (transactionStartData.amount * 0.2).toFixed(2)
+        }, (error, emailContents) => {
+            if(error) {
+                return callback(error);
+            }
+            console.log("email rendered", emailContents);
+            //TODO: Send
+            callback();
+        });
+    });
+}
+
+module.exports = function(pool, mailer, paymentGateway) {
     ensurePaymentEventTables(pool);
-    return salesEndpoint.bind(this, pool, paymentGateway);
+    return salesEndpoint.bind(this, pool, mailer, paymentGateway);
 };
