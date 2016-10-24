@@ -188,7 +188,7 @@ layout: default
         <section>
           <div>
             <h3>Ordre opsummering</h3>
-            <p><span id="order-size">Intet</span> Juletræ<span id="order-foot"></span> (<span id="order-price-tree">0</span><span id="order-price-foot"></span> kr)</p>
+            <p><span id="order-size">Intet</span> Juletræ<span id="order-foot"></span> (<span id="order-price-tree">0</span><span id="order-price-foot"> + 50</span> kr)</p>
             <p>Leveres til døren<span id="order-disposal"></span> (100<span id="order-price-disposal"></span> kr)</p>
             <p>Pris i alt: <strong><span id="price-total">0</span> kr</strong></p>
             <button type="submit">Gå til betaling</button>
@@ -201,8 +201,6 @@ layout: default
 <script>
   console.log("plz");
   checkDelivery();
-  footSizeForOrder(true);
-  afterChristmasOrder(false);
 
   var treePrice = 0;
   var footPrice = 50;
@@ -242,6 +240,7 @@ layout: default
 
   function buildOrder() {
     treePrice = parseInt(treePrice);
+    console.log(treePrice);
     var total = treePrice + footPrice + deliverPrice + disposalPrice;
     console.log("TOTAL Price: ",total);
     document.querySelector("#price-total").innerHTML = total;
