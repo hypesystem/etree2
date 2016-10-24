@@ -314,7 +314,6 @@ function sendReceiptEmail(mailer, transactionId, transactionStartData, callback)
         amount: transactionStartData.amount,
         vat: (transactionStartData.amount * 0.2).toFixed(2)
     };
-    console.log("view model", viewModel);
     fs.readFile(path.join(__dirname, "email-receipt.html"), (error, buf) => {
         if(error) {
             return callback(error);
