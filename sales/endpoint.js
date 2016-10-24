@@ -292,7 +292,7 @@ function completePayment(pool, mailer, paymentGateway, req, res) {
                     console.error("Failed to save succesful transaction " + transactionId + " in db", error, transactionData);
                     return res.fail(500);
                 }
-                sendReceiptEmail(mailer, transactionId, transactionStartData, (error) => {
+                sendReceiptEmail(pool, mailer, transactionId, transactionStartData, (error) => {
                     if(error) {
                         console.error("Failed to send receipt", error);
                         return res.fail(500);
@@ -304,7 +304,7 @@ function completePayment(pool, mailer, paymentGateway, req, res) {
     });
 }
 
-function sendReceiptEmail(mailer, transactionId, transactionStartData, callback) {
+function sendReceiptEmail(pool, mailer, transactionId, transactionStartData, callback) {
     //TODO: Save sent emails to db for later inspection (viewmodel + html email + text email)
     var viewModel = {
         orderNumber: transactionId.substring(0, 8).toUpperCase(),
@@ -333,7 +333,20 @@ function sendReceiptEmail(mailer, transactionId, transactionStartData, callback)
                         text: emailContentsText
                     };
                     var recipient = { email: transactionStartData.customerInfo.email };
-                    mailer.send(template, recipient, callback);
+                    mailer.send(template, recipient, (error) => {
+                        if(error) {
+                            return callback(error);
+                        }
+                        pool.query("INSERT INTO payment_receipt_sent (id, data, happened_at) VALUES ($1::uuid, $2::json, $3::timestamp)", [
+                            transactionId,
+                            JSON.stringify({
+                                viewModel: viewModel,
+                                htmlVersion: emailContentsHtml,
+                                textVersion: emailContentsText
+                            }),
+                            new Date().toISOString()
+                        ], callback);
+                    });
                 });
             });
         });
