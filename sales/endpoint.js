@@ -334,7 +334,6 @@ function sendReceiptEmail(mailer, transactionId, transactionStartData, callback)
                         text: emailContentsText
                     };
                     var recipient = { email: transactionStartData.customerInfo.email };
-                    console.log("email rendered", emailContentsHtml, "& text", emailContentsText);
                     mailer.send(template, recipient, callback);
                 });
             });
