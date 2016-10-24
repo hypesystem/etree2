@@ -198,6 +198,7 @@ function parseAddress(raw, prefix, callback) {
             error: new Error("Missing address name for " + prefix)
         });
     }
+    address.name = name;
     
     var streetAddress = raw[prefix + "streetname"];
     if(!streetAddress) {
@@ -207,6 +208,7 @@ function parseAddress(raw, prefix, callback) {
             error: new Error("Missing street address for " + prefix)
         });
     }
+    address.streetAddress = streetAddress;
     
     var zip = raw[prefix + "zip"];
     if(!zip || zip.length != 4) {
@@ -216,6 +218,7 @@ function parseAddress(raw, prefix, callback) {
             error: new Error("Missing zip for " + prefix)
         });
     }
+    address.zip = zip;
     
     var city = raw[prefix + "city"];
     if(!city) {
@@ -225,6 +228,7 @@ function parseAddress(raw, prefix, callback) {
             error: new Error("Missing city for " + prefix)
         });
     }
+    address.city = city;
     
     callback(null, address);
 }
