@@ -2,8 +2,6 @@
 layout: oldstyle
 ---
 <div class="floaty-content-box">
-    <h1>Betal for bestilling</h1>
-    <h2>Ordreoversigt</h2>
     <style scoped>
         .order-overview {
             border-collapse: collapse;
@@ -18,7 +16,18 @@ layout: oldstyle
         .order-overview td:nth-child(2), .order-overview th:nth-child(2) {
             text-align: right;
         }
+        .order-overview-block {
+            width: 100%;
+            max-width: 350px;
+            margin-right: 5px;
+            display: inline-block;
+            vertical-align: top;
+        }
     </style>
+    <h1>Betal for bestilling</h1>
+    
+    <div class="order-overview-block">
+    <h2>Ordreoversigt</h2>
     <table class="order-overview">
         {{ #orderLines }}
         <tr>
@@ -31,12 +40,14 @@ layout: oldstyle
             <th>{{ amount }} kr</th>
         </tr>
     </table>
+    </div>
     
+    <div class="order-overview-block">
     <h2>Betaling</h2>
     <form method="post" action="/buy">
         <input type="hidden" name="transaction_id" value="{{ transactionId }}" />
         <div id="dropin-container"></div>
-        <button type="submit">Betal</button>
+        <button type="submit" style="float: right;">Betal</button>
     </form>
     <script src="https://js.braintreegateway.com/js/braintree-2.29.0.min.js"></script>
     <script>
@@ -44,4 +55,5 @@ layout: oldstyle
             container: 'dropin-container'
         });
     </script>
+    </div>
 </div>
