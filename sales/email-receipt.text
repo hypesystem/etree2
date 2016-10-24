@@ -1,0 +1,34 @@
+Så bliver det jul!
+Du har bestilt juletræ hos etree. Her er din ordrebekræftigelse.
+{{ #nonexist }}<!--p>TODO: pickup: Når du henter træet, skal du bruge ordrenummeret.</p-->{{ /nonexist }}
+
+Køber
+-----
+{{ customer.billingAddress.name }}
+{{ customer.billingAddress.streetAddress}}
+{{ customer.billingAddress.zip }} {{ customer.billingAddress.city }}
+
+Ordrebekræftigelse
+------------------
+Ordrenummer {{ orderNumber }}
+Ordredato {{ orderDate }}
+
+{{ #orderLines }}
++ {{ name }} ... {{ price }} kr
+{{ /orderLines }}
+-----------------------------------
+= Total ... {{ amount }} kr
+(Deraf moms, 25%) ... {{ vat }} kr
+
+{{ #nonexist }}<!-- TODO: what if pickup location? -->{{ /nonexist }}
+Ordren leveres til addressen {{ customer.deliveryAddress.streetAddress }}, {{ customer.deliveryAddress.zip }} {{ customer.deliveryAddress.city }}.
+
+Du kontaktes på email til {{ customer.email }} når leveringsdagen fastlægges{{ #customer.phoneNumber }} og pr SMS til {{ customer.phoneNumber }}, når vi er på vej{{ /customer.phoneNumber }}.
+Du modtager en kvittering pr. email, når du har modtaget træet.
+
+Mvh
+etree
+
+---
+
+etree IVS - CVR ???? - Markskellet 8 st th, 2720 Vanløse
