@@ -30,7 +30,7 @@ layout: default
         <section class="trees">
 
           {{#treeSizes}}
-          <input id="size-{{name}}" type="radio" name="tree-size" value="{{name}}" required />
+          <input id="size-{{name}}" type="radio" name="tree-size" value="{{name}}" required onclick="treeSizeForOrder('{{name}}','{{price}}');" />
           <label for="size-{{name}}" class="tree-size-container">
             <div class="tree-size">
               <i class="fa fa-tree tree-icon-{{name}}" aria-hidden="true"></i>
@@ -54,11 +54,11 @@ layout: default
           <p>Skal der sættes fod på dit træ?.</p>
           <div class="control-group">
             <label class="control control--radio">Sæt fod på det! (+50 kr)
-              <input type="radio" id="tree-foot-true" name="tree-foot" value="yes" checked="checked" />
+              <input type="radio" id="tree-foot-true" name="tree-foot" value="yes" checked="true" onclick="footSizeForOrder(true);" />
               <div class="control__indicator"></div>
             </label>
             <label class="control control--radio">Nej tak
-              <input type="radio" id="tree-foot-false" value="no" name="tree-foot" />
+              <input type="radio" id="tree-foot-false" value="no" name="tree-foot" onclick="footSizeForOrder(false);" />
               <div class="control__indicator"></div>
             </label>
           </div>
@@ -109,11 +109,11 @@ layout: default
           <p>Vi kan hente træet igen efter jul, så du er fri for selv at skille dig af med det.</p>
           <div class="control-group">
             <label class="control control--radio">Jeg kommer selv af med træet
-              <input type="radio" id="pickup-true" value="no" name="tree-disposal" checked="checked" />
+              <input type="radio" id="pickup-true" value="no" name="tree-disposal" checked="true" onclick="afterChristmasOrder(false);" />
               <div class="control__indicator"></div>
             </label>
             <label class="control control--radio">Få træet hentet efter jul (+200 kr)
-              <input type="radio" id="pickup-false" value="yes" name="tree-disposal" />
+              <input type="radio" id="pickup-false" value="yes" name="tree-disposal" onclick="afterChristmasOrder(true);" />
               <div class="control__indicator"></div>
             </label>
           </div>
@@ -183,6 +183,14 @@ layout: default
             <input id="phone" name="contact-phone" type="tel" placeholder="+45 21 43 54 76" />
             <label for="comments">Kommentare til ordren</label>
             <textarea id="comments" name="comments" rows="2" cols="50" placeholder="Tak for god service etree!"></textarea>
+          </div>
+        </section>
+        <section>
+          <div>
+            <h3>Ordre opsummering</h3>
+            <p><span id="order-size">Intet</span> Juletræ<span id="order-foot"></span> (<span id="order-price-tree">0</span><span id="order-price-foot"></span> kr)</p>
+            <p>Leveres til døren<span id="order-disposal"></span> (100<span id="order-price-disposal"></span> kr)</p>
+            <p>Pris i alt: <strong><span id="price-total">0</span> kr</strong></p>
             <button type="submit">Gå til betaling</button>
           </div>
         </section>
@@ -193,6 +201,14 @@ layout: default
 <script>
   console.log("plz");
   checkDelivery();
+  footSizeForOrder(true);
+  afterChristmasOrder(false);
+
+  var treePrice = 0;
+  var footPrice = 50;
+  var deliverPrice = 100;
+  var disposalPrice = 0;
+
   var pickupPlaces = document.querySelector(".pickup-places");
   if(pickupPlaces){
     pickupPlaces.style.display = "none";
@@ -222,6 +238,48 @@ layout: default
       document.querySelector("#deliveryAddress").style.display = "block";
       document.querySelector("#delivery-pickup-place").style.display = "none";
     }
+  }
+
+  function buildOrder() {
+    treePrice = parseInt(treePrice);
+    var total = treePrice + footPrice + deliverPrice + disposalPrice;
+    console.log("TOTAL Price: ",total);
+    document.querySelector("#price-total").innerHTML = total;
+  }
+
+  function treeSizeForOrder(size, price) {
+    var treeSize = size;
+    treePrice = price;
+    console.log("treeSize = ",treeSize);
+    document.querySelector("#order-size").innerHTML = treeSize;
+    document.querySelector("#order-price-tree").innerHTML = price;
+    buildOrder();
+  }
+
+  function footSizeForOrder(foot) {
+    if(foot){
+      document.querySelector("#order-foot").innerHTML = ", med fod";
+      document.querySelector("#order-price-foot").innerHTML = " + 50 ";
+      footPrice = 50;
+    } else {
+      document.querySelector("#order-foot").innerHTML = ", uden fod";
+      document.querySelector("#order-price-foot").innerHTML = "";
+      footPrice = 0;
+    }
+    buildOrder();
+  }
+
+  function afterChristmasOrder(disposal) {
+    if(disposal){
+      document.querySelector("#order-disposal").innerHTML = ", og bliver afhentet efter jul";
+      document.querySelector("#order-price-disposal").innerHTML = " + 200 ";
+      disposalPrice = 200;
+    } else {
+      document.querySelector("#order-disposal").innerHTML = "";
+      document.querySelector("#order-price-disposal").innerHTML = "";
+      disposalPrice = 0;
+    }
+    buildOrder();
   }
 
 </script>
