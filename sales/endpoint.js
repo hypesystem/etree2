@@ -302,24 +302,30 @@ function completePayment(pool, mailer, paymentGateway, req, res) {
 
 function sendReceiptEmail(mailer, transactionId, transactionStartData, callback) {
     //TODO: What about text only emails?
+    var viewModel = {
+        orderNumber: transactionId.substring(0, 8).toUpperCase(),
+        orderDate: new Date().toISOString().substring(0, 10),
+        customer: transactionStartData.customer,
+        orderLines: transactionStartData.orderLines,
+        amount: transactionStartData.amount,
+        vat: (transactionStartData.amount * 0.2).toFixed(2)
+    };
     fs.readFile(path.join(__dirname, "email-receipt.html"), (error, buf) => {
         if(error) {
             return callback(error);
         }
-        renderView(buf.toString(), {
-            orderNumber: transactionId.substring(0, 8).toUpperCase(),
-            orderDate: new Date().toISOString().substring(0, 10),
-            customer: transactionStartData.customer,
-            orderLines: transactionStartData.orderLines,
-            amount: transactionStartData.amount,
-            vat: (transactionStartData.amount * 0.2).toFixed(2)
-        }, (error, emailContents) => {
+        renderView(buf.toString(), viewModel, (error, emailContents) => {
             if(error) {
                 return callback(error);
             }
+            var template = {
+                subject: "Ordrebekræftigelse (juletræ fra etree.dk)",
+                html: emailContents,
+                text: ""
+            };
+            var recipient = { email: transactionStartData.customer.email };
             console.log("email rendered", emailContents);
-            //TODO: Send
-            callback();
+            mailer.send(template, recipient, callback);
         });
     });
 }
