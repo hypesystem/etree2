@@ -3,6 +3,7 @@ var createUserSubscriptionTableIfNotExists = require("./createUserSubscriptionTa
 var fs = require("fs");
 var path = require("path");
 var addUserSubscribedEventSql = fs.readFileSync(path.join(__dirname, "addUserSubscribed.sql")).toString();
+var ensureSubscriberVouchers2016 = require("./ensureSubscriberVouchers2016/ensure.js");
 
 function subscribeEndpoint(pool, req, res) {
     if(!req.body.email) {
@@ -28,5 +29,6 @@ function isValidEmail(email) {
 
 module.exports = function(pool) {
     createUserSubscriptionTableIfNotExists(pool);
+    ensureSubscriberVouchers2016(pool);
     return subscribeEndpoint.bind(this, pool);
 };
