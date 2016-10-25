@@ -188,9 +188,39 @@ layout: default
         <section>
           <div>
             <h3>Ordre opsummering</h3>
-            <p><span id="order-size">Intet</span> Juletræ<span id="order-foot"></span> (<span id="order-price-tree">0</span><span id="order-price-foot"> + 50</span> kr)</p>
+            <!-- <p><span id="order-size">Intet</span> Juletræ<span id="order-foot"></span> (<span id="order-price-tree">0</span><span id="order-price-foot"> + 50</span> kr)</p>
             <p>Leveres til døren<span id="order-disposal"></span> (100<span id="order-price-disposal"></span> kr)</p>
-            <p>Pris i alt: <strong><span id="price-total">0</span> kr</strong></p>
+            <p>Pris i alt: <strong><span id="price-total">0</span> kr</strong></p> -->
+            <table class="order-table left-text">
+        <thead>
+          <tr>
+              <th data-field="id">Navn</th>
+              <th data-field="name">Pris</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><span id="order-size">Intet</span> Juletræ</td>
+            <td><span id="order-price-tree">0</span> kr</td>
+          </tr>
+          <tr>
+            <td><span id="order-foot">&ndash; Med fod</span></td>
+            <td><span id="order-price-foot">50</span> kr</td>
+          </tr>
+          <tr>
+            <td>Levering</td>
+            <td>100 kr</td>
+          </tr>
+          <tr>
+            <td><span id="order-disposal"></span></td>
+            <td><span id="order-price-disposal"></span></td>
+          </tr>
+          <tr>
+            <td><strong>Total</strong></td>
+            <td><strong><span id="price-total">0</span> kr</strong></td>
+        </tbody>
+      </table>
             <button type="submit">Gå til betaling</button>
           </div>
         </section>
@@ -199,7 +229,6 @@ layout: default
 
 </div>
 <script>
-  console.log("plz");
   checkDelivery();
 
   var treePrice = 0;
@@ -213,7 +242,6 @@ layout: default
   }
 
   function checkPickup() {
-    console.log("check pickup");
     if(document.getElementById('pickup-true').checked) {
       pickupPlaces.style.display = "flex";
       document.querySelector("#delivery-pickup-place").style.display = "block";
@@ -229,7 +257,6 @@ layout: default
   }
 
   function checkDelivery() {
-    console.log("check Delivery");
     if(document.getElementById('delivery-checkbox').checked) {
       document.getElementById("deliveryAddress").style.display = "none";
     } else {
@@ -240,7 +267,6 @@ layout: default
 
   function buildOrder() {
     treePrice = parseInt(treePrice);
-    console.log(treePrice);
     var total = treePrice + footPrice + deliverPrice + disposalPrice;
     console.log("TOTAL Price: ",total);
     document.querySelector("#price-total").innerHTML = total;
@@ -249,7 +275,6 @@ layout: default
   function treeSizeForOrder(size, price) {
     var treeSize = size;
     treePrice = price;
-    console.log("treeSize = ",treeSize);
     document.querySelector("#order-size").innerHTML = treeSize;
     document.querySelector("#order-price-tree").innerHTML = price;
     buildOrder();
@@ -257,12 +282,12 @@ layout: default
 
   function footSizeForOrder(foot) {
     if(foot){
-      document.querySelector("#order-foot").innerHTML = ", med fod";
-      document.querySelector("#order-price-foot").innerHTML = " + 50 ";
+      document.querySelector("#order-foot").innerHTML = "&ndash; med fod";
+      document.querySelector("#order-price-foot").innerHTML = "50";
       footPrice = 50;
     } else {
-      document.querySelector("#order-foot").innerHTML = ", uden fod";
-      document.querySelector("#order-price-foot").innerHTML = "";
+      document.querySelector("#order-foot").innerHTML = "&ndash; uden fod";
+      document.querySelector("#order-price-foot").innerHTML = "0";
       footPrice = 0;
     }
     buildOrder();
@@ -270,8 +295,8 @@ layout: default
 
   function afterChristmasOrder(disposal) {
     if(disposal){
-      document.querySelector("#order-disposal").innerHTML = ", og bliver afhentet efter jul";
-      document.querySelector("#order-price-disposal").innerHTML = " + 200 ";
+      document.querySelector("#order-disposal").innerHTML = "Bliver afhentet efter jul";
+      document.querySelector("#order-price-disposal").innerHTML = "200 kr";
       disposalPrice = 200;
     } else {
       document.querySelector("#order-disposal").innerHTML = "";

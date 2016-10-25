@@ -139,6 +139,9 @@ textarea {
 .center-text {
   text-align: center;
 }
+.left-text {
+  text-align: left;
+}
 @media (max-width:900px) {
   .floaty-content-box {
     width: 100%;
@@ -209,14 +212,36 @@ textarea {
   font-size: 1.1em;
 }
 
-.price-table.desktop tr th,
-.price-table.desktop tr td {
-  padding: 15px;
+table {
+  border-collapse: collapse;
+}
+table tr th,
+table tr td {
+  padding: 15px 5px;
   display: table-cell;
   vertical-align: middle;
-  border-radius: 2px;
-  width: 180px;
 }
+
+.order-table {
+  width: 300px;
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+@media(max-width:600px){
+  .order-table {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+.order-table tr:first-of-type th {
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.order-table tr:last-of-type td {
+  font-size: 1.2em;
+  border-top: 1px solid #e2e2e2;
+}
+
 .price-table {
   font-size: 1.2em;
   margin: 30px auto;
