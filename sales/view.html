@@ -228,8 +228,8 @@ layout: default
   checkDelivery();
 
   var treePrice = 0;
-  var footPrice = 50;
-  var deliverPrice = 100;
+  var footPrice = {{footPrice}};
+  var deliverPrice = {{deliveryPrice}};
   var disposalPrice = 0;
 
   var pickupPlaces = document.querySelector(".pickup-places");
@@ -279,7 +279,7 @@ layout: default
   function footSizeForOrder(foot) {
     if(foot){
       document.querySelector("#order-foot").innerHTML = "&ndash; med fod";
-      document.querySelector("#order-price-foot").innerHTML = "50";
+      document.querySelector("#order-price-foot").innerHTML = "{{footPrice}}";
       footPrice = 50;
     } else {
       document.querySelector("#order-foot").innerHTML = "&ndash; uden fod";
@@ -292,7 +292,7 @@ layout: default
   function afterChristmasOrder(disposal) {
     if(disposal){
       document.querySelector("#order-disposal").innerHTML = "Bliver afhentet efter jul";
-      document.querySelector("#order-price-disposal").innerHTML = "200 kr";
+      document.querySelector("#order-price-disposal").innerHTML = "{{collectionPrice}} kr";
       disposalPrice = 200;
     } else {
       document.querySelector("#order-disposal").innerHTML = "";
