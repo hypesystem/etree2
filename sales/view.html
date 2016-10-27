@@ -176,19 +176,19 @@ layout: default
               </div>
             </div>
           </div>
+        </section>
+        <section class="order-summary-container">
           <div class="address-contact">
             <p><strong>Kontaktoplysninger</strong></p>
-            <label for="email">Email (påkrævet)</label>
+            <label for="email">Email <span class="label-subtext">(påkrævet)</span></label>
             <input id="email" name="contact-email" type="email" placeholder="mikkel-l@rsen.dk" required />
-            <label for="phone">Telefonnummer (valgfri)</label>
+            <label for="phone">Telefonnummer <span class="label-subtext">(valgfri)</span></label>
             <input id="phone" name="contact-phone" type="tel" placeholder="+45 21 43 54 76" />
-            <label for="comments">Kommentare til ordren (valgfri)</label>
-            <textarea id="comments" name="comments" rows="2" cols="50" placeholder="Tak for god service etree!"></textarea>
+            <label for="comments">Kommentare til ordren <span class="label-subtext">(valgfri)</span></label>
+            <textarea id="comments" name="comments" rows="3" cols="50" placeholder="Tak for god service etree!"></textarea>
           </div>
-        </section>
-        <section>
-          <div>
-            <h3>Ordreoversigt</h3>
+          <div class="order-summary">
+            <p><strong>Ordreoversigt</strong></p>
             <table class="order-table left-text">
               <thead>
                 <tr>
@@ -218,9 +218,11 @@ layout: default
                   <td><strong><span id="price-total">0</span> kr</strong></td>
               </tbody>
             </table>
-            <button type="submit">Gå til betaling</button>
           </div>
         </section>
+        <div class="center-text">
+          <button type="submit">Gå til betaling</button>
+        </div>
       </form>
     </div>
 

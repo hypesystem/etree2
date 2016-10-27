@@ -223,9 +223,7 @@ table tr td {
 }
 
 .order-table {
-  width: 300px;
-  max-width: 100%;
-  margin-bottom: 10px;
+  width: 100%;
 }
 @media(max-width:600px){
   .order-table {
@@ -317,7 +315,7 @@ table tr td {
 }
 button,
 a.btn {
-    padding: 13px;
+    padding: 13px 20px;
     font-size: 1.2em;
     background: rgb(77, 152, 95);
     color: white;
@@ -611,11 +609,13 @@ i.tree-icon-Kæmpe {
 }
 
 /* Address stuff */
-.address-container {
+.address-container,
+.order-summary-container {
   display: flex;
 }
 @media(max-width: 600px){
-  .address-container {
+  .address-container,
+  .order-summary-container {
     flex-direction: column;
   }
 }
@@ -639,17 +639,22 @@ label + input[type=email],
 label + input[type=password] {
   margin-top: 2px;
 }
+label .label-subtext {
+  font-weight: lighter;
+}
 .address .pickup-place-container {
   text-align: center;
   width: 100%;
 }
-.address-contact {
-  width: 50%;
+.address-contact,
+.order-summary {
+  flex: 1;
   padding: 0 20px;
   box-sizing: border-box;
 }
 @media(max-width: 600px){
-  .address-contact {
+  .address-contact,
+  .order-summary {
     width: 100%;
     padding: 0;
   }
