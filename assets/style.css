@@ -633,6 +633,12 @@ i.tree-icon-Kæmpe {
   width: 100%;
   max-width: none;
 }
+label + input[type=text],
+label + input[type=tel],
+label + input[type=email],
+label + input[type=password] {
+  margin-top: 2px;
+}
 .address .pickup-place-container {
   text-align: center;
   width: 100%;

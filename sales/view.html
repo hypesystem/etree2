@@ -31,7 +31,7 @@ layout: default
         <section class="trees">
 
           {{#treeSizes}}
-          <input id="size-{{name}}" class="tree-size-input" type="radio" name="tree-size" value="{{name}}" required onclick="treeSizeForOrder('{{name}}','{{price}}');" />
+          <input id="size-{{name}}" class="tree-size-input" type="radio" name="tree-size" value="{{name}}" required />
           <label for="size-{{name}}" class="tree-size-container">
             <div class="tree-size">
               <i class="fa fa-tree tree-icon-{{name}}" aria-hidden="true"></i>
@@ -178,11 +178,11 @@ layout: default
           </div>
           <div class="address-contact">
             <p><strong>Kontaktoplysninger</strong></p>
-            <label for="email">Email</label>
+            <label for="email">Email (påkrævet)</label>
             <input id="email" name="contact-email" type="email" placeholder="mikkel-l@rsen.dk" required />
             <label for="phone">Telefonnummer (valgfri)</label>
             <input id="phone" name="contact-phone" type="tel" placeholder="+45 21 43 54 76" />
-            <label for="comments">Kommentare til ordren</label>
+            <label for="comments">Kommentare til ordren (valgfri)</label>
             <textarea id="comments" name="comments" rows="2" cols="50" placeholder="Tak for god service etree!"></textarea>
           </div>
         </section>
@@ -238,11 +238,11 @@ layout: default
     pickupPlaces.style.display = "none";
   }
 
-  // let treeSizeInputs = document.querySelectorAll(".tree-size-input");
-  // for (let treeSizeInput of treeSizeInputs) {
-  //   console.log(treeSizeInput);
-  //   treeSizeInput.addEventListener('click', treeSizeForOrder, false);
-  // }
+  {{#treeSizes}}
+    var treeSizeInput = document.querySelector("#size-{{name}}");
+    console.log(treeSizeInput);
+    treeSizeInput.addEventListener('click', function(){treeSizeForOrder('{{name}}','{{price}}')}, false);
+  {{/treeSizes}}
 
   function checkPickup() {
     if(document.getElementById('pickup-true').checked) {
