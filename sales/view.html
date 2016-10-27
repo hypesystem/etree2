@@ -55,11 +55,11 @@ layout: default
           <p>Skal der sættes fod på dit træ?.</p>
           <div class="control-group">
             <label class="control control--radio">Sæt fod på det! (+50 kr)
-              <input type="radio" id="tree-foot-true" name="tree-foot" value="yes" checked="true" onclick="footSizeForOrder(true);" />
+              <input type="radio" id="tree-foot-true" name="tree-foot" value="yes" checked="true" />
               <div class="control__indicator"></div>
             </label>
             <label class="control control--radio">Nej tak
-              <input type="radio" id="tree-foot-false" value="no" name="tree-foot" onclick="footSizeForOrder(false);" />
+              <input type="radio" id="tree-foot-false" value="no" name="tree-foot" />
               <div class="control__indicator"></div>
             </label>
           </div>
@@ -75,11 +75,11 @@ layout: default
           {{#pickUpLocations.length}}
           <div class="control-group">
             <label class="control control--radio">Få udbragt træet (+100 kr)
-              <input type="radio" id="pickup-false" name="delivery" value="yes" checked="checked" onclick="checkPickup()"/>
+              <input type="radio" id="pickup-false" name="delivery" value="yes" checked="checked" />
               <div class="control__indicator"></div>
             </label>
             <label class="control control--radio">Jeg henter selv
-              <input type="radio" id="pickup-true" name="delivery" value="no" onclick="checkPickup()" />
+              <input type="radio" id="pickup-true" name="delivery" value="no" />
               <div class="control__indicator"></div>
             </label>
           </div>
@@ -110,11 +110,11 @@ layout: default
           <p>Vi kan hente træet igen efter jul, så du er fri for selv at skille dig af med det.</p>
           <div class="control-group">
             <label class="control control--radio">Jeg kommer selv af med træet
-              <input type="radio" id="pickup-true" value="no" name="tree-disposal" checked="true" onclick="afterChristmasOrder(false);" />
+              <input type="radio" id="disposal-true" value="no" name="tree-disposal" checked="true" />
               <div class="control__indicator"></div>
             </label>
             <label class="control control--radio">Få træet hentet efter jul (+200 kr)
-              <input type="radio" id="pickup-false" value="yes" name="tree-disposal" onclick="afterChristmasOrder(true);" />
+              <input type="radio" id="disposal-false" value="yes" name="tree-disposal" />
               <div class="control__indicator"></div>
             </label>
           </div>
@@ -139,7 +139,7 @@ layout: default
                     <input id="city" name="billing-city" type="text" required />
                   </div>
                   <label id="delivery-checkbox-container" class="control control--checkbox">Er det også leveringsadresse?
-                    <input type="checkbox" id="delivery-checkbox" name="delivery-same-as-billing" onClick="checkDelivery()" checked />
+                    <input type="checkbox" id="delivery-checkbox" name="delivery-same-as-billing" checked="true" />
                     <div class="control__indicator"></div>
                   </label>
                 </div>
@@ -238,11 +238,19 @@ layout: default
     pickupPlaces.style.display = "none";
   }
 
+  // Onclick binders
   {{#treeSizes}}
     var treeSizeInput = document.querySelector("#size-{{name}}");
-    console.log(treeSizeInput);
     treeSizeInput.addEventListener('click', function(){treeSizeForOrder('{{name}}','{{price}}')}, false);
   {{/treeSizes}}
+
+  document.querySelector("#tree-foot-true").addEventListener('click', function(){footSizeForOrder(true)}, false);
+  document.querySelector("#tree-foot-false").addEventListener('click', function(){footSizeForOrder(false)}, false);
+  // document.querySelector("#pickup-false").addEventListener('click', function(){checkPickup()}, false);
+  // document.querySelector("#pickup-true").addEventListener('click', function(){checkPickup()}, false);
+  document.querySelector("#disposal-true").addEventListener('click', function(){afterChristmasOrder(true)}, false);
+  document.querySelector("#disposal-false").addEventListener('click', function(){afterChristmasOrder(false)}, false);
+  document.querySelector("#delivery-checkbox").addEventListener('click', function(){checkDelivery()}, false);
 
   function checkPickup() {
     if(document.getElementById('pickup-true').checked) {
