@@ -139,6 +139,9 @@ textarea {
 .center-text {
   text-align: center;
 }
+.left-text {
+  text-align: left;
+}
 @media (max-width:900px) {
   .floaty-content-box {
     width: 100%;
@@ -209,14 +212,34 @@ textarea {
   font-size: 1.1em;
 }
 
-.price-table.desktop tr th,
-.price-table.desktop tr td {
-  padding: 15px;
+table {
+  border-collapse: collapse;
+}
+table tr th,
+table tr td {
+  padding: 15px 5px;
   display: table-cell;
   vertical-align: middle;
-  border-radius: 2px;
-  width: 180px;
 }
+
+.order-table {
+  width: 100%;
+}
+@media(max-width:600px){
+  .order-table {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+.order-table tr:first-of-type th {
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.order-table tr:last-of-type td {
+  font-size: 1.2em;
+  border-top: 1px solid #e2e2e2;
+}
+
 .price-table {
   font-size: 1.2em;
   margin: 30px auto;
@@ -292,7 +315,7 @@ textarea {
 }
 button,
 a.btn {
-    padding: 13px;
+    padding: 13px 20px;
     font-size: 1.2em;
     background: rgb(77, 152, 95);
     color: white;
@@ -406,11 +429,14 @@ footer.floaty-content-box {
 }
 @media(max-width: 900px){
   .sales-container {
-    width: 90%;
+    width: 95%;
   }
 }
 .sales-container section {
   margin-bottom: 70px;
+}
+.tree-size-h1 {
+  margin-bottom: 0;
 }
 .trees {
   display: flex;
@@ -464,6 +490,7 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
 @media(max-width:600px){
   .trees .tree-size-container {
     width: 50%;
+    margin-bottom: 10px;
   }
   .trees .tree-size-container .fa-tree {
     display: none;
@@ -582,11 +609,13 @@ i.tree-icon-Kæmpe {
 }
 
 /* Address stuff */
-.address-container {
+.address-container,
+.order-summary-container {
   display: flex;
 }
 @media(max-width: 600px){
-  .address-container {
+  .address-container,
+  .order-summary-container {
     flex-direction: column;
   }
 }
@@ -604,17 +633,28 @@ i.tree-icon-Kæmpe {
   width: 100%;
   max-width: none;
 }
+label + input[type=text],
+label + input[type=tel],
+label + input[type=email],
+label + input[type=password] {
+  margin-top: 2px;
+}
+label .label-subtext {
+  font-weight: lighter;
+}
 .address .pickup-place-container {
   text-align: center;
   width: 100%;
 }
-.address-contact {
-  width: 50%;
+.address-contact,
+.order-summary {
+  flex: 1;
   padding: 0 20px;
   box-sizing: border-box;
 }
 @media(max-width: 600px){
-  .address-contact {
+  .address-contact,
+  .order-summary {
     width: 100%;
     padding: 0;
   }

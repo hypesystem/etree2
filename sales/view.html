@@ -25,12 +25,13 @@ layout: default
 
     <div class="floaty-content-box">
       <form action="/buy" method="post">
-        <h1 class="center-text">Vælg størrelse</h1>
+        <h1 class="center-text tree-size-h1">Vælg størrelse</h1>
+        <p class="center-text">Klik for at vælge</p>
 
         <section class="trees">
 
           {{#treeSizes}}
-          <input id="size-{{name}}" type="radio" name="tree-size" value="{{name}}" required />
+          <input id="size-{{name}}" class="tree-size-input" type="radio" name="tree-size" value="{{name}}" required />
           <label for="size-{{name}}" class="tree-size-container">
             <div class="tree-size">
               <i class="fa fa-tree tree-icon-{{name}}" aria-hidden="true"></i>
@@ -54,7 +55,7 @@ layout: default
           <p>Skal der sættes fod på dit træ?.</p>
           <div class="control-group">
             <label class="control control--radio">Sæt fod på det! (+50 kr)
-              <input type="radio" id="tree-foot-true" name="tree-foot" value="yes" checked="checked" />
+              <input type="radio" id="tree-foot-true" name="tree-foot" value="yes" checked="true" />
               <div class="control__indicator"></div>
             </label>
             <label class="control control--radio">Nej tak
@@ -74,11 +75,11 @@ layout: default
           {{#pickUpLocations.length}}
           <div class="control-group">
             <label class="control control--radio">Få udbragt træet (+100 kr)
-              <input type="radio" id="pickup-false" name="delivery" value="yes" checked="checked" onclick="checkPickup()"/>
+              <input type="radio" id="pickup-false" name="delivery" value="yes" checked="checked" />
               <div class="control__indicator"></div>
             </label>
             <label class="control control--radio">Jeg henter selv
-              <input type="radio" id="pickup-true" name="delivery" value="no" onclick="checkPickup()" />
+              <input type="radio" id="pickup-true" name="delivery" value="no" />
               <div class="control__indicator"></div>
             </label>
           </div>
@@ -109,11 +110,11 @@ layout: default
           <p>Vi kan hente træet igen efter jul, så du er fri for selv at skille dig af med det.</p>
           <div class="control-group">
             <label class="control control--radio">Jeg kommer selv af med træet
-              <input type="radio" id="pickup-true" value="no" name="tree-disposal" checked="checked" />
+              <input type="radio" id="disposal-false" value="no" name="tree-disposal" checked="true" />
               <div class="control__indicator"></div>
             </label>
             <label class="control control--radio">Få træet hentet efter jul (+200 kr)
-              <input type="radio" id="pickup-false" value="yes" name="tree-disposal" />
+              <input type="radio" id="disposal-true" value="yes" name="tree-disposal" />
               <div class="control__indicator"></div>
             </label>
           </div>
@@ -138,7 +139,7 @@ layout: default
                     <input id="city" name="billing-city" type="text" required />
                   </div>
                   <label id="delivery-checkbox-container" class="control control--checkbox">Er det også leveringsadresse?
-                    <input type="checkbox" id="delivery-checkbox" name="delivery-same-as-billing" onClick="checkDelivery()" checked />
+                    <input type="checkbox" id="delivery-checkbox" name="delivery-same-as-billing" checked="true" />
                     <div class="control__indicator"></div>
                   </label>
                 </div>
@@ -175,31 +176,85 @@ layout: default
               </div>
             </div>
           </div>
+        </section>
+        <section class="order-summary-container">
           <div class="address-contact">
             <p><strong>Kontaktoplysninger</strong></p>
-            <label for="email">Email</label>
+            <label for="email">Email <span class="label-subtext">(påkrævet)</span></label>
             <input id="email" name="contact-email" type="email" placeholder="mikkel-l@rsen.dk" required />
-            <label for="phone">Telefonnummer (valgfri)</label>
+            <label for="phone">Telefonnummer <span class="label-subtext">(valgfri)</span></label>
             <input id="phone" name="contact-phone" type="tel" placeholder="+45 21 43 54 76" />
-            <label for="comments">Kommentare til ordren</label>
-            <textarea id="comments" name="comments" rows="2" cols="50" placeholder="Tak for god service etree!"></textarea>
-            <button type="submit">Gå til betaling</button>
+            <label for="comments">Kommentare til ordren <span class="label-subtext">(valgfri)</span></label>
+            <textarea id="comments" name="comments" rows="3" cols="50" placeholder="Tak for god service etree!"></textarea>
+          </div>
+          <div class="order-summary">
+            <p><strong>Ordreoversigt</strong></p>
+            <table class="order-table left-text">
+              <thead>
+                <tr>
+                  <th data-field="id">Navn</th>
+                  <th data-field="name">Pris</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span id="order-size">Intet</span> Juletræ</td>
+                  <td><span id="order-price-tree">0</span> kr</td>
+                </tr>
+                <tr>
+                  <td><span id="order-foot">&ndash; Med fod</span></td>
+                  <td><span id="order-price-foot">50</span> kr</td>
+                </tr>
+                <tr>
+                  <td>Levering</td>
+                  <td>100 kr</td>
+                </tr>
+                <tr>
+                  <td><span id="order-disposal"></span></td>
+                  <td><span id="order-price-disposal"></span></td>
+                </tr>
+                <tr>
+                  <td><strong>Total</strong></td>
+                  <td><strong><span id="price-total">0</span> kr</strong></td>
+              </tbody>
+            </table>
           </div>
         </section>
+        <div class="center-text">
+          <button type="submit">Gå til betaling</button>
+        </div>
       </form>
     </div>
 
 </div>
 <script>
-  console.log("plz");
   checkDelivery();
+
+  var treePrice = 0;
+  var footPrice = {{footPrice}};
+  var deliverPrice = {{deliveryPrice}};
+  var disposalPrice = 0;
+
   var pickupPlaces = document.querySelector(".pickup-places");
   if(pickupPlaces){
     pickupPlaces.style.display = "none";
   }
 
+  // Onclick binders
+  {{#treeSizes}}
+    var treeSizeInput = document.querySelector("#size-{{name}}");
+    treeSizeInput.addEventListener('click', function(){treeSizeForOrder('{{name}}','{{price}}')}, false);
+  {{/treeSizes}}
+
+  document.querySelector("#tree-foot-true").addEventListener('click', function(){footSizeForOrder(true)}, false);
+  document.querySelector("#tree-foot-false").addEventListener('click', function(){footSizeForOrder(false)}, false);
+  // document.querySelector("#pickup-false").addEventListener('click', function(){checkPickup()}, false);
+  // document.querySelector("#pickup-true").addEventListener('click', function(){checkPickup()}, false);
+  document.querySelector("#disposal-true").addEventListener('click', function(){afterChristmasOrder(true)}, false);
+  document.querySelector("#disposal-false").addEventListener('click', function(){afterChristmasOrder(false)}, false);
+  document.querySelector("#delivery-checkbox").addEventListener('click', function(){checkDelivery()}, false);
+
   function checkPickup() {
-    console.log("check pickup");
     if(document.getElementById('pickup-true').checked) {
       pickupPlaces.style.display = "flex";
       document.querySelector("#delivery-pickup-place").style.display = "block";
@@ -215,13 +270,53 @@ layout: default
   }
 
   function checkDelivery() {
-    console.log("check Delivery");
     if(document.getElementById('delivery-checkbox').checked) {
       document.getElementById("deliveryAddress").style.display = "none";
     } else {
       document.querySelector("#deliveryAddress").style.display = "block";
       document.querySelector("#delivery-pickup-place").style.display = "none";
     }
+  }
+
+  function buildOrder() {
+    treePrice = parseInt(treePrice);
+    var total = treePrice + footPrice + deliverPrice + disposalPrice;
+    console.log("TOTAL Price: ",total);
+    document.querySelector("#price-total").innerHTML = total;
+  }
+
+  function treeSizeForOrder(size, price) {
+    var treeSize = size;
+    treePrice = price;
+    document.querySelector("#order-size").innerHTML = treeSize;
+    document.querySelector("#order-price-tree").innerHTML = price;
+    buildOrder();
+  }
+
+  function footSizeForOrder(foot) {
+    if(foot){
+      document.querySelector("#order-foot").innerHTML = "&ndash; med fod";
+      document.querySelector("#order-price-foot").innerHTML = "{{footPrice}}";
+      footPrice = {{footPrice}};
+    } else {
+      document.querySelector("#order-foot").innerHTML = "&ndash; uden fod";
+      document.querySelector("#order-price-foot").innerHTML = "0";
+      footPrice = 0;
+    }
+    buildOrder();
+  }
+
+  function afterChristmasOrder(disposal) {
+    if(disposal){
+      document.querySelector("#order-disposal").innerHTML = "Bliver afhentet efter jul";
+      document.querySelector("#order-price-disposal").innerHTML = "{{collectionPrice}} kr";
+      disposalPrice = {{collectionPrice}};
+    } else {
+      document.querySelector("#order-disposal").innerHTML = "";
+      document.querySelector("#order-price-disposal").innerHTML = "";
+      disposalPrice = 0;
+    }
+    buildOrder();
   }
 
 </script>
