@@ -25,12 +25,13 @@ layout: default
 
     <div class="floaty-content-box">
       <form action="/buy" method="post">
-        <h1 class="center-text">Vælg størrelse</h1>
+        <h1 class="center-text tree-size-h1">Vælg størrelse</h1>
+        <p class="center-text">Klik for at vælge</p>
 
         <section class="trees">
 
           {{#treeSizes}}
-          <input id="size-{{name}}" type="radio" name="tree-size" value="{{name}}" required onclick="treeSizeForOrder('{{name}}','{{price}}');" />
+          <input id="size-{{name}}" class="tree-size-input" type="radio" name="tree-size" value="{{name}}" required onclick="treeSizeForOrder('{{name}}','{{price}}');" />
           <label for="size-{{name}}" class="tree-size-container">
             <div class="tree-size">
               <i class="fa fa-tree tree-icon-{{name}}" aria-hidden="true"></i>
@@ -237,6 +238,12 @@ layout: default
     pickupPlaces.style.display = "none";
   }
 
+  // let treeSizeInputs = document.querySelectorAll(".tree-size-input");
+  // for (let treeSizeInput of treeSizeInputs) {
+  //   console.log(treeSizeInput);
+  //   treeSizeInput.addEventListener('click', treeSizeForOrder, false);
+  // }
+
   function checkPickup() {
     if(document.getElementById('pickup-true').checked) {
       pickupPlaces.style.display = "flex";
@@ -280,7 +287,7 @@ layout: default
     if(foot){
       document.querySelector("#order-foot").innerHTML = "&ndash; med fod";
       document.querySelector("#order-price-foot").innerHTML = "{{footPrice}}";
-      footPrice = 50;
+      footPrice = {{footPrice}};
     } else {
       document.querySelector("#order-foot").innerHTML = "&ndash; uden fod";
       document.querySelector("#order-price-foot").innerHTML = "0";
@@ -293,7 +300,7 @@ layout: default
     if(disposal){
       document.querySelector("#order-disposal").innerHTML = "Bliver afhentet efter jul";
       document.querySelector("#order-price-disposal").innerHTML = "{{collectionPrice}} kr";
-      disposalPrice = 200;
+      disposalPrice = {{collectionPrice}};
     } else {
       document.querySelector("#order-disposal").innerHTML = "";
       document.querySelector("#order-price-disposal").innerHTML = "";

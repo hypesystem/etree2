@@ -431,11 +431,14 @@ footer.floaty-content-box {
 }
 @media(max-width: 900px){
   .sales-container {
-    width: 90%;
+    width: 95%;
   }
 }
 .sales-container section {
   margin-bottom: 70px;
+}
+.tree-size-h1 {
+  margin-bottom: 0;
 }
 .trees {
   display: flex;
@@ -489,6 +492,7 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
 @media(max-width:600px){
   .trees .tree-size-container {
     width: 50%;
+    margin-bottom: 10px;
   }
   .trees .tree-size-container .fa-tree {
     display: none;
