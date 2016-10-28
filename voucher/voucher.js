@@ -90,9 +90,26 @@ function get(pool, key, callback) {
 
 function use(pool, key, callback) {
     get(pool, key, (error, voucher) => {
-        
+        if(error) {
+            return callback(error);
+        }
+        if(!voucher.active) {
+            return callback({
+                type: "voucher_cannot_be_used",
+                error: new Error("The voucher is not active, so cannot be used.")
+            });
+        }
+        pool.query("INSERT INTO voucher_used (key, data, happened_at) VALUES ($1::text, $2::json, $3::timestamp)", [
+            key,
+            JSON.stringify({}),
+            new Date().toISOString()
+        ], (error) => {
+            if(error) {
+                return callback(error);
+            }
+            callback(null, voucher);
+        });
     });
-    //gets and uses (returns voucher in state before use) or fails if voucher not active or not exist
 }
 
 module.exports = voucher;
