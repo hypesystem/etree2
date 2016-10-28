@@ -19,7 +19,7 @@ function frontPageSelector(req, res) {
     var humanDate = rn.getDate();
     
     //If we're after sale ends
-    if(humanMonth >= 12 && humanDate >= 23) {
+    if(humanMonth >= 12 && humanDate >= 21) {
         return downtime(req, res);
     }
     
