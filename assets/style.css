@@ -31,6 +31,9 @@ a:hover {
     z-index: -1;
     filter: blur(2px);
 }
+.background-sales {
+  background-image: url('/assets/trees/tree10.jpg');
+}
 header {
     background: rgb(240,240,240);
     padding: 0 5px;
