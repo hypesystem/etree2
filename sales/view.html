@@ -3,14 +3,14 @@ layout: default
 ---
 <div class="prelaunch-container">
   <div class="head-text">
-    <h1 class="headline">Vi sælger Københavns <span>billigste</span> juletræer!</h1>
+    <h1 class="headline">Køb Københavns <span>billigste</span> juletræer nu!</h1>
     <h3 class="subline">Høj kvalitet, dansk groet, leveres til døren.</h3>
   </div>
 </div>
 <div class="sign-up-bar">
     <h2>Salget er startet!</h2>
     <p>Vi fortsætter salget til d. 10. december, og leverer derefter træerne mellem d. 10 og 20. december.</p>
-    <a href="#sales" class="btn large">Køb nu</a>
+    <a href="#sales" class="btn large" data-scroll>Køb nu</a>
 </div>
 <div class="sales-container">
 
@@ -262,6 +262,7 @@ layout: default
 
 </div>
 <script>
+  smoothScroll.init();
   checkDelivery();
 
   var treePrice = 0;
