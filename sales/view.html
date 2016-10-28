@@ -119,6 +119,22 @@ layout: default
             </label>
           </div>
         </section>
+        
+        <!-- Handle vouchers from query -->
+        <input type="hidden" name="voucher" id="voucherField">
+        <script>
+            var voucherField = (function() {
+                var voucherField = document.getElementById("voucherField");
+                var voucherQueryMatch = /voucher=([^&]+)(&.*)?$/.exec(location.search);
+                if(!voucherQueryMatch) {
+                    return;
+                }
+                var voucher = voucherQueryMatch[1];
+                voucherField.value = voucher;
+                return voucherField;
+            })();
+        </script>
+        <!-- /Handle vouchers from query -->
 
         <section>
           <h1 class="center-text">Kunde&shy;oplysninger</h1>
@@ -214,6 +230,10 @@ layout: default
                   <td><span id="order-price-disposal"></span></td>
                 </tr>
                 <tr>
+                  <td><span id="order-voucher"></span></td>
+                  <td><span id="order-price-voucher"></span></td>
+                </tr>
+                <tr>
                   <td><strong>Total</strong></td>
                   <td><strong><span id="price-total">0</span> kr</strong></td>
               </tbody>
@@ -234,6 +254,16 @@ layout: default
   var footPrice = {{footPrice}};
   var deliverPrice = {{deliveryPrice}};
   var disposalPrice = 0;
+  
+  //var currentTreeSize = null;
+  //var currentFoot = null;
+  //var currentDisposal = null;
+  
+  var voucherRebate = 0;
+  var voucherFilters = [];
+  var voucherName = null;
+  
+  getVoucherModifier();
 
   var pickupPlaces = document.querySelector(".pickup-places");
   if(pickupPlaces){
@@ -280,7 +310,7 @@ layout: default
 
   function buildOrder() {
     treePrice = parseInt(treePrice);
-    var total = treePrice + footPrice + deliverPrice + disposalPrice;
+    var total = treePrice + footPrice + deliverPrice + disposalPrice - voucherRebate;
     console.log("TOTAL Price: ",total);
     document.querySelector("#price-total").innerHTML = total;
   }
@@ -317,6 +347,57 @@ layout: default
       disposalPrice = 0;
     }
     buildOrder();
+  }
+  
+  function getVoucherModifier() {
+      if(!voucherField.value || voucherField.value == "") {
+          return;
+      }
+      httpGetJson("/voucher/" + voucherField.value, function(error, status, result) {
+          if(error) {
+              voucherName = "Kupon ???";
+              buildVoucherOrderLine();
+              return console.error("Failed to get voucher details", error);
+          }
+          if(status == 404) {
+              return;
+          }
+          if(status != 200) {
+              voucherName = "Kupon ???";
+              buildVoucherOrderLine();
+              return console.error("Failed to get voucher, got status", status);
+          }
+          if(!result.active) {
+              return console.log("Voucher has already been used");
+          }
+          voucherFilters = result.filters;
+          voucherRebate = result.rebate;
+          voucherName = result.name;
+          buildVoucherOrderLine();
+      });
+  }
+  
+  function httpGetJson(uri, callback) {
+      var req = new XMLHttpRequest();
+      req.addEventListener("load", function() {
+          var json;
+          try {
+              json = JSON.parse(this.responseText);
+          }
+          catch(e) {
+              return callback(e);
+          }
+          callback(null, this.status, json);
+      });
+      req.open("GET", uri);
+      req.send();
+  }
+  
+  //TODO: Voucher filters (once we introduce vouchers not only for delivery, or when we introduce pickup locations)
+  function buildVoucherOrderLine() {
+      document.querySelector("#order-voucher").innerHTML = voucherName;
+      document.querySelector("#order-price-voucher").innerHTML = "- " + voucherRebate + " kr";
+      buildOrder();
   }
 
 </script>

@@ -16,6 +16,7 @@ var adminApp = require("./admin/app.js");
 var MailgunMustacheMailer = require("mailgun-mustache-mailer");
 var salesEndpoint = require("./sales/endpoint.js");
 var braintree = require("braintree");
+var getVoucherEndpoint = require("./voucher/getEndpoint.js");
 
 var pool = new Pool(config.postgres);
 var mailer = new MailgunMustacheMailer(config.mailgun);
@@ -57,6 +58,7 @@ app.get("/pg-status", postgresStatusEndpoint());
 app.get("/bliv-udbringer", staticViewEndpoint("become-deliverer/view.html"));
 app.use("/admin", adminApp(pool, mailer));
 app.get("/tak-for-handlen", staticViewEndpoint("sales/thanks.html"));
+app.get("/voucher/:id", getVoucherEndpoint(pool));
 
 app.use(function endpointNotFound(req, res) {
     res.fail(404);
