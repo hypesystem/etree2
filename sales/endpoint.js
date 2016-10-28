@@ -4,6 +4,7 @@ var fs = require("fs");
 var path = require("path");
 var ensurePaymentEventTables = require("./ensurePaymentEventTables.js");
 var productData = require("./productData.json");
+var Vouchers = require("../voucher/voucher.js");
 
 function salesEndpoint(pool, mailer, paymentGateway, req, res) {
     if(req.body.payment_method_nonce) {
@@ -13,7 +14,8 @@ function salesEndpoint(pool, mailer, paymentGateway, req, res) {
 }
 
 function startPayment(pool, paymentGateway, req, res) {
-    parseOrderInfo(req.body, (error, orderLines, amount, customerInfo) => {
+    var vouchers = Vouchers(pool);
+    parseOrderInfo(vouchers, req.body, (error, orderLines, amount, customerInfo) => {
         if(error && error.type == "input") {
             console.log("Invalid input to parse order info", error);
             return res.fail(400, "Forkert input: " + error.message);
@@ -71,8 +73,8 @@ function startPayment(pool, paymentGateway, req, res) {
     });
 }
 
-function parseOrderInfo(raw, callback) {
-    parseOrderLines(raw, (error, orderLines, amount) => {
+function parseOrderInfo(pool, raw, callback) {
+    parseOrderLines(pool, raw, (error, orderLines, amount) => {
         if(error) {
             return callback(error);
         }
@@ -85,7 +87,7 @@ function parseOrderInfo(raw, callback) {
     });
 }
 
-function parseOrderLines(raw, callback) {
+function parseOrderLines(vouchers, raw, callback) {
     var orderLines = [];
     var amount = 0;
     
@@ -136,7 +138,43 @@ function parseOrderLines(raw, callback) {
         amount += productData.collectionPrice;
     }
     
-    callback(null, orderLines, amount);
+    parseVoucher(vouchers, raw, (error, voucher) => {
+        if(error && error.type == "voucher_key_not_found") {
+            console.log("User tried to use an invalid voucher", error);
+            return callback(null, orderLines, amount);
+        }
+        if(error) {
+            return callback(error);
+        }
+        if(!voucher) {
+            return callback(null, orderLines, amount);
+        }
+        
+        orderLines.push({
+            name: voucher.name,
+            price: - voucher.rebate
+        });
+        amount -= voucher.rebate;
+        
+        callback(null, orderLines, amount);
+    });
+}
+
+function parseVoucher(vouchers, raw, callback) {
+    var voucherKey = raw["voucher"];
+    if(!voucherKey || voucherKey == "") {
+        return callback();
+    }
+    vouchers.use(voucherKey, (error, voucher) => {
+        if(error && error.type == "voucher_cannot_be_used") {
+            console.log("User tried to use inactive voucher", voucherKey);
+            return callback();
+        }
+        if(error) {
+            return callback(error);
+        }
+        callback(null, voucher);
+    });
 }
 
 function parseCustomerInfo(raw, callback) {
