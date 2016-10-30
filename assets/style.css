@@ -1,4 +1,8 @@
 @import 'https://fonts.googleapis.com/css?family=Montserrat+Alternates:400,700|Pacifico|Source+Sans+Pro:300,400,600,700';
+@font-face {
+    font-family: 'Pacifico-Local';
+    src: url('/assets/Pacifico.ttf') format('truetype');
+}
 
 body {
     background: rgb(160, 200, 170);
@@ -57,7 +61,7 @@ nav a:hover {
     text-decoration: none;
 }
 nav .logo {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Pacifico-Local', cursive;
   font-size: 2em;
   padding-top: 0;
 }
@@ -72,7 +76,7 @@ nav .logo:hover i {
   text-shadow: none;
 }
 h1 {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Pacifico-Local', cursive;
   font-size: 3em;
   font-weight: normal;
 }
