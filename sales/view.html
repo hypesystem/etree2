@@ -1,6 +1,17 @@
 ---
-layout: default
+layout: sales
 ---
+<div class="prelaunch-container">
+  <div class="head-text">
+    <h1 class="headline">Køb Københavns <span>billigste</span> juletræ nu!</h1>
+    <h3 class="subline">Høj kvalitet, dansk groet, leveres til døren.</h3>
+  </div>
+</div>
+<div class="sign-up-bar">
+    <h2>Salget er startet!</h2>
+    <p>Lige her på siden har du muligheden for nemt og hurtigt at sikre dig et træ til jul.<br />Vi fortsætter salget helt til d. 22/12.</p>
+    <a href="#sales" class="btn large" data-scroll>Køb nu</a>
+</div>
 <div class="sales-container">
 
     <span id="start" class="target"><!-- Hidden anchor to close all modals --></span>
@@ -23,7 +34,7 @@ layout: default
       </div>
     </div>
 
-    <div class="floaty-content-box">
+    <div id="sales" class="container">
       <form action="/buy" method="post">
         <h1 class="center-text tree-size-h1">Vælg størrelse</h1>
         <p class="center-text">Klik for at vælge</p>
@@ -50,76 +61,79 @@ layout: default
 
         </section>
 
-        <section class="tree-foot">
-          <h3>Juletræsfod</h3>
-          <p>Skal der sættes fod på dit træ?.</p>
-          <div class="control-group">
-            <label class="control control--radio">Sæt fod på det! (+50 kr)
-              <input type="radio" id="tree-foot-true" name="tree-foot" value="yes" checked="true" />
-              <div class="control__indicator"></div>
-            </label>
-            <label class="control control--radio">Nej tak
-              <input type="radio" id="tree-foot-false" value="no" name="tree-foot" />
-              <div class="control__indicator"></div>
-            </label>
-          </div>
-        </section>
-
-        <section class="pickup">
-          <h3>Levering</h3>
-          <p>Vi kan udbringe i København og Storkøbenhavnsområdet. <a href="#about">Se postnumre her.</a></p>
-          {{^pickUpLocations.length}}
-            <p>Levering koster <strong>{{ deliveryPrice }} kr</strong></p>
-          {{/pickUpLocations.length}}
-
-          {{#pickUpLocations.length}}
-          <div class="control-group">
-            <label class="control control--radio">Få udbragt træet (+100 kr)
-              <input type="radio" id="pickup-false" name="delivery" value="yes" checked="checked" />
-              <div class="control__indicator"></div>
-            </label>
-            <label class="control control--radio">Jeg henter selv
-              <input type="radio" id="pickup-true" name="delivery" value="no" />
-              <div class="control__indicator"></div>
-            </label>
-          </div>
-          <div class="pickup-places">
-            <h2 style="width:100%;">Vælg afhentningssted</h2>
-
-            {{#pickUpLocations}}
-              <input id="pickupPlace-{{name}}" value="{{name}}" type="radio" name="pickup-place" />
-              <label for="pickupPlace-{{name}}" class="pickup-place-container">
-                <div class="pickup-place">
-                  <img src="../assets/{{image}}" alt="" />
-                  <div class="pickup-content">
-                    <p><strong>{{name}}</strong><br />
-                      {{address}}<br />
-                      {{time}}
-                    </p>
-                    <a class="btn">Vælg<span class="checkmark-icon">&nbsp;&#10003;</span></a>
-                  </div>
-                </div>
+        <section class="sales-options">
+          <div class="option">
+            <h3>Juletræsfod</h3>
+            <p>Skal der sættes fod på dit træ?.</p>
+            <div class="control-group">
+              <label class="control control--radio">Sæt fod på det! (+50 kr)
+                <input type="radio" id="tree-foot-true" name="tree-foot" value="yes" checked="true" />
+                <div class="control__indicator"></div>
               </label>
-            {{/pickUpLocations}}
-
-            {{/pickUpLocations.length}}
-          </section>
-
-        <section>
-          <h3>Efter jul</h3>
-          <p>Vi kan hente træet igen efter jul, så du er fri for selv at skille dig af med det.</p>
-          <div class="control-group">
-            <label class="control control--radio">Jeg kommer selv af med træet
-              <input type="radio" id="disposal-false" value="no" name="tree-disposal" checked="true" />
-              <div class="control__indicator"></div>
-            </label>
-            <label class="control control--radio">Få træet hentet efter jul (+200 kr)
-              <input type="radio" id="disposal-true" value="yes" name="tree-disposal" />
-              <div class="control__indicator"></div>
-            </label>
+              <label class="control control--radio">Nej tak
+                <input type="radio" id="tree-foot-false" value="no" name="tree-foot" />
+                <div class="control__indicator"></div>
+              </label>
+            </div>
           </div>
+
+          <div class="option pickup">
+            <h3>Levering</h3>
+            <p>Vi kan udbringe i København og Storkøbenhavnsområdet.<br /><a href="#about">Se postnumre her.</a></p>
+            {{^pickUpLocations.length}}
+              <p>Levering koster <strong>{{ deliveryPrice }} kr</strong></p>
+            {{/pickUpLocations.length}}
+
+            {{#pickUpLocations.length}}
+            <div class="control-group">
+              <label class="control control--radio">Få udbragt træet (+100 kr)
+                <input type="radio" id="pickup-false" name="delivery" value="yes" checked="checked" />
+                <div class="control__indicator"></div>
+              </label>
+              <label class="control control--radio">Jeg henter selv
+                <input type="radio" id="pickup-true" name="delivery" value="no" />
+                <div class="control__indicator"></div>
+              </label>
+            </div>
+            <div class="pickup-places">
+              <h2 style="width:100%;">Vælg afhentningssted</h2>
+
+              {{#pickUpLocations}}
+                <input id="pickupPlace-{{name}}" value="{{name}}" type="radio" name="pickup-place" />
+                <label for="pickupPlace-{{name}}" class="pickup-place-container">
+                  <div class="pickup-place">
+                    <img src="../assets/{{image}}" alt="" />
+                    <div class="pickup-content">
+                      <p><strong>{{name}}</strong><br />
+                        {{address}}<br />
+                        {{time}}
+                      </p>
+                      <a class="btn">Vælg<span class="checkmark-icon">&nbsp;&#10003;</span></a>
+                    </div>
+                  </div>
+                </label>
+              {{/pickUpLocations}}
+
+              {{/pickUpLocations.length}}
+            </div>
+
+            <div class="option">
+              <h3>Efter jul</h3>
+              <p>Vi kan hente træet igen efter jul, så du er fri for selv at skille dig af med det.</p>
+              <div class="control-group">
+                <label class="control control--radio">Jeg kommer selv af med træet
+                  <input type="radio" id="disposal-false" value="no" name="tree-disposal" checked="true" />
+                  <div class="control__indicator"></div>
+                </label>
+                <label class="control control--radio">Få træet hentet efter jul (+200 kr)
+                  <input type="radio" id="disposal-true" value="yes" name="tree-disposal" />
+                  <div class="control__indicator"></div>
+                </label>
+              </div>
+            </div>
+
         </section>
-        
+
         <!-- Handle vouchers from query -->
         <input type="hidden" name="voucher" id="voucherField">
         <script>
@@ -127,7 +141,7 @@ layout: default
                 var voucherField = document.getElementById("voucherField");
                 var voucherQueryMatch = /voucher=([^&]+)(&.*)?$/.exec(location.search);
                 if(!voucherQueryMatch) {
-                    return;
+                    return voucherField;
                 }
                 var voucher = voucherQueryMatch[1];
                 voucherField.value = voucher;
@@ -136,7 +150,7 @@ layout: default
         </script>
         <!-- /Handle vouchers from query -->
 
-        <section>
+        <section class="customer-info">
           <h1 class="center-text">Kunde&shy;oplysninger</h1>
           <div class="address-container">
             <div class="address">
@@ -248,21 +262,22 @@ layout: default
 
 </div>
 <script>
+  smoothScroll.init();
   checkDelivery();
 
   var treePrice = 0;
   var footPrice = {{footPrice}};
   var deliverPrice = {{deliveryPrice}};
   var disposalPrice = 0;
-  
+
   //var currentTreeSize = null;
   //var currentFoot = null;
   //var currentDisposal = null;
-  
+
   var voucherRebate = 0;
   var voucherFilters = [];
   var voucherName = null;
-  
+
   getVoucherModifier();
 
   var pickupPlaces = document.querySelector(".pickup-places");
@@ -348,7 +363,7 @@ layout: default
     }
     buildOrder();
   }
-  
+
   function getVoucherModifier() {
       if(!voucherField.value || voucherField.value == "") {
           return;
@@ -376,7 +391,7 @@ layout: default
           buildVoucherOrderLine();
       });
   }
-  
+
   function httpGetJson(uri, callback) {
       var req = new XMLHttpRequest();
       req.addEventListener("load", function() {
@@ -392,7 +407,7 @@ layout: default
       req.open("GET", uri);
       req.send();
   }
-  
+
   //TODO: Voucher filters (once we introduce vouchers not only for delivery, or when we introduce pickup locations)
   function buildVoucherOrderLine() {
       document.querySelector("#order-voucher").innerHTML = voucherName;
