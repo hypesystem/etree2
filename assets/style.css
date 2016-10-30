@@ -201,14 +201,15 @@ textarea {
   align-items: center;
   justify-content: center;
   height: calc(100vh - 297px);
-  min-height: 550px;
+  min-height: 400px;
   padding: 20px;
   box-sizing: border-box;
   text-align: center;
 }
 @media(max-width: 900px){
   .prelaunch-container {
-    min-height: 500px;
+    height: auto;
+    min-height: auto;
   }
 }
 .case p {
