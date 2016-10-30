@@ -15,7 +15,7 @@ function salesEndpoint(pool, mailer, paymentGateway, req, res) {
 
 function startPayment(pool, paymentGateway, req, res) {
     var vouchers = Vouchers(pool);
-    parseOrderInfo(vouchers, req.body, (error, orderLines, amount, customerInfo) => {
+    parseOrderInfo(vouchers, req.body, (error, orderLines, amount, voucher, customerInfo) => {
         if(error && error.type == "input") {
             console.log("Invalid input to parse order info", error);
             return res.fail(400, "Forkert input: " + error.message);
@@ -44,6 +44,7 @@ function startPayment(pool, paymentGateway, req, res) {
                 originalRequest: req.body,
                 orderLines: orderLines,
                 amount: amount,
+                voucher: voucher,
                 customerInfo: customerInfo
             };
             pool.query("INSERT INTO payment_started (id, data, happened_at) VALUES ($1::uuid, $2::json, $3::timestamp)", [
@@ -74,7 +75,7 @@ function startPayment(pool, paymentGateway, req, res) {
 }
 
 function parseOrderInfo(pool, raw, callback) {
-    parseOrderLines(pool, raw, (error, orderLines, amount) => {
+    parseOrderLines(pool, raw, (error, orderLines, amount, voucher) => {
         if(error) {
             return callback(error);
         }
@@ -82,7 +83,7 @@ function parseOrderInfo(pool, raw, callback) {
             if(error) {
                 return callback(error);
             }
-            callback(null, orderLines, amount, customerInfo);
+            callback(null, orderLines, amount, voucher, customerInfo);
         });
     });
 }
@@ -156,7 +157,7 @@ function parseOrderLines(vouchers, raw, callback) {
         });
         amount -= voucher.rebate;
         
-        callback(null, orderLines, amount);
+        callback(null, orderLines, amount, voucher);
     });
 }
 
