@@ -1,6 +1,6 @@
 {
   "name": "etree2",
-  "version": "0.5.16",
+  "version": "0.5.17",
   "description": "etree service in node",
   "scripts": {
     "start": "node app.js",
