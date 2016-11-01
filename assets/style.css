@@ -204,7 +204,7 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 297px);
+  height: calc(100vh - 325px);
   min-height: 400px;
   padding: 20px;
   box-sizing: border-box;
