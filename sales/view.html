@@ -53,7 +53,6 @@ layout: sales
                 {{#salesLimit}}
                 <li>Kun {{salesLimit}} tilbage!</li>
                 {{/salesLimit}}
-                <li>Leveres til døren</li>
               </ul>
               <a class="btn">{{price}} kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
             </div>
@@ -93,7 +92,7 @@ layout: sales
                 Hvis du har særlige ønsker til leveringstidspunkt, kan du skrive det i kommentarfeltet nedenfor.
             </p>
             {{^pickUpLocations.length}}
-              <p>Levering koster <strong>{{ deliveryPrice }} kr</strong></p>
+              <p class="underline">Levering koster <strong>{{ deliveryPrice }} kr</strong></p>
             {{/pickUpLocations.length}}
 
             {{#pickUpLocations.length}}
@@ -207,7 +206,7 @@ layout: sales
               <div id="delivery-pickup-place" class="pickup-place-container" style="display:none;">
                 <p style="text-align:left;"><strong>Leveringsadresse</strong></p>
                 <div class="pickup-place">
-                  <img src="../assets/firforest.jpg" alt="" />
+                  <img src="../assets/etreeLogo.png" alt="" />
                   <div class="pickup-content">
                     <p><strong>Strandvejen 267</strong><br />
                       Charlottenlund<br />
