@@ -204,7 +204,7 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 325px);
+  height: calc(100vh - 365px);
   min-height: 400px;
   padding: 20px;
   box-sizing: border-box;
@@ -294,7 +294,7 @@ table tr td {
 .sign-up-bar {
   width: 100%;
   padding: 40px 20px;
-  background: rgba(51, 51, 51, 0.9);
+  background: rgba(51, 51, 51, 0.85);
   color: white;
   box-sizing: border-box;
   text-align: center;
@@ -441,11 +441,11 @@ footer.floaty-content-box {
 .sales-container {
   background: rgb(250,250,250);
   box-sizing: border-box;
-  padding: 60px;
+  padding: 60px 0;
 }
 @media(max-width: 600px){
   .sales-container {
-    padding: 20px;
+    padding: 20px 0;
   }
 }
 
@@ -474,7 +474,7 @@ input[name="pickup-place"] {
 input[name="tree-size"]:checked+label,
 input[name="pickup-place"]:checked+label {
   background: #306F3F;
-  transform: scale(1.15);
+  transform: scale(1.05);
 }
 input[name="tree-size"]:checked+label .checkmark-icon,
 input[name="pickup-place"]:checked+label .checkmark-icon {
@@ -513,6 +513,7 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
 @media(max-width:600px){
   .trees .tree-size-container {
     width: 100%;
+    max-width: 280px;
     margin-bottom: 10px;
   }
   .trees .tree-size-container .fa-tree {
