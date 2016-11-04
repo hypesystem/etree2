@@ -31,7 +31,40 @@ function getSalesStatsOverview(pool, callback) {
             if(event.type == "payment_completed") {
                 revenue += event.data.amount;
             }
+            
+            // build sales objects
+            if(event.type == "payment_started") {
+                sales.push({
+                    id: event.id,
+                    state: "started",
+                    last_state_change: event.happened_at.toISOString(),
+                    customer_name: event.data.customerInfo.billingAddress.name,
+                    customer_email: event.data.customerInfo.email,
+                    amount: event.data.amount,
+                    payment_started_data: event.data
+                });
+            }
+            if(event.type == "payment_failed") {
+                var sale = sales.find(sale => sale.id == event.id);
+                if(!sale) {
+                    console.error("Found a payment_failed record with no payment_started!", event);
+                }
+                sale.state = "failed";
+                sale.last_state_change = event.happened_at.toISOString();
+                sale.payment_failed_data = event.data;
+            }
+            if(event.type == "payment_completed") {
+                var sale = sales.find(sale => sale.id == event.id);
+                if(!sale) {
+                    console.error("Found a payment_completed record with no payment_started!", event);
+                }
+                sale.state = "completed";
+                sale.last_state_change = event.happened_at.toISOString();
+                sale.payment_completed_data = event.data;
+            }
         });
+        
+        sales.sort((a,b) => a.last_state_change > b.last_state_change ? -1 : 1); //desc
         
         callback(null, {
             revenue: revenue.toFixed(2),

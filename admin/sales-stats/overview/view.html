@@ -11,12 +11,58 @@ layout: oldstyle
             text-align: center;
             max-width: 270px;
             width: 100%;
+            background: white;
         }
         .stats-box-title {
             color: grey;
         }
         .stats-box-value {
             font-size: 2em;
+        }
+        
+        .sales-data {
+            border-collapse: collapse;
+            border: 1px solid grey;
+            width: 100%;
+        }
+        .sales-data th, .sales-data td {
+            border: 1px solid grey;
+        }
+        .sales-data td {
+            padding: 8px 16px;
+        }
+        .sales-data tbody {
+            font-size: 0.9em;
+        }
+        .sales-data tbody tr:nth-child(2n) {
+            background: rgba(255,255,255,0.8);
+        }
+        .sales-data thead {
+            border-bottom: 2px solid grey;
+            background:rgba(255,255,255,0.8);
+        }
+        .sales-data-date-field {
+            text-align: center;
+            font-size: 0.85em;
+            color: grey;
+        }
+        .sales-data-amount-field {
+            text-align: right;
+        }
+        .sales-data-state-field {
+            text-align: center;
+            font-family: monospace;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .sales-data-state-field-started {
+            color: orange;
+        }
+        .sales-data-state-field-failed {
+            color: red;
+        }
+        .sales-data-state-field-completed {
+            color: green;
         }
     </style>
     <h1>Salgsstatistik</h1>
@@ -32,4 +78,28 @@ layout: oldstyle
         <div class="stats-box-title">Overskud</div>
         <div class="stats-box-value">{{ profit }} DKK</div>
     </div>
+    
+    <h2>Salgsoversigt</h2>
+    <table class="sales-data">
+        <thead>
+            <tr>
+                <th>Sidste ændring</th>
+                <th>Køber</th>
+                <th>Email</th>
+                <th>Beløb</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ #sales }}
+            <tr>
+                <td class="sales-data-date-field">{{ last_state_change }}</td>
+                <td>{{ customer_name }}</td>
+                <td>{{ customer_email }}</td>
+                <td class="sales-data-amount-field">{{ amount }} DKK</td>
+                <td class="sales-data-state-field sales-data-state-field-{{ state }}">{{ state }}</td>
+            </tr>
+            {{ /sales }}
+        </tbody>
+    </table>
 </div>
