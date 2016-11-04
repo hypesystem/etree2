@@ -119,6 +119,9 @@ h3.subline {
     padding: 20px;
   }
 }
+.underline {
+  text-decoration: underline;
+}
 textarea {
   display: block;
   width: 100%;
