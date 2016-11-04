@@ -64,7 +64,7 @@ layout: sales
         <section class="sales-options">
           <div class="option">
             <h3>Juletræsfod</h3>
-            <p>Skal der sættes fod på dit træ?.</p>
+            <p>Skal vi levere træet med en fod, så du ikke selv skal tænke på det?</p>
             <div class="control-group">
               <label class="control control--radio">Sæt fod på det! (+50 kr)
                 <input type="radio" id="tree-foot-true" name="tree-foot" value="yes" checked="true" />
@@ -79,7 +79,8 @@ layout: sales
 
           <div class="option pickup">
             <h3>Levering</h3>
-            <p>Vi kan udbringe i København og Storkøbenhavnsområdet.<br /><a href="#about">Se postnumre her.</a></p>
+            <p>Vi leverer i Storkøbenhavn. Tjek <a href="#about">postnumrene, vi leverer til</a>, for at se om du kan få leveret.</p>
+            <p>Levering sker mellem d. 10. og 22. december, for så holder træet hele julen.</p>
             {{^pickUpLocations.length}}
               <p>Levering koster <strong>{{ deliveryPrice }} kr</strong></p>
             {{/pickUpLocations.length}}
@@ -125,7 +126,7 @@ layout: sales
                   <input type="radio" id="disposal-false" value="no" name="tree-disposal" checked="true" />
                   <div class="control__indicator"></div>
                 </label>
-                <label class="control control--radio">Få træet hentet efter jul (+200 kr)
+                <label class="control control--radio">Hent gerne træet efter jul (+200 kr)
                   <input type="radio" id="disposal-true" value="yes" name="tree-disposal" />
                   <div class="control__indicator"></div>
                 </label>
@@ -156,19 +157,19 @@ layout: sales
             <div class="address">
               <p><strong>Faktureringsadresse</strong></p>
                 <label for="name">Fuldt navn</label>
-                <input id="name" name="billing-name" type="text" required />
+                <input id="name" name="billing-name" type="text" placeholder="Mikkel Larsen" required />
                 <div class="flex-form">
-                  <label for="streetname">Addresse</label>
-                  <input id="streetname" name="billing-streetname" type="text" required />
+                  <label for="streetname">Adresse</label>
+                  <input id="streetname" name="billing-streetname" type="text" placeholder="Vejnavn 12" required />
                   <div class="zip-input">
                     <label for="zip">Postnummer</label>
-                    <input id="zip" name="billing-zip" pattern="[0-9]{4}" type="text" required />
+                    <input id="zip" name="billing-zip" pattern="[0-9]{4}" type="text" placeholder="1307" required />
                   </div>
                   <div class="city-input">
                     <label for="city">By</label>
-                    <input id="city" name="billing-city" type="text" required />
+                    <input id="city" name="billing-city" type="text" placeholder="København K" required />
                   </div>
-                  <label id="delivery-checkbox-container" class="control control--checkbox">Er det også leveringsadresse?
+                  <label id="delivery-checkbox-container" class="control control--checkbox">Leveringsadressen er den samme.
                     <input type="checkbox" id="delivery-checkbox" name="delivery-same-as-billing" checked="true" />
                     <div class="control__indicator"></div>
                   </label>
@@ -178,17 +179,17 @@ layout: sales
               <div id="deliveryAddress">
                 <p><strong>Leveringsadresse</strong></p>
                 <label for="delivery-name">Fuldt navn</label>
-                <input id="delivery-name" name="delivery-name" type="text" />
+                <input id="delivery-name" name="delivery-name" type="text" placeholder="Mikkel Larsen" />
                 <div class="flex-form">
-                  <label for="delivery-streetname">Addresse</label>
-                  <input id="delivery-streetname" name="delivery-streetname" type="text" />
+                  <label for="delivery-streetname">Adresse</label>
+                  <input id="delivery-streetname" name="delivery-streetname" type="text" placeholder="Vejnavn 14" />
                   <div class="zip-input">
                     <label for="delivery-zip">Postnummer</label>
-                    <input id="delivery-zip" name="delivery-zip" pattern="[0-9]{4}" type="text" />
+                    <input id="delivery-zip" name="delivery-zip" pattern="[0-9]{4}" type="text" placeholder="1307" />
                   </div>
                   <div class="city-input">
                     <label for="delivery-city">By</label>
-                    <input id="delivery-city" name="delivery-city" type="text" />
+                    <input id="delivery-city" name="delivery-city" type="text" placeholder="København K" />
                   </div>
                 </div>
               </div>
@@ -211,11 +212,11 @@ layout: sales
           <div class="address-contact">
             <p><strong>Kontaktoplysninger</strong></p>
             <label for="email">Email <span class="label-subtext">(påkrævet)</span></label>
-            <input id="email" name="contact-email" type="email" placeholder="mikkel-l@rsen.dk" required />
+            <input id="email" name="contact-email" type="email" placeholder="mikkel.larsen@eksempel.dk" required />
             <label for="phone">Telefonnummer <span class="label-subtext">(valgfri)</span></label>
-            <input id="phone" name="contact-phone" type="tel" placeholder="+45 21 43 54 76" />
-            <label for="comments">Kommentare til ordren <span class="label-subtext">(valgfri)</span></label>
-            <textarea id="comments" name="comments" rows="3" cols="50" placeholder="Tak for god service etree!"></textarea>
+            <input id="phone" name="contact-phone" type="tel" placeholder="+45 12 34 56 78" />
+            <label for="comments">Kommentarer <span class="label-subtext">(valgfri)</span></label>
+            <textarea id="comments" name="comments" rows="3" cols="50"></textarea>
           </div>
           <div class="order-summary">
             <p><strong>Ordreoversigt</strong></p>
@@ -228,11 +229,11 @@ layout: sales
               </thead>
               <tbody>
                 <tr>
-                  <td><span id="order-size">Intet</span> Juletræ</td>
+                  <td><span id="order-size">Intet</span> juletræ</td>
                   <td><span id="order-price-tree">0</span> kr</td>
                 </tr>
                 <tr>
-                  <td><span id="order-foot">&ndash; Med fod</span></td>
+                  <td><span id="order-foot">+ fod</span></td>
                   <td><span id="order-price-foot">50</span> kr</td>
                 </tr>
                 <tr>
