@@ -9,6 +9,7 @@ var staticViewEndpoint = require("../staticViewEndpoint.js");
 var adminManagementApp = require("./manage/app.js");
 var createAdminUpdateTableIfNotExists = require("./createAdminUpdateTableIfNotExists.js");
 var emailEndpoint = require("./send-email/endpoint.js");
+var salesStatsApp = require("./sales-stats/app.js");
 
 function createAdminApp(pool, mailer) {
     var app = express();
@@ -22,6 +23,8 @@ function createAdminApp(pool, mailer) {
     app.get("/email", authenticate(pool), staticViewEndpoint("admin/send-email/form.html"));
     app.post("/email", authenticate(pool), emailEndpoint(pool, mailer));
     app.get("/email/success", authenticate(pool), staticViewEndpoint("admin/send-email/success.html"));
+    
+    app.use("/sales-stats", authenticate(pool), salesStatsApp(pool));
     
     return app;
 }

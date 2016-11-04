@@ -1,0 +1,160 @@
+---
+layout: oldstyle
+---
+<div class="floaty-content-box">
+    <a href="/admin">Tilbage til administratoroversigten</a>
+    <style type="text/css" scoped>
+        .stats-box {
+            display: inline-block;
+            border: 1px solid grey;
+            padding: 15px 20px;
+            margin: 10px;
+            text-align: center;
+            max-width: 270px;
+            width: 100%;
+            background: white;
+        }
+        .stats-box-title {
+            color: grey;
+        }
+        .stats-box-value {
+            font-size: 2em;
+        }
+        
+        .sales-data {
+            border-collapse: collapse;
+            border: 1px solid grey;
+            width: 100%;
+        }
+        .sales-data th, .sales-data td {
+            border: 1px solid grey;
+        }
+        .sales-data td {
+            padding: 8px 16px;
+        }
+        .sales-data tbody {
+            font-size: 0.9em;
+        }
+        .more-data-row {
+            background: rgba(0,0,0,0.1);
+        }
+        .more-data-row.noshow {
+            display: none;
+        }
+        .sales-data thead {
+            border-bottom: 2px solid grey;
+            background:rgba(255,255,255,0.8);
+        }
+        .sales-data-date-field {
+            text-align: center;
+            font-size: 0.85em;
+            color: grey;
+        }
+        .sales-data-amount-field {
+            text-align: right;
+        }
+        .sales-data-state-field {
+            text-align: center;
+            font-family: monospace;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .sales-data-state-field-started {
+            color: orange;
+        }
+        .sales-data-state-field-failed {
+            color: red;
+        }
+        .sales-data-state-field-completed {
+            color: green;
+        }
+        
+        .databox {
+            display: inline-block;
+            width: 100%;
+            max-width: 300px;
+            padding: 0 7px;
+            vertical-align: top;
+            overflow-x: scroll;
+        }
+        .databox pre {
+            font-family: monospace;
+            font-size: 0.8em;
+        }
+        .click-to-see-more {
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+    <h1>Salgsstatistik</h1>
+    <div class="stats-box">
+        <div class="stats-box-title">Folk har betalt os...</div>
+        <div class="stats-box-value">{{ revenue }} DKK</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-title">Indtægt efter moms</div>
+        <div class="stats-box-value">{{ revenueAfterVat }} DKK</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-title">Overskud</div>
+        <div class="stats-box-value">{{ profit }} DKK</div>
+    </div>
+    
+    <h2>Salgsoversigt</h2>
+    <table class="sales-data">
+        <thead>
+            <tr>
+                <th>Sidste ændring</th>
+                <th>Køber</th>
+                <th>Email</th>
+                <th>Beløb</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ #sales }}
+            <tr class="overview-row">
+                <td class="sales-data-date-field">{{ last_state_change }}</td>
+                <td>{{ customer_name }}</td>
+                <td>{{ customer_email }}</td>
+                <td class="sales-data-amount-field">{{ amount }} DKK</td>
+                <td class="sales-data-state-field sales-data-state-field-{{ state }}">{{ state }}</td>
+                <td class="click-to-see-more" data-id="{{ id }}">+++</td>
+            </tr>
+            <tr class="more-data-row noshow" id="more-data-for-{{ id }}">
+                <td colspan="1000">
+                    <div class="databox">
+                        <strong>payment_started.data:</strong><br>
+                        <pre>{{ payment_started_data }}</pre>
+                    </div>
+                    <div class="databox">
+                        <strong>payment_failed.data:</strong><br>
+                        <pre>{{ payment_failed_data }}</pre>
+                    </div>
+                    <div class="databox">
+                        <strong>payment_completed.data</strong><br>
+                        <pre>{{ payment_completed_data }}</pre>
+                    </div>
+                </td>
+            </tr>
+            {{ /sales }}
+        </tbody>
+    </table>
+    <script>
+        Array.prototype.forEach.call(document.querySelectorAll(".click-to-see-more"), (btn) => {
+            var shown = false;
+            var moreData = document.querySelector("#more-data-for-" + btn.dataset.id);
+            btn.addEventListener("click", (e) => {
+                if(shown) {
+                    moreData.classList = "more-data-row noshow";
+                    btn.innerText = "+++";
+                }
+                else {
+                    moreData.classList = "more-data-row";
+                    btn.innerText = "---";
+                }
+                shown = !shown;
+            });
+        });
+    </script>
+</div>
