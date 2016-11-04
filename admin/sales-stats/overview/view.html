@@ -35,8 +35,11 @@ layout: oldstyle
         .sales-data tbody {
             font-size: 0.9em;
         }
-        .sales-data tbody tr:nth-child(2n) {
-            background: rgba(255,255,255,0.8);
+        .more-data-row {
+            background: rgba(0,0,0,0.1);
+        }
+        .more-data-row.noshow {
+            display: none;
         }
         .sales-data thead {
             border-bottom: 2px solid grey;
@@ -64,6 +67,23 @@ layout: oldstyle
         }
         .sales-data-state-field-completed {
             color: green;
+        }
+        
+        .databox {
+            display: inline-block;
+            width: 100%;
+            max-width: 300px;
+            padding: 0 7px;
+            vertical-align: top;
+            overflow-x: scroll;
+        }
+        .databox pre {
+            font-family: monospace;
+            font-size: 0.8em;
+        }
+        .click-to-see-more {
+            text-align: center;
+            cursor: pointer;
         }
     </style>
     <h1>Salgsstatistik</h1>
@@ -93,14 +113,48 @@ layout: oldstyle
         </thead>
         <tbody>
             {{ #sales }}
-            <tr>
+            <tr class="overview-row">
                 <td class="sales-data-date-field">{{ last_state_change }}</td>
                 <td>{{ customer_name }}</td>
                 <td>{{ customer_email }}</td>
                 <td class="sales-data-amount-field">{{ amount }} DKK</td>
                 <td class="sales-data-state-field sales-data-state-field-{{ state }}">{{ state }}</td>
+                <td class="click-to-see-more" data-id="{{ id }}">+++</td>
+            </tr>
+            <tr class="more-data-row noshow" id="more-data-for-{{ id }}">
+                <td colspan="1000">
+                    <div class="databox">
+                        <strong>payment_started.data:</strong><br>
+                        <pre>{{ payment_started_data }}</pre>
+                    </div>
+                    <div class="databox">
+                        <strong>payment_failed.data:</strong><br>
+                        <pre>{{ payment_failed_data }}</pre>
+                    </div>
+                    <div class="databox">
+                        <strong>payment_completed.data</strong><br>
+                        <pre>{{ payment_completed_data }}</pre>
+                    </div>
+                </td>
             </tr>
             {{ /sales }}
         </tbody>
     </table>
+    <script>
+        Array.prototype.forEach.call(document.querySelectorAll(".click-to-see-more"), (btn) => {
+            var shown = false;
+            var moreData = document.querySelector("#more-data-for-" + btn.dataset.id);
+            btn.addEventListener("click", (e) => {
+                if(shown) {
+                    moreData.classList = "more-data-row noshow";
+                    btn.innerText = "+++";
+                }
+                else {
+                    moreData.classList = "more-data-row";
+                    btn.innerText = "---";
+                }
+                shown = !shown;
+            });
+        });
+    </script>
 </div>

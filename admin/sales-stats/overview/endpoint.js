@@ -41,7 +41,7 @@ function getSalesStatsOverview(pool, callback) {
                     customer_name: event.data.customerInfo.billingAddress.name,
                     customer_email: event.data.customerInfo.email,
                     amount: event.data.amount,
-                    payment_started_data: event.data
+                    payment_started_data: JSON.stringify(event.data, null, 2)
                 });
             }
             if(event.type == "payment_failed") {
@@ -51,7 +51,7 @@ function getSalesStatsOverview(pool, callback) {
                 }
                 sale.state = "failed";
                 sale.last_state_change = event.happened_at.toISOString();
-                sale.payment_failed_data = event.data;
+                sale.payment_failed_data = JSON.stringify(event.data, null, 2);
             }
             if(event.type == "payment_completed") {
                 var sale = sales.find(sale => sale.id == event.id);
@@ -60,7 +60,7 @@ function getSalesStatsOverview(pool, callback) {
                 }
                 sale.state = "completed";
                 sale.last_state_change = event.happened_at.toISOString();
-                sale.payment_completed_data = event.data;
+                sale.payment_completed_data = JSON.stringify(event.data, null, 2);
             }
         });
         
