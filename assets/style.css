@@ -512,7 +512,7 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
 }
 @media(max-width:600px){
   .trees .tree-size-container {
-    width: 50%;
+    width: 100%;
     margin-bottom: 10px;
   }
   .trees .tree-size-container .fa-tree {
@@ -524,10 +524,6 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
   .tree-size h4 {
     margin-top: 0;
   }
-}
-.tree .tree-size ul {
-  list-style: none;
-  padding: 0;
 }
 .trees .tree-size ul li:first-of-type {
   font-weight: 600;
@@ -542,13 +538,26 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
   padding: 0;
   margin: 0;
   color: black;
-  background: white;
+  background: rgba(171, 220, 183, 1);
 }
 .tree-size ul li {
   padding: 10px 0;
 }
 .tree-size ul li:nth-child(odd) {
   background: #eee;
+}
+@media(max-width: 600px){
+  .trees .tree-size ul {
+    background: inherit;
+    color: white;
+  }
+  .tree-size ul li {
+    padding: 0;
+    padding-top: 10px;
+  }
+  .tree-size ul li:nth-child(odd) {
+    background: inherit;
+  }
 }
 .tree-size a.btn {
   padding: 6px 12px;
@@ -556,27 +565,11 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
   font-weight: 600;
   background: transparent;
 }
-.tree .tree-size ul {
-  list-style: none;
-  padding: 0;
-}
-.trees .tree-size h4 {
-  background: #306f3f;
-  padding: 10px;
-  margin-bottom: 0;
-}
-.trees .tree-size ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  color: black;
-  background: white;
-}
-.tree-size ul li {
-  padding: 10px 0;
-}
-.tree-size ul li:nth-child(odd) {
-  background: #eee;
+@media(max-width: 600px){
+  .tree-size a.btn {
+    font-size: 2em;
+    margin-top: 10px;
+  }
 }
 
 .sales-options {
