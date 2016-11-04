@@ -80,8 +80,18 @@ layout: sales
 
           <div class="option pickup">
             <h3>Levering</h3>
-            <p>Vi leverer i Storkøbenhavn. Tjek <a href="#about">postnumrene, vi leverer til</a>, for at se om du kan få leveret.</p>
-            <p>Levering sker mellem d. 10. og 22. december, for så holder træet hele julen.</p>
+            <p>
+                Vi leverer i Storkøbenhavn.
+                Tjek <a href="#about">postnumrene, vi leverer til</a>, for at se om du kan få leveret.
+            </p>
+            <p>
+                Levering sker mellem d. 10. og 22. december, for så holder træet hele julen.
+                Du får en email når vi fastsætter din leveringsdato.
+                Vi forsøger at levere om eftermiddagen, hvor du er hjemme, og du får en SMS på dagen, når vi er på vej.
+            </p>
+            <p>
+                Hvis du har særlige ønsker til leveringstidspunkt, kan du skrive det i kommentarfeltet nedenfor.
+            </p>
             {{^pickUpLocations.length}}
               <p>Levering koster <strong>{{ deliveryPrice }} kr</strong></p>
             {{/pickUpLocations.length}}
