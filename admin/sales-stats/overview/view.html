@@ -1,0 +1,35 @@
+---
+layout: oldstyle
+---
+<div class="floaty-content-box">
+    <style type="text/css" scoped>
+        .stats-box {
+            display: inline-block;
+            border: 1px solid grey;
+            padding: 15px 20px;
+            margin: 10px;
+            text-align: center;
+            max-width: 270px;
+            width: 100%;
+        }
+        .stats-box-title {
+            color: grey;
+        }
+        .stats-box-value {
+            font-size: 2em;
+        }
+    </style>
+    <h1>Salgsstatistik</h1>
+    <div class="stats-box">
+        <div class="stats-box-title">Folk har betalt os...</div>
+        <div class="stats-box-value">{{ revenue }} DKK</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-title">Indtægt efter moms</div>
+        <div class="stats-box-value">{{ revenueAfterVat }} DKK</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-title">Overskud</div>
+        <div class="stats-box-value">{{ profit }} DKK</div>
+    </div>
+</div>
