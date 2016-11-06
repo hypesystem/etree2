@@ -10,6 +10,8 @@ var uuid = require("uuid");
 //TODO: ensure that database calls happen in-order, so several declares can happen
 //  and they happen in correct order. If a project call happens it should happen
 //  after the declares queued before.
+//TODO: for each db call do exponential backoff 5 retries if it fails, then log
+//      failure and add to error queue or something. Then try the rest.
 
 function Events(pool) {
     var eventTypes = [];
@@ -45,8 +47,7 @@ function declare(pool, eventTypes, name, options) {
         if(error) {
             return console.error("Failed to ensure " + name + " event table", error);
         }
-        // ensure the table exists!
-        //TODO: what if the event type changes and should no longer have data or similar?
+        //TODO: what if the event type changes and should no longer have data or similar? Versioning of some sort?
         eventTypes.push(options);
     });
 }
@@ -87,6 +88,7 @@ function send(pool, eventTypes, type, options, callback) {
 
 function project(pool, eventTypes, sourceEventTypes, projectionType, projector, callback) {
     //TODO: if projection is already set up, skip!
+    //      basically all the performance enhancement (caching etc) is yet to be done
     //TODO: except if this is a new projector. Test by saving a projectorHash in db.
     //      in that case, rerun all projections of this type.
     if(!Array.isArray(sourceEventTypes)) {
