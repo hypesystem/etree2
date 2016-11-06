@@ -64,7 +64,6 @@ function send(pool, eventTypes, type, options, callback) {
     if(!eventType) {
         return callback(new Error("Unknown event type name " + type + ", cannot send event."));
     }
-    console.log("Sending to event type", eventType);
     if(eventType.includeData) {
         var sql = createEventEntryWithDataSql;
         sql = sql.replace(/\{\{table_name\}\}/g, type);

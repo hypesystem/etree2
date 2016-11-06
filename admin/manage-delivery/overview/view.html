@@ -27,11 +27,16 @@ layout: oldstyle
         </thead>
         <tbody>
             {{ #deliverists }}
+            <form method="post" action="/admin/delivery/deliverist/{{ id }}">
             <tr>
-                <td>{{ username }}</td>
-                <td>{{ name }}</td>
-                <td><a href="/admin/delivery/deliverist/{{ id }}/delete">Slet</a></td>
+                <td><input type="text" name="username" value="{{ username }}"></td>
+                <td><input type="text" name="name" value="{{ name }}"></td>
+                <td>
+                    <button type="submit">Opdater</button>
+                    <a href="/admin/delivery/deliverist/{{ id }}/delete">Slet</a>
+                </td>
             </tr>
+            </form>
             {{ /deliverists }}
         </tbody>
     </table>
