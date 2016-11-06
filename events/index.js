@@ -25,19 +25,22 @@ function Events(pool) {
 }
 
 function declare(pool, eventTypes, name, options) {
-    options = options || {
-        identifier: {
+    options = options || {};
+    if(!options.identifier) {
+        options.identifier = {
             name: "id",
             datatype: "uuid"
-        },
-        includeData: true
-    };
+        };
+    }
+    if(typeof options.includeData == "undefined") {
+        options.includeData = true;
+    }
     options.type = name;
     var sql = options.includeData ? ensureEventTableWithDataSql : ensureEventTableWithoutDataSql;
     //TODO: replace replaces here with mustache render?
     sql = sql.replace(/\{\{table_name\}\}/g, name);
     sql = sql.replace(/\{\{identifier_name\}\}/g, options.identifier.name);
-    sql = sql.replace(/\{\{identifier_type\}\}/, options.identifier.datatype);
+    sql = sql.replace(/\{\{identifier_type\}\}/g, options.identifier.datatype);
     pool.query(sql, (error) => {
         if(error) {
             return console.error("Failed to ensure " + name + " event table", error);
@@ -60,11 +63,12 @@ function send(pool, eventTypes, type, options, callback) {
     if(!eventType) {
         return callback(new Error("Unknown event type name " + type + ", cannot send event."));
     }
+    console.log("Sending to event type", eventType);
     if(eventType.includeData) {
         var sql = createEventEntryWithDataSql;
         sql = sql.replace(/\{\{table_name\}\}/g, type);
         sql = sql.replace(/\{\{identifier_name\}\}/g, eventType.identifier.name);
-        sql = sql.replace(/\{\{identifier_type\}\}/, eventType.identifier.datatype);
+        sql = sql.replace(/\{\{identifier_type\}\}/g, eventType.identifier.datatype);
         return pool.query(sql, [
             identifier,
             JSON.stringify(data),
@@ -74,8 +78,8 @@ function send(pool, eventTypes, type, options, callback) {
     var sql = createEventEntryWithoutDataSql;
     sql = sql.replace(/\{\{table_name\}\}/g, type);
     sql = sql.replace(/\{\{identifier_name\}\}/g, eventType.identifier.name);
-    sql = sql.replace(/\{\{identifier_type\}\}/, eventType.identifier.datatype);
-    pool.query(createEventEntryWithoutDataSql, [
+    sql = sql.replace(/\{\{identifier_type\}\}/g, eventType.identifier.datatype);
+    pool.query(sql, [
         identifier,
         new Date().toISOString()
     ], callback);
@@ -83,6 +87,8 @@ function send(pool, eventTypes, type, options, callback) {
 
 function project(pool, eventTypes, sourceEventTypes, projectionType, projector, callback) {
     //TODO: if projection is already set up, skip!
+    //TODO: except if this is a new projector. Test by saving a projectorHash in db.
+    //      in that case, rerun all projections of this type.
     if(!Array.isArray(sourceEventTypes)) {
         sourceEventTypes = [ sourceEventTypes ];
     }
@@ -96,7 +102,7 @@ function project(pool, eventTypes, sourceEventTypes, projectionType, projector, 
                 return next(error);
             }
             var events = result.rows.map(row => {
-                var data = row.data;
+                var data = row.data || {};
                 data.type = sourceEventType;
                 data[eventType.identifier.name] = row[eventType.identifier.name];
                 data.happened_at = row.happened_at;
@@ -127,6 +133,7 @@ function project(pool, eventTypes, sourceEventTypes, projectionType, projector, 
             if(error) {
                 return callback(error);
             }
+            //TODO: Actually save projections
             callback(null, projections);
         });
     });

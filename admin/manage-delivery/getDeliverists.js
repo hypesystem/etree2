@@ -1,7 +1,16 @@
 function getDeliverists(events, callback) {
-    events.project("deliverist_created", "deliverist", (event, picker, callback) => {
+    events.project([ "deliverist_created", "deliverist_deleted" ], "deliverist", (event, picker, callback) => {
+        if(event.type == "deliverist_deleted") {
+            return picker(event.id, (state, saver) => {
+                state.deleted = true;
+                state.deleted_at = event.happened_at;
+                saver(state);
+                callback();
+            });
+        }
         event.created_at = event.happened_at;
         delete event.happened_at;
+        delete event.type;
         picker(event.id, (state, saver) => {
             saver(event);
             callback();
@@ -14,7 +23,7 @@ function getDeliverists(events, callback) {
         Object.keys(projections).forEach(id => {
             result.push(projections[id]);
         });
-        callback(null, result);
+        callback(null, result.filter(x => !x.deleted));
     });
 }
 

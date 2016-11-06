@@ -22,6 +22,7 @@ layout: oldstyle
             <tr>
                 <th>Brugernavn</th>
                 <th>Navn</th>
+                <th>Handling</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@ layout: oldstyle
             <tr>
                 <td>{{ username }}</td>
                 <td>{{ name }}</td>
+                <td><a href="/admin/delivery/deliverist/{{ id }}/delete">Slet</a></td>
             </tr>
             {{ /deliverists }}
         </tbody>
