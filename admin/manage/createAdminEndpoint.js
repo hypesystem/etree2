@@ -27,7 +27,7 @@ function createAdminEndpoint(pool, req, res) {
             console.error("Failed to get admins", error);
             return res.fail(500);
         }
-        var otherUsersUsernames = admins.filter(admin => admin.id != req.body.id).map(admin => admin.username);
+        var otherUsersUsernames = admins.map(admin => admin.username);
         if(otherUsersUsernames.includes(username)) {
             return res.fail(400, "Du kan ikke skifte til et brugernavn der allerede er i brug.");
         }
