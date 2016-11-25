@@ -4,42 +4,42 @@
             "name": "Mikro",
             "minHeight": 50,
             "maxHeight": 75,
-            "salesLimit": null,
+            "salesLimit": 40,
             "price": 100
         },
         {
             "name": "Mini",
             "minHeight": 75,
             "maxHeight": 110,
-            "salesLimit": null,
+            "salesLimit": 75,
             "price": 125
         },
         {
             "name": "Lille",
             "minHeight": 110,
             "maxHeight": 150,
-            "salesLimit": null,
+            "salesLimit": 100,
             "price": 180
         },
         {
             "name": "Standard",
             "minHeight": 150,
             "maxHeight": 200,
-            "salesLimit": null,
+            "salesLimit": 150,
             "price": 240
         },
         {
             "name": "Stor",
             "minHeight": 200,
             "maxHeight": 250,
-            "salesLimit": null,
+            "salesLimit": 75,
             "price": 340
         },
         {
             "name": "Kæmpe",
             "minHeight": 250,
             "maxHeight": 300,
-            "salesLimit": null,
+            "salesLimit": 20,
             "price": 430
         }
     ],
