@@ -12,7 +12,8 @@
             "minHeight": 75,
             "maxHeight": 110,
             "salesLimit": 75,
-            "price": 125
+            "price": 50,
+            "highlight": true
         },
         {
             "name": "Lille",
