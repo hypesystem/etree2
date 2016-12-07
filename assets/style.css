@@ -505,6 +505,9 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
   cursor: pointer;
   overflow: hidden;
 }
+.trees .tree-size-highlighted {
+  box-shadow: -5px -5px 0 rgb(243, 156, 18) inset, -5px 5px 0 rgb(243, 156, 18) inset, 5px 5px 0 rgb(243, 156, 18) inset, 5px -5px 0 rgb(243, 156, 18) inset;
+}
 .trees .tree-size:hover {
   background: rgb(70, 140, 87);
 }
@@ -537,6 +540,9 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
   padding: 10px;
   margin-bottom: 0;
 }
+.trees .tree-size-highlighted h4 {
+    background: rgb(243, 156, 18);
+}
 .trees .tree-size ul {
   list-style: none;
   padding: 0;
@@ -568,6 +574,9 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
   margin-top: 20px;
   font-weight: 600;
   background: transparent;
+}
+.tree-size-highlighted a.btn {
+  background: rgb(243, 156, 18);
 }
 @media(max-width: 600px){
   .tree-size a.btn {

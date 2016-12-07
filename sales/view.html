@@ -45,7 +45,7 @@ layout: sales
           {{#treeSizes}}
           <input id="size-{{name}}" class="tree-size-input" type="radio" name="tree-size" value="{{name}}" required />
           <label for="size-{{name}}" class="tree-size-container">
-            <div class="tree-size">
+            <div class="tree-size {{#highlight}}tree-size-highlighted{{/highlight}}">
               <i class="fa fa-tree tree-icon-{{name}}" aria-hidden="true"></i>
               <h4>{{name}}</h4>
               <ul>
