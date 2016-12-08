@@ -60,9 +60,24 @@ layout: sales
           {{/treeSizes}}
 
         </section>
-
-        <section id="sales-options" class="sales-options">
-          <div class="option">
+        
+        <section id="quick-tree-options" class="checkbox-option-list">
+            <h3>Tilvalg</h3>
+            <div class="listed-option">
+                <label class="control control--checkbox">
+                    Jeg vil gerne have en fod på træet med (+50 kr)
+                    <input type="checkbox" id="tree-foot" name="tree-foot" value="yes" />
+                    <div class="control__indicator"></div>
+                </label>
+            </div>
+            <div class="listed-option">
+                <label class="control control--checkbox">
+                    Jeg vil gerne have træet hentet igen efter jul, så jeg ikke selv skal skaffe det af (+200 kr)
+                    <input type="checkbox" id="tree-disposal" name="tree-disposal" value="yes" />
+                    <div class="control__indicator"></div>
+                </label>
+            </div>
+          <!-- div class="option">
             <h3>Juletræsfod</h3>
             <p>Skal vi levere træet med en fod, så du ikke selv skal tænke på det?</p>
             <div class="control-group">
@@ -75,8 +90,24 @@ layout: sales
                 <div class="control__indicator"></div>
               </label>
             </div>
-          </div>
+          </div -->
+          <!-- div class="option">
+              <h3>Efter jul</h3>
+              <p>Vi kan hente træet igen efter jul, så du er fri for selv at skille dig af med det.</p>
+              <div class="control-group">
+                <label class="control control--radio">Jeg kommer selv af med træet
+                  <input type="radio" id="disposal-false" value="no" name="tree-disposal" checked="true" />
+                  <div class="control__indicator"></div>
+                </label>
+                <label class="control control--radio">Hent gerne træet efter jul (+200 kr)
+                  <input type="radio" id="disposal-true" value="yes" name="tree-disposal" />
+                  <div class="control__indicator"></div>
+                </label>
+              </div>
+            </div -->
+        </section>
 
+        <section id="sales-options" class="sales-options">
           <div class="option pickup">
             <h3>Levering</h3>
             <p>
@@ -126,21 +157,6 @@ layout: sales
               {{/pickUpLocations}}
 
               {{/pickUpLocations.length}}
-            </div>
-
-            <div class="option">
-              <h3>Efter jul</h3>
-              <p>Vi kan hente træet igen efter jul, så du er fri for selv at skille dig af med det.</p>
-              <div class="control-group">
-                <label class="control control--radio">Jeg kommer selv af med træet
-                  <input type="radio" id="disposal-false" value="no" name="tree-disposal" checked="true" />
-                  <div class="control__indicator"></div>
-                </label>
-                <label class="control control--radio">Hent gerne træet efter jul (+200 kr)
-                  <input type="radio" id="disposal-true" value="yes" name="tree-disposal" />
-                  <div class="control__indicator"></div>
-                </label>
-              </div>
             </div>
 
         </section>
@@ -308,15 +324,13 @@ layout: sales
   {{#treeSizes}}
     var treeSizeInput = document.querySelector("#size-{{name}}");
     treeSizeInput.addEventListener('click', function(){treeSizeForOrder('{{name}}','{{price}}')}, false);
-    treeSizeInput.addEventListener('click', function(){scrolling('sales-options')}, false);
+    treeSizeInput.addEventListener('click', function(){scrolling('quick-tree-options')}, false);
   {{/treeSizes}}
 
-  document.querySelector("#tree-foot-true").addEventListener('click', function(){footSizeForOrder(true)}, false);
-  document.querySelector("#tree-foot-false").addEventListener('click', function(){footSizeForOrder(false)}, false);
+  document.querySelector("#tree-foot").addEventListener('click', function(){footSizeForOrder(this.checked)}, false);
   // document.querySelector("#pickup-false").addEventListener('click', function(){checkPickup()}, false);
   // document.querySelector("#pickup-true").addEventListener('click', function(){checkPickup()}, false);
-  document.querySelector("#disposal-true").addEventListener('click', function(){afterChristmasOrder(true)}, false);
-  document.querySelector("#disposal-false").addEventListener('click', function(){afterChristmasOrder(false)}, false);
+  document.querySelector("#tree-disposal").addEventListener('click', function(){afterChristmasOrder(this.checked)}, false);
   document.querySelector("#delivery-checkbox").addEventListener('click', function(){checkDelivery()}, false);
 
   function checkPickup() {
