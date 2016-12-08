@@ -4,35 +4,35 @@
             "name": "Mikro",
             "minHeight": 50,
             "maxHeight": 75,
-            "salesLimit": 40,
+            "salesLimit": null,
             "price": 100
         },
         {
             "name": "Mini",
             "minHeight": 75,
             "maxHeight": 110,
-            "salesLimit": 75,
+            "salesLimit": null,
             "price": 125
         },
         {
             "name": "Lille",
             "minHeight": 110,
             "maxHeight": 150,
-            "salesLimit": 100,
+            "salesLimit": null,
             "price": 180
         },
         {
             "name": "Standard",
             "minHeight": 150,
             "maxHeight": 200,
-            "salesLimit": 150,
+            "salesLimit": null,
             "price": 240
         },
         {
             "name": "Stor",
             "minHeight": 200,
             "maxHeight": 250,
-            "salesLimit": 75,
+            "salesLimit": null,
             "price": 340
         },
         {
