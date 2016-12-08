@@ -99,9 +99,13 @@ h3.subline {
   margin-bottom: 10px;
 }
 .banner-container .btn {
+  width: 156px;
+  text-align: center;
   margin-top: 25px;
   position: absolute;
   bottom: -26px;
+  left: calc(50% - 78px);
+  box-sizing: border-box;
 }
 .banner-container .etree-presents {
   margin: 0;
