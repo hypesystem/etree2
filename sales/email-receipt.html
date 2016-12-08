@@ -19,11 +19,6 @@ layout: email
             Ordredato {{ orderDate }}
         </td>
     </tr>
-    <tr>
-      <td>
-        Forventet levering mellem <strong>d. 10. og 20. december</strong>.
-      </td>
-    </tr>
 </table>
 <table style="margin: 0 50px; font-size: 12px; margin-top: 20px; border-collapse: collapse; width: 450px;">
     {{ #orderLines }}
@@ -46,7 +41,8 @@ layout: email
 </div>
 <!-- TODO: what if pickup location? -->
 <p>
-    Ordren leveres til addressen {{ customer.deliveryAddress.streetAddress }}, {{ customer.deliveryAddress.zip }} {{ customer.deliveryAddress.city }}.
+    Ordren leveres til addressen {{ customer.deliveryAddress.streetAddress }}, {{ customer.deliveryAddress.zip }} {{ customer.deliveryAddress.city }}.<br />
+    Forventet levering mellem <strong>d. 10. og 20. december</strong>.
 </p>
 <p>
     Du kontaktes på email til {{ customer.email }} når leveringsdagen fastlægges{{ #customer.phoneNumber }} og pr SMS til {{ customer.phoneNumber }}, når vi er på vej{{ /customer.phoneNumber }}.
