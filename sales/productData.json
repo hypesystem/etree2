@@ -39,7 +39,7 @@
             "name": "Kæmpe",
             "minHeight": 250,
             "maxHeight": 300,
-            "salesLimit": 20,
+            "salesLimit": null,
             "price": 430
         }
     ],
