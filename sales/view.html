@@ -64,7 +64,7 @@ layout: sales
           {{/treeSizes}}
 
         </section>
-        
+
         <section id="quick-tree-options" class="checkbox-option-list">
             <h3>Tilvalg</h3>
             <div class="listed-option">
@@ -112,7 +112,7 @@ layout: sales
         </section>
 
         <section id="sales-options" class="sales-options">
-          <div class="option pickup">
+          <div class="pickup">
             <h3>Levering</h3>
             <p>
                 Vi leverer i Storkøbenhavn.
@@ -122,9 +122,6 @@ layout: sales
                 Levering sker mellem d. 10. og 22. december, for så holder træet hele julen.
                 Du får en email når vi fastsætter din leveringsdato.
                 Vi forsøger at levere om eftermiddagen, hvor du er hjemme, og du får en SMS på dagen, når vi er på vej.
-            </p>
-            <p>
-                Hvis du har særlige ønsker til leveringstidspunkt, kan du skrive det i kommentarfeltet nedenfor.
             </p>
             {{^pickUpLocations.length}}
               <p class="underline">Levering koster <strong>{{ deliveryPrice }} kr</strong></p>
@@ -247,6 +244,9 @@ layout: sales
             <input id="phone" name="contact-phone" type="tel" placeholder="+45 12 34 56 78" />
             <label for="comments">Kommentarer <span class="label-subtext">(valgfri)</span></label>
             <textarea id="comments" name="comments" rows="3" cols="50"></textarea>
+            <p>
+                Hvis du har særlige ønsker til leveringstidspunkt, kan du skrive det i kommentarfeltet ovenfor.
+            </p>
           </div>
           <div class="order-summary">
             <p><strong>Ordreoversigt</strong></p>
