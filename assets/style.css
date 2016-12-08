@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css?family=Montserrat+Alternates:400,700|Source+Sans+Pro:300,400,600,700';
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700';
 @font-face {
     font-family: 'Pacifico-Local';
     src: url('/assets/Pacifico.ttf') format('truetype');
@@ -39,7 +39,6 @@ a:hover {
   background-image: url('/assets/trees/tree10.jpg');
 }
 header {
-    background: rgb(240,240,240);
     padding: 0 5px;
     text-align: center;
 }
@@ -47,7 +46,7 @@ nav {
     display: inline-block;
     width: 100%;
     max-width: 960px;
-    text-align: left;
+    text-align: center;
 }
 nav a {
     text-decoration: none;
@@ -61,19 +60,14 @@ nav a:hover {
     text-decoration: none;
 }
 nav .logo {
-  font-family: 'Pacifico-Local', cursive;
-  font-size: 2em;
-  padding-top: 0;
+  padding: 100px 75px 0 75px;
+  margin-top: -105px;
+  background: rgba(240,240,240,0.875);
+  height: 75px;
+  border-radius: 50%;
 }
-nav .logo span {
-  font-family: 'Montserrat Alternates', sans-serif;
-}
-nav .logo:hover {
-  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-}
-nav .logo:hover i {
-  color: #306f3f;
-  text-shadow: none;
+nav .logo img {
+  height: 75px;
 }
 h1 {
   font-family: 'Pacifico-Local', cursive;
