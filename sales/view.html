@@ -5,8 +5,6 @@ layout: sales
   <div class="head-text">
     <h1 class="headline">Køb Københavns <span>billigste</span> juletræ nu!</h1>
     <h3 class="subline">Høj kvalitet, dansk groet, leveres til døren.</h3>
-  </div>
-  <div>
     <a href="#sales" class="btn large" data-scroll>Køb nu</a>
   </div>
 </div>
@@ -51,7 +49,7 @@ layout: sales
                 <li>Under {{salesLimit}} tilbage!</li>
                 {{/salesLimit}}
               </ul>
-              <a href="#sales-options" data-scroll class="btn">{{price}} kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
+              <a data-scroll class="btn">{{price}} kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
             </div>
           </label>
           {{/treeSizes}}
@@ -307,7 +305,6 @@ layout: sales
   function scrolling(place) {
     setTimeout(function () {
       var anchor = document.getElementById( place );
-      console.log("this is anchor: ", anchor);
       smoothScroll.animateScroll( anchor );
     }, 250);
   }

@@ -5,7 +5,7 @@
 }
 
 body {
-    background: rgb(77, 152, 95);
+    background: #6ab38c;
     margin: 0;
     display: flex;
     min-height: 100vh;
@@ -61,11 +61,15 @@ nav a:hover {
     text-decoration: none;
 }
 nav .logo {
+  transition: all .3s ease;
   padding: 100px 75px 0 75px;
   margin-top: -105px;
   background: rgba(240,240,240,0.875);
   height: 75px;
   border-radius: 50%;
+}
+nav .logo:hover {
+  transform: scale(1.5);
 }
 nav .logo img {
   height: 75px;
@@ -98,7 +102,8 @@ h3.subline {
   font-weight: 300;
   margin-bottom: 10px;
 }
-.head-text {
+.head-text .btn {
+  margin-top: 25px;
 }
 @media(max-width: 900px){
   h1.headline {
