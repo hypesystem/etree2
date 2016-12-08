@@ -1,20 +1,24 @@
 ---
 layout: sales
 ---
-<div class="prelaunch-container">
-  <div class="head-text">
-    <h1 class="headline">Køb Københavns <span>billigste</span> juletræ nu!</h1>
-    <h3 class="subline">Høj kvalitet, dansk groet, leveres til døren.</h3>
+<div class="banner-container">
+  <p class="etree-presents">etree præsenterer:</p>
+  <h1 class="headline">Få et juletræ leveret til døren</h1>
+  <div class="selling-props">
+    <div class="selling-text">
+      <p>Nemt og miljøvenligt</p>
+      <p>Høj kvalitet</p>
+    </div>
+    <img src="assets/tree-illustration.png" alt="" />
+    <div class="selling-text">
+      <p>Billigste i København</p>
+      <p>God service</p>
+    </div>
   </div>
+  <a href="#sales" class="btn large" data-scroll>Gå i gang</a>
 </div>
-<div class="sign-up-bar">
-    <h2>Salget er startet!</h2>
-    <p>Lige her på siden har du muligheden for nemt og hurtigt at sikre dig et træ til jul.<br />Vi fortsætter salget helt til d. 20/12.</p>
-    <p>Har du spørgsmål, stort eller småt, så skriv gerne til os på <a href="mailto:kontakt@etree.dk">kontakt@etree.dk</a>.</p>
-    <a href="#sales" class="btn large" data-scroll>Køb nu</a>
-</div>
-<div class="sales-container">
 
+<div class="sales-container">
     <span id="start" class="target"><!-- Hidden anchor to close all modals --></span>
     <span id="about" class="target"><!-- Hidden anchor to open adjesting modal container--></span>
     <div class="modal">
@@ -37,7 +41,7 @@ layout: sales
 
     <div id="sales" class="container">
       <form action="/buy" method="post">
-        <h1 class="center-text tree-size-h1">Vælg størrelse</h1>
+        <h1 class="center-text tree-size-h1">Vælg dit træ</h1>
         <p class="center-text">Klik på et træ for at vælge. Alle træerne er Nordmann Ædelgrantræer i høj kvalitet!</p>
 
         <section class="trees">
@@ -54,30 +58,33 @@ layout: sales
                 <li>Under {{salesLimit}} tilbage!</li>
                 {{/salesLimit}}
               </ul>
-              <a href="#sales-options" data-scroll class="btn">{{price}} kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
+              <a data-scroll class="btn">{{price}} kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
             </div>
           </label>
           {{/treeSizes}}
 
         </section>
 
-        <section id="sales-options" class="sales-options">
-          <div class="option">
-            <h3>Juletræsfod</h3>
-            <p>Skal vi levere træet med en fod, så du ikke selv skal tænke på det?</p>
-            <div class="control-group">
-              <label class="control control--radio">Sæt fod på det! (+50 kr)
-                <input type="radio" id="tree-foot-true" name="tree-foot" value="yes" checked="true" />
-                <div class="control__indicator"></div>
-              </label>
-              <label class="control control--radio">Nej tak
-                <input type="radio" id="tree-foot-false" value="no" name="tree-foot" />
-                <div class="control__indicator"></div>
-              </label>
+        <section id="quick-tree-options" class="checkbox-option-list">
+            <h3>Tilvalg</h3>
+            <div class="listed-option">
+                <label class="control control--checkbox">
+                    Jeg vil gerne have en fod på træet med (+50 kr)
+                    <input type="checkbox" id="tree-foot" name="tree-foot" value="yes" />
+                    <div class="control__indicator"></div>
+                </label>
             </div>
-          </div>
+            <div class="listed-option">
+                <label class="control control--checkbox">
+                    Jeg vil gerne have træet hentet igen efter jul, så jeg ikke selv skal skaffe det af (+200 kr)
+                    <input type="checkbox" id="tree-disposal" name="tree-disposal" value="yes" />
+                    <div class="control__indicator"></div>
+                </label>
+            </div>
+        </section>
 
-          <div class="option pickup">
+        <section id="sales-options" class="sales-options">
+          <div class="pickup">
             <h3>Levering</h3>
             <p>
                 Vi leverer i Storkøbenhavn.
@@ -87,9 +94,6 @@ layout: sales
                 Levering sker mellem d. 10. og 22. december, for så holder træet hele julen.
                 Du får en email når vi fastsætter din leveringsdato.
                 Vi forsøger at levere om eftermiddagen, hvor du er hjemme, og du får en SMS på dagen, når vi er på vej.
-            </p>
-            <p>
-                Hvis du har særlige ønsker til leveringstidspunkt, kan du skrive det i kommentarfeltet nedenfor.
             </p>
             {{^pickUpLocations.length}}
               <p class="underline">Levering koster <strong>{{ deliveryPrice }} kr</strong></p>
@@ -127,22 +131,7 @@ layout: sales
 
               {{/pickUpLocations.length}}
             </div>
-
-            <div class="option">
-              <h3>Efter jul</h3>
-              <p>Vi kan hente træet igen efter jul, så du er fri for selv at skille dig af med det.</p>
-              <div class="control-group">
-                <label class="control control--radio">Jeg kommer selv af med træet
-                  <input type="radio" id="disposal-false" value="no" name="tree-disposal" checked="true" />
-                  <div class="control__indicator"></div>
-                </label>
-                <label class="control control--radio">Hent gerne træet efter jul (+200 kr)
-                  <input type="radio" id="disposal-true" value="yes" name="tree-disposal" />
-                  <div class="control__indicator"></div>
-                </label>
-              </div>
-            </div>
-
+          <img class="delivery-illustration" src="assets/delivery-small.png" alt="leverings illustration" />
         </section>
 
         <!-- Handle vouchers from query -->
@@ -227,6 +216,9 @@ layout: sales
             <input id="phone" name="contact-phone" type="tel" placeholder="+45 12 34 56 78" />
             <label for="comments">Kommentarer <span class="label-subtext">(valgfri)</span></label>
             <textarea id="comments" name="comments" rows="3" cols="50"></textarea>
+            <p>
+                Hvis du har særlige ønsker til leveringstidspunkt, kan du skrive det i kommentarfeltet ovenfor.
+            </p>
           </div>
           <div class="order-summary">
             <p><strong>Ordreoversigt</strong></p>
@@ -240,11 +232,11 @@ layout: sales
               <tbody>
                 <tr>
                   <td><span id="order-size">Intet</span> juletræ</td>
-                  <td><span id="order-price-tree">0</span> kr</td>
+                  <td><span id="order-price-tree"></span></td>
                 </tr>
                 <tr>
-                  <td><span id="order-foot">+ fod</span></td>
-                  <td><span id="order-price-foot">50</span> kr</td>
+                  <td><span id="order-foot"></span></td>
+                  <td><span id="order-price-foot"></span></td>
                 </tr>
                 <tr>
                   <td>Levering</td>
@@ -260,7 +252,7 @@ layout: sales
                 </tr>
                 <tr>
                   <td><strong>Total</strong></td>
-                  <td><strong><span id="price-total">0</span> kr</strong></td>
+                  <td><strong><span id="price-total">0 kr</span></strong></td>
               </tbody>
             </table>
           </div>
@@ -277,7 +269,7 @@ layout: sales
   checkDelivery();
 
   var treePrice = 0;
-  var footPrice = {{footPrice}};
+  var footPrice = 0;
   var deliverPrice = {{deliveryPrice}};
   var disposalPrice = 0;
 
@@ -294,7 +286,6 @@ layout: sales
   function scrolling(place) {
     setTimeout(function () {
       var anchor = document.getElementById( place );
-      console.log("this is anchor: ", anchor);
       smoothScroll.animateScroll( anchor );
     }, 250);
   }
@@ -308,15 +299,13 @@ layout: sales
   {{#treeSizes}}
     var treeSizeInput = document.querySelector("#size-{{name}}");
     treeSizeInput.addEventListener('click', function(){treeSizeForOrder('{{name}}','{{price}}')}, false);
-    treeSizeInput.addEventListener('click', function(){scrolling('sales-options')}, false);
+    treeSizeInput.addEventListener('click', function(){scrolling('quick-tree-options')}, false);
   {{/treeSizes}}
 
-  document.querySelector("#tree-foot-true").addEventListener('click', function(){footSizeForOrder(true)}, false);
-  document.querySelector("#tree-foot-false").addEventListener('click', function(){footSizeForOrder(false)}, false);
+  document.querySelector("#tree-foot").addEventListener('click', function(){footSizeForOrder(this.checked)}, false);
   // document.querySelector("#pickup-false").addEventListener('click', function(){checkPickup()}, false);
   // document.querySelector("#pickup-true").addEventListener('click', function(){checkPickup()}, false);
-  document.querySelector("#disposal-true").addEventListener('click', function(){afterChristmasOrder(true)}, false);
-  document.querySelector("#disposal-false").addEventListener('click', function(){afterChristmasOrder(false)}, false);
+  document.querySelector("#tree-disposal").addEventListener('click', function(){afterChristmasOrder(this.checked)}, false);
   document.querySelector("#delivery-checkbox").addEventListener('click', function(){checkDelivery()}, false);
 
   function checkPickup() {
@@ -347,25 +336,25 @@ layout: sales
     treePrice = parseInt(treePrice);
     var total = treePrice + footPrice + deliverPrice + disposalPrice - voucherRebate;
     console.log("TOTAL Price: ",total);
-    document.querySelector("#price-total").innerHTML = total;
+    document.querySelector("#price-total").innerHTML = total + " kr";
   }
 
   function treeSizeForOrder(size, price) {
     var treeSize = size;
     treePrice = price;
     document.querySelector("#order-size").innerHTML = treeSize;
-    document.querySelector("#order-price-tree").innerHTML = price;
+    document.querySelector("#order-price-tree").innerHTML = price + " kr";
     buildOrder();
   }
 
   function footSizeForOrder(foot) {
     if(foot){
-      document.querySelector("#order-foot").innerHTML = "&ndash; med fod";
-      document.querySelector("#order-price-foot").innerHTML = "{{footPrice}}";
+      document.querySelector("#order-foot").innerHTML = "+ fod";
+      document.querySelector("#order-price-foot").innerHTML = "{{footPrice}} kr";
       footPrice = {{footPrice}};
     } else {
-      document.querySelector("#order-foot").innerHTML = "&ndash; uden fod";
-      document.querySelector("#order-price-foot").innerHTML = "0";
+      document.querySelector("#order-foot").innerHTML = "";
+      document.querySelector("#order-price-foot").innerHTML = "";
       footPrice = 0;
     }
     buildOrder();
