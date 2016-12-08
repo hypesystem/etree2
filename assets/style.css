@@ -34,10 +34,10 @@ a:hover {
     bottom: -4px;
     z-index: -1;
     filter: blur(2px);
-    opacity: 0.15;
 }
 .background-sales {
   background-image: url('/assets/trees/tree10.jpg');
+  opacity: 0.15;
 }
 header {
     padding: 0 5px;
@@ -366,7 +366,7 @@ table tr td {
 @media(max-width: 900px){
   .prelaunch-form input {
     width: 100%;
-    tom: 10px;
+    margin-bottom: 10px;
   }
 }
 .pitch .sign-up-bar {
