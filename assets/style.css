@@ -61,15 +61,11 @@ nav a:hover {
     text-decoration: none;
 }
 nav .logo {
-  transition: all .3s ease;
   padding: 100px 75px 0 75px;
   margin-top: -105px;
   background: rgba(240,240,240,0.875);
   height: 75px;
   border-radius: 50%;
-}
-nav .logo:hover {
-  transform: scale(1.5);
 }
 nav .logo img {
   height: 75px;
