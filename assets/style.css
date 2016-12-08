@@ -633,6 +633,15 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
   }
 }
 
+.sales-options, .checkbox-option-list {
+  padding: 0 20px;
+}
+@media(max-width: 900px){
+  .sales-options, .checkbox-option-list {
+    padding: 0px;
+  }
+}
+
 .sales-options {
   display: flex;
   justify-content: center;
@@ -646,6 +655,15 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
 .sales-options .option {
   flex: 1;
   padding: 20px;
+}
+
+.delivery-illustration {
+  margin-top: -40px;
+}
+@media(max-width: 900px) {
+  .delivery-illustration {
+    display: none;
+  }
 }
 
 .pickup-places {
