@@ -1,11 +1,11 @@
-@import 'https://fonts.googleapis.com/css?family=Montserrat+Alternates:400,700|Source+Sans+Pro:300,400,600,700';
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700';
 @font-face {
     font-family: 'Pacifico-Local';
     src: url('/assets/Pacifico.ttf') format('truetype');
 }
 
 body {
-    background: rgb(160, 200, 170);
+    background: #6ab38c;
     margin: 0;
     display: flex;
     min-height: 100vh;
@@ -34,12 +34,12 @@ a:hover {
     bottom: -4px;
     z-index: -1;
     filter: blur(2px);
+    opacity: 0.15;
 }
 .background-sales {
   background-image: url('/assets/trees/tree10.jpg');
 }
 header {
-    background: rgb(240,240,240);
     padding: 0 5px;
     text-align: center;
 }
@@ -47,7 +47,7 @@ nav {
     display: inline-block;
     width: 100%;
     max-width: 960px;
-    text-align: left;
+    text-align: center;
 }
 nav a {
     text-decoration: none;
@@ -61,19 +61,18 @@ nav a:hover {
     text-decoration: none;
 }
 nav .logo {
-  font-family: 'Pacifico-Local', cursive;
-  font-size: 2em;
-  padding-top: 0;
-}
-nav .logo span {
-  font-family: 'Montserrat Alternates', sans-serif;
+  transition: all .3s ease;
+  padding: 100px 75px 0 75px;
+  margin-top: -105px;
+  background: rgba(240,240,240,0.875);
+  height: 75px;
+  border-radius: 50%;
 }
 nav .logo:hover {
-  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+  transform: scale(1.5);
 }
-nav .logo:hover i {
-  color: #306f3f;
-  text-shadow: none;
+nav .logo img {
+  height: 75px;
 }
 h1 {
   font-family: 'Pacifico-Local', cursive;
@@ -103,10 +102,14 @@ h3.subline {
   font-weight: 300;
   margin-bottom: 10px;
 }
-.head-text {
-  padding: 50px;
-  background: rgb(250,250,250);
-  border: 5px solid #e2e2e2;
+.banner-container .btn {
+  margin-top: 25px;
+  position: absolute;
+  bottom: -26px;
+}
+.banner-container .etree-presents {
+  margin: 0;
+  font-size: 1.3em;
 }
 @media(max-width: 900px){
   h1.headline {
@@ -114,9 +117,6 @@ h3.subline {
   }
   h3.subline {
     font-size: 1.5em;
-  }
-  .head-text{
-    padding: 20px;
   }
 }
 .underline {
@@ -202,9 +202,10 @@ textarea {
     width: 100%;
   }
 }
-.prelaunch-container {
+.prelaunch-container, .banner-container {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: calc(100vh - 365px);
@@ -217,6 +218,52 @@ textarea {
   .prelaunch-container {
     height: auto;
     min-height: auto;
+  }
+}
+.banner-container {
+  height: auto;
+  color: white;
+  padding: 35px 20px;
+}
+.banner-container .selling-props {
+  width: 100%;
+  max-width: 767px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+@media(max-width: 900px) {
+  .banner-container .selling-props {
+    flex-direction: column;
+  }
+  .banner-container .selling-props .selling-text {
+    order: 2;
+  }
+}
+.banner-container .selling-props * {
+  flex: 1;
+}
+.banner-container .selling-props p {
+  margin: 35px 0;
+  font-weight: 600;
+}
+@media(max-width: 900px) {
+  .banner-container .selling-props p {
+    margin: 10px 0;
+  }
+  .banner-container .selling-props .selling-text:last-of-type p:first-of-type {
+    margin-top: 0;
+  }
+}
+.banner-container .selling-props img {
+  height: 200px;
+  object-fit: contain;
+}
+@media(max-width: 900px) {
+  .banner-container .selling-props img {
+    height: 150px;
   }
 }
 .case p {
@@ -319,7 +366,7 @@ table tr td {
 @media(max-width: 900px){
   .prelaunch-form input {
     width: 100%;
-    margin-bottom: 10px;
+    tom: 10px;
   }
 }
 .pitch .sign-up-bar {
@@ -462,7 +509,7 @@ footer.floaty-content-box {
   margin-bottom: 70px;
 }
 .tree-size-h1 {
-  margin-bottom: 0;
+  margin: 0;
 }
 .trees {
   display: flex;
