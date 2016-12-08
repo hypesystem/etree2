@@ -102,8 +102,12 @@ h3.subline {
   font-weight: 300;
   margin-bottom: 10px;
 }
-.head-text .btn {
+.banner-container .btn {
   margin-top: 25px;
+}
+.banner-container .etree-presents {
+  margin: 0;
+  font-size: 1.1em;
 }
 @media(max-width: 900px){
   h1.headline {
@@ -111,9 +115,6 @@ h3.subline {
   }
   h3.subline {
     font-size: 1.5em;
-  }
-  .head-text{
-    padding: 20px;
   }
 }
 .underline {
@@ -218,8 +219,28 @@ textarea {
   }
 }
 .banner-container {
-  height: 400px;
+  height: auto;
   color: white;
+  padding: 35px 20px;
+}
+.banner-container .selling-props {
+  width: 100%;
+  max-width: 767px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+.banner-container .selling-props * {
+  flex: 1;
+}
+.banner-container .selling-props p {
+  margin: 35px 0;
+  font-weight: 600;
+}
+.banner-container .selling-props img {
+  height: 200px;
+  object-fit: contain;
 }
 .case p {
   font-size: 1.1em;
