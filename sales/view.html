@@ -232,11 +232,11 @@ layout: sales
               <tbody>
                 <tr>
                   <td><span id="order-size">Intet</span> juletræ</td>
-                  <td><span id="order-price-tree">0</span> kr</td>
+                  <td><span id="order-price-tree"></span></td>
                 </tr>
                 <tr>
-                  <td><span id="order-foot">+ fod</span></td>
-                  <td><span id="order-price-foot">50</span> kr</td>
+                  <td><span id="order-foot"></span></td>
+                  <td><span id="order-price-foot"></span></td>
                 </tr>
                 <tr>
                   <td>Levering</td>
@@ -252,7 +252,7 @@ layout: sales
                 </tr>
                 <tr>
                   <td><strong>Total</strong></td>
-                  <td><strong><span id="price-total">0</span> kr</strong></td>
+                  <td><strong><span id="price-total">0 kr</span></strong></td>
               </tbody>
             </table>
           </div>
@@ -269,7 +269,7 @@ layout: sales
   checkDelivery();
 
   var treePrice = 0;
-  var footPrice = {{footPrice}};
+  var footPrice = 0;
   var deliverPrice = {{deliveryPrice}};
   var disposalPrice = 0;
 
@@ -336,25 +336,25 @@ layout: sales
     treePrice = parseInt(treePrice);
     var total = treePrice + footPrice + deliverPrice + disposalPrice - voucherRebate;
     console.log("TOTAL Price: ",total);
-    document.querySelector("#price-total").innerHTML = total;
+    document.querySelector("#price-total").innerHTML = total + " kr";
   }
 
   function treeSizeForOrder(size, price) {
     var treeSize = size;
     treePrice = price;
     document.querySelector("#order-size").innerHTML = treeSize;
-    document.querySelector("#order-price-tree").innerHTML = price;
+    document.querySelector("#order-price-tree").innerHTML = price + " kr";
     buildOrder();
   }
 
   function footSizeForOrder(foot) {
     if(foot){
-      document.querySelector("#order-foot").innerHTML = "&ndash; med fod";
-      document.querySelector("#order-price-foot").innerHTML = "{{footPrice}}";
+      document.querySelector("#order-foot").innerHTML = "+ fod";
+      document.querySelector("#order-price-foot").innerHTML = "{{footPrice}} kr";
       footPrice = {{footPrice}};
     } else {
-      document.querySelector("#order-foot").innerHTML = "&ndash; uden fod";
-      document.querySelector("#order-price-foot").innerHTML = "0";
+      document.querySelector("#order-foot").innerHTML = "";
+      document.querySelector("#order-price-foot").innerHTML = "";
       footPrice = 0;
     }
     buildOrder();
