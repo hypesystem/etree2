@@ -104,10 +104,12 @@ h3.subline {
 }
 .banner-container .btn {
   margin-top: 25px;
+  position: absolute;
+  bottom: -26px;
 }
 .banner-container .etree-presents {
   margin: 0;
-  font-size: 1.1em;
+  font-size: 1.3em;
 }
 @media(max-width: 900px){
   h1.headline {
@@ -230,6 +232,15 @@ textarea {
   justify-content: center;
   align-items: center;
   font-size: 24px;
+  margin-bottom: 25px;
+}
+@media(max-width: 900px) {
+  .banner-container .selling-props {
+    flex-direction: column;
+  }
+  .banner-container .selling-props .selling-text {
+    order: 2;
+  }
 }
 .banner-container .selling-props * {
   flex: 1;
@@ -238,9 +249,22 @@ textarea {
   margin: 35px 0;
   font-weight: 600;
 }
+@media(max-width: 900px) {
+  .banner-container .selling-props p {
+    margin: 10px 0;
+  }
+  .banner-container .selling-props .selling-text:last-of-type p:first-of-type {
+    margin-top: 0;
+  }
+}
 .banner-container .selling-props img {
   height: 200px;
   object-fit: contain;
+}
+@media(max-width: 900px) {
+  .banner-container .selling-props img {
+    height: 150px;
+  }
 }
 .case p {
   font-size: 1.1em;
