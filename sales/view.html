@@ -11,11 +11,11 @@ layout: sales
     </div>
     <img src="assets/tree-illustration.png" alt="" />
     <div class="selling-text">
-      <p>Billigst i København</p>
+      <p>Billigste i København</p>
       <p>God service</p>
     </div>
   </div>
-  <a href="#sales" class="btn large" data-scroll>Køb nu</a>
+  <a href="#sales" class="btn large" data-scroll>Gå i gang</a>
 </div>
 
 <div class="sales-container">
@@ -81,34 +81,6 @@ layout: sales
                     <div class="control__indicator"></div>
                 </label>
             </div>
-          <!-- div class="option">
-            <h3>Juletræsfod</h3>
-            <p>Skal vi levere træet med en fod, så du ikke selv skal tænke på det?</p>
-            <div class="control-group">
-              <label class="control control--radio">Sæt fod på det! (+50 kr)
-                <input type="radio" id="tree-foot-true" name="tree-foot" value="yes" checked="true" />
-                <div class="control__indicator"></div>
-              </label>
-              <label class="control control--radio">Nej tak
-                <input type="radio" id="tree-foot-false" value="no" name="tree-foot" />
-                <div class="control__indicator"></div>
-              </label>
-            </div>
-          </div -->
-          <!-- div class="option">
-              <h3>Efter jul</h3>
-              <p>Vi kan hente træet igen efter jul, så du er fri for selv at skille dig af med det.</p>
-              <div class="control-group">
-                <label class="control control--radio">Jeg kommer selv af med træet
-                  <input type="radio" id="disposal-false" value="no" name="tree-disposal" checked="true" />
-                  <div class="control__indicator"></div>
-                </label>
-                <label class="control control--radio">Hent gerne træet efter jul (+200 kr)
-                  <input type="radio" id="disposal-true" value="yes" name="tree-disposal" />
-                  <div class="control__indicator"></div>
-                </label>
-              </div>
-            </div -->
         </section>
 
         <section id="sales-options" class="sales-options">
@@ -260,11 +232,11 @@ layout: sales
               <tbody>
                 <tr>
                   <td><span id="order-size">Intet</span> juletræ</td>
-                  <td><span id="order-price-tree">0</span> kr</td>
+                  <td><span id="order-price-tree"></span></td>
                 </tr>
                 <tr>
-                  <td><span id="order-foot">+ fod</span></td>
-                  <td><span id="order-price-foot">50</span> kr</td>
+                  <td><span id="order-foot"></span></td>
+                  <td><span id="order-price-foot"></span></td>
                 </tr>
                 <tr>
                   <td>Levering</td>
@@ -280,7 +252,7 @@ layout: sales
                 </tr>
                 <tr>
                   <td><strong>Total</strong></td>
-                  <td><strong><span id="price-total">0</span> kr</strong></td>
+                  <td><strong><span id="price-total">0 kr</span></strong></td>
               </tbody>
             </table>
           </div>
@@ -297,7 +269,7 @@ layout: sales
   checkDelivery();
 
   var treePrice = 0;
-  var footPrice = {{footPrice}};
+  var footPrice = 0;
   var deliverPrice = {{deliveryPrice}};
   var disposalPrice = 0;
 
@@ -364,25 +336,25 @@ layout: sales
     treePrice = parseInt(treePrice);
     var total = treePrice + footPrice + deliverPrice + disposalPrice - voucherRebate;
     console.log("TOTAL Price: ",total);
-    document.querySelector("#price-total").innerHTML = total;
+    document.querySelector("#price-total").innerHTML = total + " kr";
   }
 
   function treeSizeForOrder(size, price) {
     var treeSize = size;
     treePrice = price;
     document.querySelector("#order-size").innerHTML = treeSize;
-    document.querySelector("#order-price-tree").innerHTML = price;
+    document.querySelector("#order-price-tree").innerHTML = price + " kr";
     buildOrder();
   }
 
   function footSizeForOrder(foot) {
     if(foot){
-      document.querySelector("#order-foot").innerHTML = "&ndash; med fod";
-      document.querySelector("#order-price-foot").innerHTML = "{{footPrice}}";
+      document.querySelector("#order-foot").innerHTML = "+ fod";
+      document.querySelector("#order-price-foot").innerHTML = "{{footPrice}} kr";
       footPrice = {{footPrice}};
     } else {
-      document.querySelector("#order-foot").innerHTML = "&ndash; uden fod";
-      document.querySelector("#order-price-foot").innerHTML = "0";
+      document.querySelector("#order-foot").innerHTML = "";
+      document.querySelector("#order-price-foot").innerHTML = "";
       footPrice = 0;
     }
     buildOrder();
