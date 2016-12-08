@@ -54,14 +54,14 @@ layout: sales
                 <li>Under {{salesLimit}} tilbage!</li>
                 {{/salesLimit}}
               </ul>
-              <a class="btn">{{price}} kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
+              <a href="#sales-options" data-scroll class="btn">{{price}} kr<span class="checkmark-icon">&nbsp;&#10003;</span></a>
             </div>
           </label>
           {{/treeSizes}}
 
         </section>
 
-        <section class="sales-options">
+        <section id="sales-options" class="sales-options">
           <div class="option">
             <h3>Juletræsfod</h3>
             <p>Skal vi levere træet med en fod, så du ikke selv skal tænke på det?</p>
@@ -291,8 +291,16 @@ layout: sales
 
   getVoucherModifier();
 
+  function scrolling(place) {
+    setTimeout(function () {
+      var anchor = document.getElementById( place );
+      console.log("this is anchor: ", anchor);
+      smoothScroll.animateScroll( anchor );
+    }, 250);
+  }
+
   var pickupPlaces = document.querySelector(".pickup-places");
-  if(pickupPlaces){
+  if(pickupPlaces) {
     pickupPlaces.style.display = "none";
   }
 
@@ -300,6 +308,7 @@ layout: sales
   {{#treeSizes}}
     var treeSizeInput = document.querySelector("#size-{{name}}");
     treeSizeInput.addEventListener('click', function(){treeSizeForOrder('{{name}}','{{price}}')}, false);
+    treeSizeInput.addEventListener('click', function(){scrolling('sales-options')}, false);
   {{/treeSizes}}
 
   document.querySelector("#tree-foot-true").addEventListener('click', function(){footSizeForOrder(true)}, false);
