@@ -28,6 +28,8 @@ function getSalesStatsOverview(pool, callback) {
         var revenue = 0;
         var sales = [];
         var cost = 0;
+        var numberOfTreesSold = 0;
+        var numberOfFeetSold = 0;
         
         events.forEach(event => {
             // build sales objects
@@ -43,6 +45,7 @@ function getSalesStatsOverview(pool, callback) {
                     customer_email: event.data.customerInfo.email,
                     amount: event.data.amount,
                     cost: product.cost + (includeFoot ? productData.footPrice : 0),
+                    withFoot: includeFoot,
                     payment_started_data: JSON.stringify(event.data, null, 2)
                 });
             }
@@ -67,12 +70,17 @@ function getSalesStatsOverview(pool, callback) {
             
             if(event.type == "payment_completed") {
                 revenue += event.data.amount;
+                numberOfTreesSold++;
                 
                 var sale = sales.find(sale => sale.id == event.id);
                 if(!sale) {
                     console.error("Found a payment_completed record with no payment_started!", event);
                 }
                 cost += sale.cost;
+                
+                if(sale.withFoot) {
+                    numberOfFeetSold++;
+                }
             }
         });
         
@@ -83,7 +91,9 @@ function getSalesStatsOverview(pool, callback) {
             revenue: revenue.toFixed(2),
             revenueAfterVat: revenueAfterVat.toFixed(2),
             profit: (revenueAfterVat - cost).toFixed(2),
-            sales: sales
+            sales: sales,
+            numberOfTreesSold: numberOfTreesSold,
+            numberOfFeetSold: numberOfFeetSold
         });
     });
 }
