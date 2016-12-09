@@ -5,42 +5,48 @@
             "minHeight": 50,
             "maxHeight": 75,
             "salesLimit": null,
-            "price": 100
+            "price": 100,
+            "cost": 50
         },
         {
             "name": "Mini",
             "minHeight": 75,
             "maxHeight": 110,
             "salesLimit": null,
-            "price": 125
+            "price": 125,
+            "cost": 50
         },
         {
             "name": "Lille",
             "minHeight": 110,
             "maxHeight": 150,
             "salesLimit": null,
-            "price": 180
+            "price": 180,
+            "cost": 90
         },
         {
             "name": "Standard",
             "minHeight": 150,
             "maxHeight": 200,
             "salesLimit": null,
-            "price": 240
+            "price": 240,
+            "cost": 125
         },
         {
             "name": "Stor",
             "minHeight": 200,
             "maxHeight": 250,
             "salesLimit": null,
-            "price": 340
+            "price": 340,
+            "cost": 180
         },
         {
             "name": "Kæmpe",
             "minHeight": 250,
             "maxHeight": 300,
             "salesLimit": null,
-            "price": 430
+            "price": 430,
+            "cost": 250
         }
     ],
     "pickUpLocations": [],
@@ -120,6 +126,7 @@
         }
     ],
     "footPrice": 50,
+    "footCost": 40,
     "collectionPrice": 200,
     "deliveryPrice": 100
 }

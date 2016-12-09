@@ -87,6 +87,7 @@ layout: oldstyle
         }
     </style>
     <h1>Salgsstatistik</h1>
+    
     <div class="stats-box">
         <div class="stats-box-title">Folk har betalt os...</div>
         <div class="stats-box-value">{{ revenue }} DKK</div>
@@ -96,8 +97,17 @@ layout: oldstyle
         <div class="stats-box-value">{{ revenueAfterVat }} DKK</div>
     </div>
     <div class="stats-box">
-        <div class="stats-box-title">Overskud</div>
+        <div class="stats-box-title">Overskud (før cykler, etc.)</div>
         <div class="stats-box-value">{{ profit }} DKK</div>
+    </div>
+    
+    <div class="stats-box">
+        <div class="stats-box-title">Træer solgt</div>
+        <div class="stats-box-value">{{ numberOfTreesSold }}</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-title">Fødder solgt</div>
+        <div class="stats-box-value">{{ numberOfFeetSold }}</div>
     </div>
     
     <h2>Salgsoversigt</h2>
