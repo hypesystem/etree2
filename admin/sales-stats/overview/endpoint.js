@@ -2,6 +2,7 @@ var fs = require("fs");
 var path = require("path");
 var overviewView = fs.readFileSync(path.join(__dirname, "view.html")).toString();
 var renderView = require("../../../renderView.js");
+var productData = require("../../../sales/productData.json");
 
 function overviewEndpoint(pool, req, res) {
     getSalesStatsOverview(pool, (error, viewModel) => {
@@ -26,14 +27,14 @@ function getSalesStatsOverview(pool, callback) {
         }
         var revenue = 0;
         var sales = [];
+        var cost = 0;
         
         events.forEach(event => {
-            if(event.type == "payment_completed") {
-                revenue += event.data.amount;
-            }
-            
             // build sales objects
             if(event.type == "payment_started") {
+                var productName = event.data.originalRequest["tree-size"];
+                var product = productData.treeSizes.find(product => product.name == productName);
+                var includeFoot = event.data.originalRequest["tree-foot"] == "yes";
                 sales.push({
                     id: event.id,
                     state: "started",
@@ -41,6 +42,7 @@ function getSalesStatsOverview(pool, callback) {
                     customer_name: event.data.customerInfo.billingAddress.name,
                     customer_email: event.data.customerInfo.email,
                     amount: event.data.amount,
+                    cost: product.cost + (includeFoot ? productData.footPrice : 0),
                     payment_started_data: JSON.stringify(event.data, null, 2)
                 });
             }
@@ -62,14 +64,25 @@ function getSalesStatsOverview(pool, callback) {
                 sale.last_state_change = event.happened_at.toISOString();
                 sale.payment_completed_data = JSON.stringify(event.data, null, 2);
             }
+            
+            if(event.type == "payment_completed") {
+                revenue += event.data.amount;
+                
+                var sale = sales.find(sale => sale.id == event.id);
+                if(!sale) {
+                    console.error("Found a payment_completed record with no payment_started!", event);
+                }
+                cost += sale.cost;
+            }
         });
         
         sales.sort((a,b) => a.last_state_change > b.last_state_change ? -1 : 1); //desc
         
+        var revenueAfterVat = revenue * 0.8;
         callback(null, {
             revenue: revenue.toFixed(2),
-            revenueAfterVat: (revenue * 0.8).toFixed(2),
-            profit: "??.??", //tree + foot costs? bike rental?
+            revenueAfterVat: revenueAfterVat.toFixed(2),
+            profit: (revenueAfterVat - cost).toFixed(2),
             sales: sales
         });
     });
