@@ -28,6 +28,7 @@ function getSalesStatsOverview(pool, callback) {
         var revenue = 0;
         var sales = [];
         var cost = 0;
+        var deliveryIncome = 0;
         var numberOfTreesSold = 0;
         var numberOfFeetSold = 0;
         
@@ -37,6 +38,14 @@ function getSalesStatsOverview(pool, callback) {
                 var productName = event.data.originalRequest["tree-size"];
                 var product = productData.treeSizes.find(product => product.name == productName);
                 var includeFoot = event.data.originalRequest["tree-foot"] == "yes";
+                var includeDelivery = true;
+                var saleCost = product.cost;
+                if(includeFoot) {
+                    saleCost += productData.footPrice;
+                }
+                if(includeDelivery) {
+                    saleCost += productData.deliveryPrice;
+                }
                 sales.push({
                     id: event.id,
                     state: "started",
@@ -44,8 +53,9 @@ function getSalesStatsOverview(pool, callback) {
                     customer_name: event.data.customerInfo.billingAddress.name,
                     customer_email: event.data.customerInfo.email,
                     amount: event.data.amount,
-                    cost: product.cost + (includeFoot ? productData.footPrice : 0),
+                    cost: saleCost,
                     withFoot: includeFoot,
+                    withDelivery: includeDelivery,
                     payment_started_data: JSON.stringify(event.data, null, 2)
                 });
             }
@@ -81,6 +91,9 @@ function getSalesStatsOverview(pool, callback) {
                 if(sale.withFoot) {
                     numberOfFeetSold++;
                 }
+                if(sale.withDelivery) {
+                    deliveryIncome += productData.deliveryPrice;
+                }
             }
         });
         
@@ -91,6 +104,7 @@ function getSalesStatsOverview(pool, callback) {
             revenue: revenue.toFixed(2),
             revenueAfterVat: revenueAfterVat.toFixed(2),
             profit: (revenueAfterVat - cost).toFixed(2),
+            deliveryIncome: (deliveryIncome * 0.8).toFixed(2),
             sales: sales,
             numberOfTreesSold: numberOfTreesSold,
             numberOfFeetSold: numberOfFeetSold
