@@ -41,10 +41,7 @@ function getSalesStatsOverview(pool, callback) {
                 var includeDelivery = true;
                 var saleCost = product.cost;
                 if(includeFoot) {
-                    saleCost += productData.footPrice;
-                }
-                if(includeDelivery) {
-                    saleCost += productData.deliveryPrice;
+                    saleCost += productData.footCost;
                 }
                 sales.push({
                     id: event.id,
@@ -100,11 +97,13 @@ function getSalesStatsOverview(pool, callback) {
         sales.sort((a,b) => a.last_state_change > b.last_state_change ? -1 : 1); //desc
         
         var revenueAfterVat = revenue * 0.8;
+        var deliveryBudget = (deliveryIncome * 0.8);
         callback(null, {
             revenue: revenue.toFixed(2),
             revenueAfterVat: revenueAfterVat.toFixed(2),
-            profit: (revenueAfterVat - cost).toFixed(2),
-            deliveryIncome: (deliveryIncome * 0.8).toFixed(2),
+            cost: cost.toFixed(2),
+            profit: (revenueAfterVat - cost - deliveryBudget).toFixed(2),
+            deliveryIncome: deliveryBudget.toFixed(2),
             sales: sales,
             numberOfTreesSold: numberOfTreesSold,
             numberOfFeetSold: numberOfFeetSold
