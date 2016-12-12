@@ -146,7 +146,9 @@ textarea {
 .floaty-content-box {
     background: rgb(250,250,250);
     box-sizing: border-box;
-    border: 5px solid #e2e2e2;
+    border-top: 5px solid;
+    border-bottom: 5px solid;
+    border-color: #e2e2e2;
     padding: 60px;
     margin: 25px 0;
     box-shadow: 0 0 2px rgba(0,0,0,0.2), 0 3px 2px rgba(0,0,0,0.2);
@@ -165,6 +167,14 @@ textarea {
 }
 .floaty-content-box h1:first-of-type {
   margin-top: 0;
+}
+@media(max-width: 600px) {
+  h1 {
+    font-size: 2em;
+  }
+  #sales h1:first-of-type {
+    margin-top: 40px;
+  }
 }
 .pitch {
   background: rgb(250,250,250);
