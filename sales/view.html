@@ -9,7 +9,7 @@ layout: sales
       <p>Nemt og miljøvenligt</p>
       <p>Høj kvalitet</p>
     </div>
-    <img src="assets/tree-illustration.png" alt="" />
+    <img src="assets/tree-pretty-illustration.png" alt="etree juletræ" />
     <div class="selling-text">
       <p>Billigste i København</p>
       <p>God service</p>
@@ -50,7 +50,9 @@ layout: sales
           <input id="size-{{name}}" class="tree-size-input" type="radio" name="tree-size" value="{{name}}" required />
           <label for="size-{{name}}" class="tree-size-container">
             <div class="tree-size {{#highlight}}tree-size-highlighted{{/highlight}}">
-              <i class="fa fa-tree tree-icon-{{name}}" aria-hidden="true"></i>
+              <div class="tree-image">
+                <img class="tree-icon-{{name}}" src="assets/tree-illustration.png" alt="etree juletræ" />
+              </div>
               <h4>{{name}}</h4>
               <ul>
                 <li>{{minHeight}}-{{maxHeight}} cm</li>

@@ -544,11 +544,16 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
   box-sizing: border-box;
   transition: all 0.3s ease;
 }
-.trees .tree-size-container .fa-tree {
+.trees .tree-size-container .tree-image {
   height: 90px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
+}
+@media(max-width: 600px) {
+  .trees .tree-size-container .tree-image {
+    padding-bottom: 10px;
+  }
 }
 .trees .tree-size {
   background: rgb(77, 152, 95);
@@ -600,13 +605,13 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
   padding: 0;
   margin: 0;
   color: black;
-  background: rgba(171, 220, 183, 1);
+  background: rgba(255, 255, 255, 0.5);
 }
 .tree-size ul li {
   padding: 10px 0;
 }
-.tree-size ul li:nth-child(odd) {
-  background: #eee;
+.tree-size ul li:nth-child(even) {
+  background: rgba(255, 255, 255, 0.5);
 }
 @media(max-width: 600px){
   .trees .tree-size ul {
@@ -704,23 +709,23 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
   background: #e0e0e0;
 }
 
-i.tree-icon-Mikro {
-  font-size: 1em;
+img.tree-icon-Mikro {
+  height: 40px;
 }
-i.tree-icon-Mini {
-  font-size: 2em;
+img.tree-icon-Mini {
+  height: 55px;
 }
-i.tree-icon-Lille {
-  font-size: 3em;
+img.tree-icon-Lille {
+  height: 75px;
 }
-i.tree-icon-Standard {
-  font-size: 4em;
+img.tree-icon-Standard {
+  height: 100px;
 }
-i.tree-icon-Stor {
-  font-size: 5em;
+img.tree-icon-Stor {
+  height: 115px;
 }
-i.tree-icon-Kæmpe {
-  font-size: 7.5em;
+img.tree-icon-Kæmpe {
+  height: 155px;
 }
 
 /* Address stuff */
