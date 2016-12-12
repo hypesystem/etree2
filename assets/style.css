@@ -400,6 +400,7 @@ a.btn {
     color: white;
     outline: none;
     border: 0;
+    border-radius: 3px;
     cursor: pointer;
     display: inline-block;
     text-decoration: none;
@@ -557,6 +558,7 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
 .trees .tree-size-container {
   width: 16.6%;
   padding: 5px;
+  border-radius: 5px;
   box-sizing: border-box;
   transition: all 0.3s ease;
 }
@@ -575,6 +577,7 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
   background: rgb(77, 152, 95);
   color: white;
   padding: 20px 0;
+  border-radius: 3px;
   cursor: pointer;
   overflow: hidden;
 }
