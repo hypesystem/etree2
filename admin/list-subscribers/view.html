@@ -1,11 +1,9 @@
 ---
 layout: oldstyle
 ---
-<div class="container">
-    <a href="/admin">Tilbage til admin-oversigt</a>
-    <br>
-    <h1>{{ subscribers.length }} email-addresser indsamlet</h1>
-    {{ #subscribers }}
-        {{ email }} (<a href="/unsubscribe/{{ id }}">Afmeld</a>)<br>
-    {{ /subscribers }}
-</div>
+  <a href="/admin">Tilbage til admin-oversigt</a>
+  <br>
+  <h1>{{ subscribers.length }} email-addresser indsamlet</h1>
+  {{ #subscribers }}
+      {{ email }} (<a href="/unsubscribe/{{ id }}">Afmeld</a>)<br>
+  {{ /subscribers }}

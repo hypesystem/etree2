@@ -153,17 +153,18 @@ textarea {
     margin: 25px 0;
     box-shadow: 0 0 2px rgba(0,0,0,0.2), 0 3px 2px rgba(0,0,0,0.2);
 }
+@media (max-width:900px) {
+  .floaty-content-box {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 0;
+  }
+}
 .center-text {
   text-align: center;
 }
 .left-text {
   text-align: left;
-}
-@media (max-width:900px) {
-  .floaty-content-box {
-    width: 100%;
-    padding: 20px;
-  }
 }
 .floaty-content-box h1:first-of-type {
   margin-top: 0;
@@ -392,6 +393,7 @@ table tr td {
 }
 button,
 a.btn {
+  transition: all .2s;
     padding: 13px 20px;
     font-size: 1.2em;
     background: rgb(77, 152, 95);
@@ -406,6 +408,10 @@ a.btn {
 button:hover,
 a.btn:hover {
   background: #306f3f;
+}
+button:active,
+a.btn:active {
+  background: #2f5a39;
 }
 button.large,
 a.btn.large {
