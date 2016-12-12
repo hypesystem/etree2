@@ -156,17 +156,17 @@ layout: sales
             <div class="address">
               <p><strong>Faktureringsadresse</strong></p>
                 <label for="name">Fuldt navn</label>
-                <input id="name" name="billing-name" type="text" placeholder="Mikkel Larsen" required />
+                <input id="name" name="billing-name" type="text" required />
                 <div class="flex-form">
                   <label for="streetname">Adresse</label>
-                  <input id="streetname" name="billing-streetname" type="text" placeholder="Vejnavn 12" required />
+                  <input id="streetname" name="billing-streetname" type="text" required />
                   <div class="zip-input">
                     <label for="zip">Postnummer</label>
-                    <input id="zip" name="billing-zip" pattern="[0-9]{4}" type="text" placeholder="1307" required />
+                    <input id="zip" name="billing-zip" pattern="[0-9]{4}" type="text" required />
                   </div>
                   <div class="city-input">
                     <label for="city">By</label>
-                    <input id="city" name="billing-city" type="text" placeholder="København K" required />
+                    <input id="city" name="billing-city" type="text" required />
                   </div>
                   <label id="delivery-checkbox-container" class="control control--checkbox">Leveringsadressen er den samme.
                     <input type="checkbox" id="delivery-checkbox" name="delivery-same-as-billing" checked="true" />
@@ -178,17 +178,17 @@ layout: sales
               <div id="deliveryAddress">
                 <p><strong>Leveringsadresse</strong></p>
                 <label for="delivery-name">Fuldt navn</label>
-                <input id="delivery-name" name="delivery-name" type="text" placeholder="Mikkel Larsen" />
+                <input id="delivery-name" name="delivery-name" type="text" />
                 <div class="flex-form">
                   <label for="delivery-streetname">Adresse</label>
-                  <input id="delivery-streetname" name="delivery-streetname" type="text" placeholder="Vejnavn 14" />
+                  <input id="delivery-streetname" name="delivery-streetname" type="text" />
                   <div class="zip-input">
                     <label for="delivery-zip">Postnummer</label>
-                    <input id="delivery-zip" name="delivery-zip" pattern="[0-9]{4}" type="text" placeholder="1307" />
+                    <input id="delivery-zip" name="delivery-zip" pattern="[0-9]{4}" type="text" />
                   </div>
                   <div class="city-input">
                     <label for="delivery-city">By</label>
-                    <input id="delivery-city" name="delivery-city" type="text" placeholder="København K" />
+                    <input id="delivery-city" name="delivery-city" type="text" />
                   </div>
                 </div>
               </div>
@@ -211,9 +211,9 @@ layout: sales
           <div class="address-contact">
             <p><strong>Kontaktoplysninger</strong></p>
             <label for="email">Email <span class="label-subtext">(påkrævet)</span></label>
-            <input id="email" name="contact-email" type="email" placeholder="mikkel.larsen@eksempel.dk" required />
+            <input id="email" name="contact-email" type="email" required />
             <label for="phone">Telefonnummer <span class="label-subtext">(valgfri)</span></label>
-            <input id="phone" name="contact-phone" type="tel" placeholder="+45 12 34 56 78" />
+            <input id="phone" name="contact-phone" type="tel" />
             <label for="comments">Kommentarer <span class="label-subtext">(valgfri)</span></label>
             <textarea id="comments" name="comments" rows="3" cols="50"></textarea>
             <p>
