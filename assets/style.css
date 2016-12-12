@@ -579,9 +579,6 @@ input[name="pickup-place"]:checked+label .checkmark-icon {
     max-width: 280px;
     margin-bottom: 10px;
   }
-  .trees .tree-size-container .fa-tree {
-    display: none;
-  }
   .trees .tree-size {
     padding-top: 0;
   }
