@@ -1,4 +1,8 @@
 var getActiveSubscriptions = require("../list-subscribers/getActiveSubscriptions.js");
+var renderView = require("../../renderView.js");
+var fs = require("fs");
+var path = require("path");
+var emailTemplate = fs.readFileSync(path.join(__dirname, "../..", "layouts/email.html")).toString();
 
 function sendEmailEndpoint(pool, mailer, req, res) {
     var subject = req.body["email-subject"];
@@ -13,6 +17,11 @@ function sendEmailEndpoint(pool, mailer, req, res) {
     if(!textContent) {
         return res.fail(400, "Missing text content");
     }
+    renderView(emailTemplate, { content: htmlContent }, (error, htmlContent) => {
+        if(error) {
+            console.error("Failed to render html email in email template", error);
+            return res.fail(500);
+        }
     getRecipients(pool, req.body["other-recipients"], req.body["newsletter-recipients"], (error, recipients) => {
         if(error && error.type == "input") {
             console.log("Recipient format failed", error);
@@ -34,6 +43,7 @@ function sendEmailEndpoint(pool, mailer, req, res) {
             }
             res.redirect("/admin/email/success");
         });
+    });
     });
 }
 
