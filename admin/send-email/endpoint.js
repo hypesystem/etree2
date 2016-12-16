@@ -1,13 +1,16 @@
 var getActiveSubscriptions = require("../list-subscribers/getActiveSubscriptions.js");
 
 function sendEmailEndpoint(pool, mailer, req, res) {
-    if(!req.body["email-subject"]) {
+    var subject = req.body["email-subject"];
+    if(!subject) {
         return res.fail(400, "Missing email subject!");
     }
-    if(!req.body["email-content-html"]) {
+    var htmlContent = req.body["email-content-html"];
+    if(!htmlContent) {
         return res.fail(400, "Missing HTML content");
     }
-    if(!req.body["email-content-text"]) {
+    var textContent = req.body["email-content-text"];
+    if(!textContent) {
         return res.fail(400, "Missing text content");
     }
     getRecipients(pool, req.body["other-recipients"], req.body["newsletter-recipients"], (error, recipients) => {
@@ -20,9 +23,9 @@ function sendEmailEndpoint(pool, mailer, req, res) {
             return res.fail(500);
         }
         var template = {
-            subject: req.body["email-subject"],
-            html: req.body["email-content-html"],
-            text: req.body["email-content-text"]
+            subject: subject,
+            html: htmlContent,
+            text: textContent
         };
         mailer.sendBatch(template, recipients, (error, mailId) => {
             if(error) {
