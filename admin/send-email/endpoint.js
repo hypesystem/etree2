@@ -22,28 +22,28 @@ function sendEmailEndpoint(pool, mailer, req, res) {
             console.error("Failed to render html email in email template", error);
             return res.fail(500);
         }
-    getRecipients(pool, req.body["other-recipients"], req.body["newsletter-recipients"], (error, recipients) => {
-        if(error && error.type == "input") {
-            console.log("Recipient format failed", error);
-            return res.fail(400, "Wrong recipients");
-        }
-        if(error) {
-            console.error("Failed to get recipients for email", error);
-            return res.fail(500);
-        }
-        var template = {
-            subject: subject,
-            html: htmlContent,
-            text: textContent
-        };
-        mailer.sendBatch(template, recipients, (error, mailId) => {
+        getRecipients(pool, req.body["other-recipients"], req.body["newsletter-recipients"], (error, recipients) => {
+            if(error && error.type == "input") {
+                console.log("Recipient format failed", error);
+                return res.fail(400, "Wrong recipients");
+            }
             if(error) {
-                console.error("Failed to send email to recipients", recipients, error);
+                console.error("Failed to get recipients for email", error);
                 return res.fail(500);
             }
-            res.redirect("/admin/email/success");
+            var template = {
+                subject: subject,
+                html: htmlContent,
+                text: textContent
+            };
+            mailer.sendBatch(template, recipients, (error, mailId) => {
+                if(error) {
+                    console.error("Failed to send email to recipients", recipients, error);
+                    return res.fail(500);
+                }
+                res.redirect("/admin/email/success");
+            });
         });
-    });
     });
 }
 
