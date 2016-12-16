@@ -1,35 +1,48 @@
 var getActiveSubscriptions = require("../list-subscribers/getActiveSubscriptions.js");
+var renderView = require("../../renderView.js");
+var fs = require("fs");
+var path = require("path");
+var emailTemplate = fs.readFileSync(path.join(__dirname, "../..", "layouts/email.html")).toString();
 
 function sendEmailEndpoint(pool, mailer, req, res) {
-    if(!req.body["email-subject"]) {
+    var subject = req.body["email-subject"];
+    if(!subject) {
         return res.fail(400, "Missing email subject!");
     }
-    if(!req.body["email-content-html"]) {
+    var htmlContent = req.body["email-content-html"];
+    if(!htmlContent) {
         return res.fail(400, "Missing HTML content");
     }
-    if(!req.body["email-content-text"]) {
+    var textContent = req.body["email-content-text"];
+    if(!textContent) {
         return res.fail(400, "Missing text content");
     }
-    getRecipients(pool, req.body["other-recipients"], req.body["newsletter-recipients"], (error, recipients) => {
-        if(error && error.type == "input") {
-            console.log("Recipient format failed", error);
-            return res.fail(400, "Wrong recipients");
-        }
+    renderView(emailTemplate, { content: htmlContent }, (error, htmlContent) => {
         if(error) {
-            console.error("Failed to get recipients for email", error);
+            console.error("Failed to render html email in email template", error);
             return res.fail(500);
         }
-        var template = {
-            subject: req.body["email-subject"],
-            html: req.body["email-content-html"],
-            text: req.body["email-content-text"]
-        };
-        mailer.sendBatch(template, recipients, (error, mailId) => {
+        getRecipients(pool, req.body["other-recipients"], req.body["newsletter-recipients"], (error, recipients) => {
+            if(error && error.type == "input") {
+                console.log("Recipient format failed", error);
+                return res.fail(400, "Wrong recipients");
+            }
             if(error) {
-                console.error("Failed to send email to recipients", recipients, error);
+                console.error("Failed to get recipients for email", error);
                 return res.fail(500);
             }
-            res.redirect("/admin/email/success");
+            var template = {
+                subject: subject,
+                html: htmlContent,
+                text: textContent
+            };
+            mailer.sendBatch(template, recipients, (error, mailId) => {
+                if(error) {
+                    console.error("Failed to send email to recipients", recipients, error);
+                    return res.fail(500);
+                }
+                res.redirect("/admin/email/success");
+            });
         });
     });
 }
