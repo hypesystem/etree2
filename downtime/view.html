@@ -1,7 +1,78 @@
 ---
 layout: oldstyle
 ---
-<div class="floaty-content-box">
-    <h1>Salget er slut!</h1>
-    <p>Kom igen når vi åbner salget efter sommer.</p>
+<style type="text/css" scoped>
+    .box-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+    .box {
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        z-index: 100;
+        box-sizing: border-box;
+    }
+    .sales-over-box {
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+        background: black;
+    }
+    .sales-over-box .box-background {
+        background-image: url('/assets/trees/tree9.jpg');
+        filter: blur(5px);
+        opacity: 0.7;
+    }
+    .sign-up-for-newsletter-box {
+        width: 50%;
+        text-align: center;
+        padding: 75px 15px;
+        color: white;
+        background: black;
+    }
+    .sign-up-for-newsletter-box .box-background {
+        background-image: url('/assets/trees/tree4.jpg');
+        opacity: 0.7;
+    }
+    .cheapest-tree-box {
+        width: 50%;
+        text-align: center;
+        padding: 50px 15px;
+        margin-left: -4px;
+    }
+    .cheapest-tree-box .box-background {
+        background-image: url('/assets/trees/tree6.jpg');
+        opacity: 0.35;
+        filter: blur(2px);
+    }
+</style>
+<div class="box sales-over-box">
+    <div class="box-background"></div>
+    <h1>Salget er slut for i år</h1>
+    <p>Vi sælger ikke flere træer i år, men åbner op for salget igen omkring d. 1. oktober.</p>
+</div>
+<div class="box sign-up-for-newsletter-box">
+    <div class="box-background"></div>
+    <p>Vil du være sikker på at få Københavns billigste juletræ til jul?</p>
+    <p>Skriv din email på vores liste nu og få et godt tilbud, når vi starter salget igen.</p>
+    <form action="/subscribe" method="post" class="prelaunch-form">
+        <label for="prelaunch-email-input">
+            <input type="email" name="email" id="prelaunch-email-input" placeholder="email@eksempel.dk">
+        </label>
+        <button type="submit">Skriv mig på listen!</button>
+    </form>
+</div>
+<div class="box cheapest-tree-box">
+    <div class="box-background"></div>
+    <h1>Vi var billigst!</h1>
+    <p>Vi solgte de billigste træer i alle højder, i hele København!</p>
+    <p>Hvordan kan vi være så sikre på det? Vi har undersøgt markedet og fundet ud af hvad priserne ellers er, så vi var helt sikre.</p>
+    <p>Vores markedsrapport udkommer snart, så du også kan læse om juletræspriserne i København.</p>
 </div>
