@@ -1,0 +1,37 @@
+---
+layout: email
+---
+<p>Du har i dag modtaget dit juletræ fra etree. Her er kvitteringen for købet.</p>
+
+<h2>Kvittering</h2>
+<table style="font-size: 12px; width: 100%; max-width: 550px;">
+    <tr>
+        <td class="address-cell" style="width: 200px">
+        </td>
+        <td></td>
+        <td class="address-cell" style="width: 200px; text-align: right;">
+            Ordrenummer {{ orderNumber }}<br>
+            Ordredato {{ orderDate }}<br>
+            Modtagelsesdato {{ receivedDate }}
+        </td>
+    </tr>
+</table>
+<table style="margin: 0 50px; font-size: 12px; margin-top: 20px; border-collapse: collapse; width: 450px;">
+    {{ #orderLines }}
+    <tr>
+        <td style="padding: 6px 12px;">{{ name }}</td>
+        <td style="padding: 6px 12px; text-align: right;">{{ price }} kr</td>
+    </tr>
+    {{ /orderLines }}
+    <tr>
+        <td style="padding: 6px 12px; font-weight: bold; border-top: 1px solid rgba(0,0,0,0.4); border-bottom: 1px solid rgba(0,0,0,0.4);">Total</td>
+        <td style="padding: 6px 12px; font-weight: bold; border-top: 1px solid rgba(0,0,0,0.4); border-bottom: 1px solid rgba(0,0,0,0.4); text-align: right;">{{ amount }} kr</td>
+    </tr>
+    <tr>
+        <td style="padding: 6px 12px;">Deraf moms (25%)</td>
+        <td style="padding: 6px 12px; text-align: right;">{{ vat }} kr</td>
+    </tr>
+</table>
+<div style="font-size: 10px; color: rgba(0,0,0,0.5); margin: 20px 0; font-weight: bold; width: 100%; max-width: 550px; text-align: center;">
+    etree IVS &#183; CVR 38170147 &#183; Markskellet 8 st th, 2720 Vanløse
+</div>

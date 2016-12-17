@@ -28,7 +28,7 @@ function createAdminApp(pool, mailer) {
     app.post("/email", authenticate(pool), emailEndpoint(pool, mailer));
     app.get("/email/success", authenticate(pool), staticViewEndpoint("admin/send-email/success.html"));
     
-    app.use("/sales-stats", authenticate(pool), salesStatsApp(pool));
+    app.use("/sales-stats", authenticate(pool), salesStatsApp(pool, mailer));
     app.use("/delivery", authenticate(pool), manageDeliveryApp(events));
     
     return app;

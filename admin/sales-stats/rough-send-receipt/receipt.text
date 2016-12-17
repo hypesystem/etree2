@@ -1,0 +1,19 @@
+Du har i dag modtaget dit juletræ fra etree. Her er kvitteringen for købet.
+
+Ordrenummer {{ orderNumber }}
+Ordredato {{ orderDate }}
+Modtagelsesdato (kvitteringsdato) {{ receivedDate }}
+
+{{ #orderLines }}
++ {{ name }} ... {{ price }} kr
+{{ /orderLines }}
+-----------------------------------
+= Total ... {{ amount }} kr
+(Deraf moms, 25%) ... {{ vat }} kr
+
+Mvh
+etree
+
+---
+
+etree IVS - CVR 38170147 - Markskellet 8 st th, 2720 Vanløse
