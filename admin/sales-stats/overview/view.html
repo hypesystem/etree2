@@ -127,6 +127,7 @@ layout: oldstyle
               <th>Email</th>
               <th>Beløb</th>
               <th>Status</th>
+              <th></th>
           </tr>
       </thead>
       <tbody>
@@ -141,6 +142,7 @@ layout: oldstyle
           </tr>
           <tr class="more-data-row noshow" id="more-data-for-{{ id }}">
               <td colspan="1000">
+                  <div>ID: {{ id }} | <a href="/admin/sales-stats/send-receipt/{{ id }}">Send kvittering på levering</a><br><br></div>
                   <div class="databox">
                       <strong>payment_started.data:</strong><br>
                       <pre>{{ payment_started_data }}</pre>
