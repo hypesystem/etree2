@@ -3,6 +3,7 @@ var path = require("path");
 var overviewView = fs.readFileSync(path.join(__dirname, "view.html")).toString();
 var renderView = require("../../../renderView.js");
 var productData = require("../../../sales/productData.json");
+var getPurchaseEvents = require("../getPurchaseEvents.js");
 
 function overviewEndpoint(pool, req, res) {
     getSalesStatsOverview(pool, (error, viewModel) => {
@@ -107,33 +108,6 @@ function getSalesStatsOverview(pool, callback) {
             sales: sales,
             numberOfTreesSold: numberOfTreesSold,
             numberOfFeetSold: numberOfFeetSold
-        });
-    });
-}
-
-function getPurchaseEvents(pool, callback) {
-    pool.query("SELECT * FROM payment_started ORDER BY happened_at ASC", (error, startedResult) => {
-        if(error) {
-            return callback(error);
-        }
-        pool.query("SELECT * FROM payment_failed ORDER BY happened_at ASC", (error, failedResult) => {
-            if(error) {
-                return callback(error);
-            }
-            pool.query("SELECT * FROM payment_completed ORDER BY happened_at ASC", (error, completedResult) => {
-                if(error) {
-                    return callback(error);
-                }
-                startedEvents = startedResult.rows;
-                startedEvents.forEach(x => x.type = "payment_started");
-                failedEvents = failedResult.rows;
-                failedEvents.forEach(x => x.type = "payment_failed");
-                completedEvents = completedResult.rows;
-                completedEvents.forEach(x => x.type = "payment_completed");
-                var events = [].concat(startedEvents).concat(failedEvents).concat(completedEvents);
-                events.sort((a, b) => (a.happened_at < b.happened_at) ? -1 : 1); //asc
-                callback(null, events);
-            });
         });
     });
 }

@@ -1,22 +1,18 @@
 ---
 layout: email
 ---
-<h1>Så bliver det jul!</h1>
-<p>Du har bestilt juletræ hos etree. Her er din ordrebekræftigelse.</p>
-<!--p>TODO: pickup: Når du henter træet, skal du bruge ordrenummeret.</p-->
+<p>Du har i dag modtaget dit juletræ fra etree. Her er kvitteringen for købet.</p>
 
-<h2>Ordrebekræftigelse</h2>
+<h2>Kvittering</h2>
 <table style="font-size: 12px; width: 100%; max-width: 550px;">
     <tr>
         <td class="address-cell" style="width: 200px">
-            {{ customer.billingAddress.name }}<br>
-            {{ customer.billingAddress.streetAddress}}<br>
-            {{ customer.billingAddress.zip }} {{ customer.billingAddress.city }}
         </td>
         <td></td>
         <td class="address-cell" style="width: 200px; text-align: right;">
             Ordrenummer {{ orderNumber }}<br>
-            Ordredato {{ orderDate }}
+            Ordredato {{ orderDate }}<br>
+            Modtagelsesdato {{ receivedDate }}
         </td>
     </tr>
 </table>
@@ -39,12 +35,3 @@ layout: email
 <div style="font-size: 10px; color: rgba(0,0,0,0.5); margin: 20px 0; font-weight: bold; width: 100%; max-width: 550px; text-align: center;">
     etree IVS &#183; CVR 38170147 &#183; Markskellet 8 st th, 2720 Vanløse
 </div>
-<!-- TODO: what if pickup location? -->
-<p>
-    Ordren leveres til adressen {{ customer.deliveryAddress.streetAddress }}, {{ customer.deliveryAddress.zip }} {{ customer.deliveryAddress.city }}.<br />
-    Forventet levering mellem <strong>d. 10. og 20. december</strong>.
-</p>
-<p>
-    Du kontaktes på email til {{ customer.email }} når leveringsdagen fastlægges{{ #customer.phoneNumber }} og pr SMS til {{ customer.phoneNumber }}, når vi er på vej{{ /customer.phoneNumber }}.
-    Du modtager en kvittering pr. email, når du har modtaget træet.
-</p>

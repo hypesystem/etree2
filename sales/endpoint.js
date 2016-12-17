@@ -381,7 +381,8 @@ function sendReceiptEmail(pool, mailer, transactionId, transactionStartData, cal
                             JSON.stringify({
                                 viewModel: viewModel,
                                 htmlVersion: emailContentsHtml,
-                                textVersion: emailContentsText
+                                textVersion: emailContentsText,
+                                subject: template.subject
                             }),
                             new Date().toISOString()
                         ], callback);
