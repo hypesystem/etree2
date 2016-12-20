@@ -26,7 +26,6 @@ layout: base
         overflow: hidden;
         text-align: center;
         padding: 15px;
-        flex-shrink: 0;
     }
     .box p {
         min-width: 250px;
@@ -78,7 +77,6 @@ layout: base
         flex-basis: 580px;
         flex-grow: 3;
         min-height: 350px;
-        flex-shrink: 1;
     }
     .box-video {
         position: absolute;
@@ -100,7 +98,6 @@ layout: base
         background: black;
         flex-basis: 580px;
         flex-grow: 3;
-        flex-shrink: 1;
     }
     .cycling-delivery .box-background {
         background-image: url('/assets/cyclin.jpg');
@@ -125,7 +122,7 @@ layout: base
     .service-is-high {
         background: #6ab38c;
         color: white;
-        padding: 20px 85px 20px 45px;
+        padding: 20px 60px 20px 15px;
         flex-basis: 600px;
         flex-grow: 4;
         flex-shrink: 2;
@@ -140,6 +137,12 @@ layout: base
     .service-is-high .box-background {
         background-image: url('/assets/trees/tree9.jpg');
         opacity: 0.17;
+    }
+    @media (max-width: 700px) {
+        .service-is-high img {
+            width: 175px;
+            right: -90px;
+        }
     }
 </style>
 <div class="boxy-sales-over-thing"><!--TODO: make responsive with flex-basis, flex-grow and cutoffs-->
@@ -176,7 +179,8 @@ layout: base
     </div>
     
     <div class="box video-of-delivery">
-        <video class="box-video" autoplay loop>
+        <!-- TODO: Maybe use a smaller gif because it is loaded every time page loads... -->
+        <video class="box-video" autoplay loop muted poster="/assets/cycling.gif">
             <source src="/assets/cycling.mp4" type="video/mp4">
             <source src="/assets/cycling.webm" type="video/webm">
         </video>
