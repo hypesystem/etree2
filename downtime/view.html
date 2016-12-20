@@ -1,7 +1,12 @@
 ---
-layout: oldstyle
+layout: base
 ---
 <style type="text/css" scoped>
+    .boxy-sales-over-thing {
+        display: flex;
+        align-items: stretch;
+        flex-wrap: wrap;
+    }
     .box-background {
         position: absolute;
         top: 0;
@@ -9,70 +14,198 @@ layout: oldstyle
         right: 0;
         bottom: 0;
         z-index: -1;
+        background-size: cover;
+        background-position: center;
     }
     .box {
         display: inline-block;
-        vertical-align: top;
         position: relative;
         z-index: 100;
         box-sizing: border-box;
+        background: white;
+        overflow: hidden;
+        text-align: center;
+        padding: 15px;
+        flex-shrink: 0;
+    }
+    .box p {
+        min-width: 250px;
+        max-width: 525px;
+        display: inline-block;
+    }
+    .box h1 {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.6);
     }
     .sales-over-box {
         width: 100%;
         text-align: center;
-        padding: 15px;
+        padding: 100px 15px;
         color: white;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.6);
         background: black;
     }
     .sales-over-box .box-background {
         background-image: url('/assets/trees/tree9.jpg');
-        filter: blur(5px);
+        filter: blur(4px);
         opacity: 0.7;
     }
     .sign-up-for-newsletter-box {
-        width: 50%;
         text-align: center;
-        padding: 75px 15px;
+        padding: 210px 15px 15px;
         color: white;
         background: black;
+        flex-basis: 450px;
+        flex-grow: 3;
     }
     .sign-up-for-newsletter-box .box-background {
         background-image: url('/assets/trees/tree4.jpg');
-        opacity: 0.7;
+        opacity: 0.65;
+        filter: blur(1px);
     }
     .cheapest-tree-box {
-        width: 50%;
         text-align: center;
         padding: 50px 15px;
-        margin-left: -4px;
+        flex-basis: 400px;
+        flex-grow: 2;
     }
     .cheapest-tree-box .box-background {
         background-image: url('/assets/trees/tree6.jpg');
-        opacity: 0.35;
-        filter: blur(2px);
+        opacity: 0.30;
+        filter: blur(1px);
+    }
+    .video-of-delivery {
+        opacity: 0.85;
+        background: black;
+        flex-basis: 580px;
+        flex-grow: 3;
+        min-height: 350px;
+        flex-shrink: 1;
+    }
+    .box-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        -webkit-filter: blur(1px) saturate(0.4) hue-rotate(45deg) contrast(1.3) brightness(1.1);
+        filter: blur(1px) saturate(0.4) hue-rotate(45deg) contrast(1.3) brightness(1.1);
+    }
+    .cycling-delivery {
+        padding: 50px 15px;
+        text-align: center;
+        color: white;
+        background: black;
+        flex-basis: 580px;
+        flex-grow: 3;
+        flex-shrink: 1;
+    }
+    .cycling-delivery .box-background {
+        background-image: url('/assets/cyclin.jpg');
+        opacity: 0.6;
+        filter: blur(1px);
+    }
+    .cycling-delivery p {
+        background: rgba(0,0,0,0.3);
+    }
+    
+    .delivered-tree {
+        background: #6ab38c;
+        flex-basis: 200px;
+        flex-grow: 1;
+        min-height: 350px;
+    }
+    .delivered-tree .box-background {
+        background-image: url('/assets/delivered-tree.jpg');
+        opacity: 0.81;
+    }
+    
+    .service-is-high {
+        background: #6ab38c;
+        color: white;
+        padding: 20px 85px 20px 45px;
+        flex-basis: 600px;
+        flex-grow: 4;
+        flex-shrink: 2;
+    }
+    .service-is-high img {
+        position: absolute;
+        width: 200px;
+        bottom: 15px;
+        right: -70px;
+        transform: rotate(-25deg);
+    }
+    .service-is-high .box-background {
+        background-image: url('/assets/trees/tree9.jpg');
+        opacity: 0.17;
     }
 </style>
-<div class="box sales-over-box">
-    <div class="box-background"></div>
-    <h1>Salget er slut for i år</h1>
-    <p>Vi sælger ikke flere træer i år, men åbner op for salget igen omkring d. 1. oktober.</p>
-</div>
-<div class="box sign-up-for-newsletter-box">
-    <div class="box-background"></div>
-    <p>Vil du være sikker på at få Københavns billigste juletræ til jul?</p>
-    <p>Skriv din email på vores liste nu og få et godt tilbud, når vi starter salget igen.</p>
-    <form action="/subscribe" method="post" class="prelaunch-form">
-        <label for="prelaunch-email-input">
-            <input type="email" name="email" id="prelaunch-email-input" placeholder="email@eksempel.dk">
-        </label>
-        <button type="submit">Skriv mig på listen!</button>
-    </form>
-</div>
-<div class="box cheapest-tree-box">
-    <div class="box-background"></div>
-    <h1>Vi var billigst!</h1>
-    <p>Vi solgte de billigste træer i alle højder, i hele København!</p>
-    <p>Hvordan kan vi være så sikre på det? Vi har undersøgt markedet og fundet ud af hvad priserne ellers er, så vi var helt sikre.</p>
-    <p>Vores markedsrapport udkommer snart, så du også kan læse om juletræspriserne i København.</p>
+<div class="boxy-sales-over-thing"><!--TODO: make responsive with flex-basis, flex-grow and cutoffs-->
+    
+    <div class="box sales-over-box">
+        <div class="box-background"></div>
+        <h1>Salget er slut for i år</h1>
+        <p>Vi sælger ikke flere træer i år, men åbner op for salget igen omkring d. 1. oktober.</p>
+    </div>
+    
+    <div class="box cheapest-tree-box">
+        <div class="box-background"></div>
+        <h1>etree var billigst!</h1>
+        <p>
+            I 2016 solgte vi de billigste træer i alle højder &mdash; i hele København!
+            Hvordan kan vi være så sikre på det?
+            Vi har undersøgt markedet og fundet ud af hvad priserne ellers er, så vi var helt sikre.
+        </p>
+        <br>
+        <p>Vores markedsrapport udkommer snart, så du også kan læse om juletræspriserne i København.</p>
+    </div>
+    <div class="box sign-up-for-newsletter-box">
+        <div class="box-background"></div>
+        <p>
+            Vil du være sikker på at få Københavns billigste juletræ til jul?
+            Skriv din email på vores liste nu og få et godt tilbud, når vi starter salget igen.
+        </p>
+        <form action="/subscribe" method="post" class="prelaunch-form">
+            <label for="prelaunch-email-input">
+                <input type="email" name="email" id="prelaunch-email-input" placeholder="email@eksempel.dk">
+            </label>
+            <button type="submit">Skriv mig op!</button>
+        </form>
+    </div>
+    
+    <div class="box video-of-delivery">
+        <video class="box-video" autoplay loop>
+            <source src="/assets/cycling.mp4" type="video/mp4">
+            <source src="/assets/cycling.webm" type="video/webm">
+        </video>
+    </div>
+    <div class="box cycling-delivery">
+        <div class="box-background"></div>
+        <h1>Vi cykler julen ud</h1>
+        <p>
+            Hvert år leverer vi træer på cykel, det er nemlig den mest miljøvenlige måde at levere træer på.
+            Vi leverer i hele Københavnsområdet.
+        </p>
+    </div>
+    
+    <div class="box delivered-tree">
+        <div class="box-background"></div>
+    </div>
+    <div class="box service-is-high">
+        <div class="box-background"></div>
+        <img src="/assets/tree-pretty-illustration.png">
+        <h1>Service i højsædet</h1>
+        <p>
+            Når vi leverer dit juletræ, er det altid med et smil på læben, og har du spørgsmål, hjælper vi gerne.
+            Vi bærer også gerne træet ind og stiller det på plads, hvor du vil have det.
+            Hvis du ikke er hjemme, kan vi aftale at stille det et sted.
+        </p>
+        <br>
+        <p>
+            Du får altid personlig betjening, og vi gør hvad vi kan for at du får en god og behagelig jul!
+        </p>
+    </div>
+    
 </div>
