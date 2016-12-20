@@ -122,7 +122,7 @@ layout: base
     .service-is-high {
         background: #6ab38c;
         color: white;
-        padding: 20px 85px 20px 45px;
+        padding: 20px 60px 20px 15px;
         flex-basis: 600px;
         flex-grow: 4;
         flex-shrink: 2;
@@ -137,6 +137,12 @@ layout: base
     .service-is-high .box-background {
         background-image: url('/assets/trees/tree9.jpg');
         opacity: 0.17;
+    }
+    @media (max-width: 700px) {
+        .service-is-high img {
+            width: 175px;
+            right: -90px;
+        }
     }
 </style>
 <div class="boxy-sales-over-thing"><!--TODO: make responsive with flex-basis, flex-grow and cutoffs-->
