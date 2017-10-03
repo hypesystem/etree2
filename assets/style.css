@@ -1068,3 +1068,38 @@ label .label-subtext {
   display: inline-block;
   font-weight: 700;
 }
+
+/**
+ * Article layout
+ */
+
+.article-container {
+  text-align: center;
+  margin: 55px 0;
+}
+.article-container article {
+  width: 100%;
+  max-width: 850px;
+  background: rgb(245,245,245);
+  display: inline-block;
+  text-align: left;
+  padding: 35px;
+  padding-bottom: 10px;
+  font-size: 1.1em;
+  box-sizing: border-box;
+}
+.article-container article h1 {
+  margin: 0;
+  text-align: center;
+}
+.article-container article h3 {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 200;
+  margin-bottom: 50px;
+}
+.article-container article p {
+  margin: 0;
+  margin-bottom: 1em;
+  line-height: 110%;
+}
