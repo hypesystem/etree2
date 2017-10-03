@@ -18,7 +18,7 @@ layout: default
     </form>
 </div>
 <section class="pitch">
-  <div class="case container center-text">
+  <div class="case container center-text-container">
     <h3>Hvorfor skulle du vælge etree?</h3>
     <p>
       Du kunne jo også tage ud og bruge en eftermiddag på at købe et træ. Det er rigtigt nok.
@@ -196,3 +196,20 @@ layout: default
     <img src="assets/etreeLogo.png" alt="" />
   </div>
 </section>
+<a class="tree-pops-in-from-side-alert" href="/bliv-afhentningssted">
+  <div class="tree-pops-in-from-side-message">
+    Har du en lokal forretning? Få flere kunder i julen ved at blive et etree afhentningssted!
+  </div>
+  <div class="tree-pops-in-from-side-tree"></div>
+</a>
+<script>
+  (function() {
+    var treeAlert = document.querySelector(".tree-pops-in-from-side-alert");
+    window.addEventListener("scroll", hideTreeAlert);
+
+    function hideTreeAlert() {
+      window.removeEventListener("scroll", hideTreeAlert);
+      treeAlert.classList += " hidden";
+    }
+  })();
+</script>
