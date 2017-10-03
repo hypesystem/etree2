@@ -66,6 +66,10 @@ nav .logo {
   background: rgba(240,240,240,0.875);
   height: 75px;
   border-radius: 50%;
+  transition: background 1s;
+}
+nav .logo:hover {
+  background: white;
 }
 nav .logo img {
   height: 75px;
@@ -229,6 +233,8 @@ textarea {
   padding: 20px;
   box-sizing: border-box;
   text-align: center;
+  color: white;
+  text-shadow: 0 0 5px black;
 }
 @media(max-width: 900px){
   .prelaunch-container {
