@@ -4,6 +4,7 @@ var downtime = staticViewEndpoint("downtime/view.html");
 var prelaunch = staticViewEndpoint("prelaunch/view.html");
 
 function frontPageSelector(req, res) {
+    return prelaunch(req, res);
     if(req.query.forceState == "salesStarted") {
         return sales(req, res);
     }
